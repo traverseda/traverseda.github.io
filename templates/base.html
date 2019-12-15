@@ -6,11 +6,12 @@
 
 {% endblock %}
 
+{% block comments %}
 <div id="disqus_thread"></div>
 <script>
 var disqus_config = function () {
     this.page.url = "https://traverseda.github.io/{{self_path}}";
-    this.page.identifier = "https://traverseda.github.io/{{self_path}}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    this.page.identifier = "https://traverseda.github.io/{{self_path}}";
 };
 (function() { // DON'T EDIT BELOW THIS LINE
 var d = document, s = d.createElement('script');
@@ -20,6 +21,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{% endblock %}
                             
 ---
 Copyright 2019-{{now.year}} Alex Davies
