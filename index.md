@@ -12,6 +12,9 @@ something, but not today.
 
 You can contact me by email at {{email}}.
 
+My father writes on medium [here](https://medium.com/@traversedavies). That can
+create some confusion since he is also a Traverse Davies.
+
 ---
 
 Here's some things you might find useful/interesting, or that otherwise I'd
@@ -25,3 +28,5 @@ where I live in a van down by the river.
 
 Of particular interest might be [how I handle the electrical
 system](houseBus/power/index.md.html) on said bus.
+
+Or maybe [a wind turbine](houseBus/power/windTurbine1/index.md.html)?
