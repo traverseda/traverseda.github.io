@@ -21,7 +21,8 @@ I'd probably want to make them in 6 foot lengths, for easy shipping. Common hex
 strut can provide the axle, transfering force to the generator. For the
 generator itself I'm very tempted to just use one or more stepper motors, locked
 together. They're a cheap commodity, the have a good torque/volt profile, and
-you can get them in arbitrary bulk.
+you can get them in arbitrary bulk. Using a few of them in paralel is probably
+cheaper than using a specialized generator, for small to medium deployments.
 
 {% from 'templates/utils.html.j2' import image,stl with context %}
 
