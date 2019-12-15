@@ -1,0 +1,190 @@
+<p><link rel="stylesheet" href="../media/sakura-earthly.css" type="text/css">
+<link rel="stylesheet" href="../media/pygments.css" type="text/css"></p>
+
+<p><a href="../index.md.html"><h1>Outside Context Solutions</h1></a></p>
+
+<h1 id="building-a-simple-voice-ai-using-python">Building a simple voice AI using python</h1>
+
+<p>This is a tutorial for building a voice AI, like amazon's alexa,
+apple's siri, or the google home platform. It's my hope that you can follow
+along even if this is your first</p>
+
+<p>It's going to be using python and a number of third party tools.</p>
+
+<ul>
+<li><p><a href="https://github.com/Picovoice/Porcupine#python-demo-application">Picovoice's Porcupine</a>
+ for wake word detection</p></li>
+<li><p><a href="https://github.com/mozilla/DeepSpeech">Mozzila's DeepSpeech</a> for out
+ speech-to-text engine</p></li>
+<li><p><a href="https://github.com/VerbalExpressions/PythonVerbalExpressions">VebalExpressions</a>
+ for intent parsing (these are basically just easier to read regexes,
+ despite the confusing name)</p></li>
+</ul>
+
+<h1 id="getting-started">Getting started</h1>
+
+<p>If you're not familar with python, well not would be a good time to start. It's
+important that you do development in a <em>virtualenv</em>, so that you don't
+accidently mix package versions with other projects, or with system packages.</p>
+
+<p>Let's create a new project root and get started</p>
+
+<h2 id="porcupine">Porcupine</h2>
+
+<p>Porcupine isn't in a convenient pip package, so we need to manually install it.
+From your project root, run the following.</p>
+
+<div class="codehilite"><pre><span></span><code>git clone --depth<span class="o">=</span><span class="m">1</span> https://github.com/Picovoice/Porcupine.git
+<span class="c1">#We use depth=1 because if we don&#39;t it&#39;s 4.6GB of data</span>
+</code></pre></div>
+
+<p>We're going to use python's asyncio framework as a crude 
+cooperative-multiprocessing alternative. This let's us pretend we're running multiple
+different processes (tasks) without nearly us much overhead or having to worry
+about inter-process communication or locks. Of course we are still running
+single threaded, at no point are we running more than one piece of code at a
+time. What happens is that whenever we call a function using the <code>await</code>
+function, that gives other tasks a chance to run.</p>
+
+<p>This makes some things a lot clearer, for example we can have one task that's
+listening to a microphone, while another can "listen" to a command line
+application, while another checks to see if anything is scheduled to run, checks
+your email, or anything else.</p>
+
+<p>Create a <code>main.py</code> file in your project, and start by setting up all your
+imports.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+<span class="kn">import</span> <span class="nn">pyaudio</span>
+<span class="kn">import</span> <span class="nn">deepspeech</span>
+<span class="kn">from</span> <span class="nn">Porcupine.binding.python.porcupine</span> <span class="kn">import</span> <span class="n">Porcupine</span>
+</code></pre></div>
+
+<p>Notice the long import path? That's because <code>Porcupine</code> doesn't have a pip
+installable package.</p>
+
+<p>Next we can start setting up <code>Porcupine</code>, porcupine ships with binaries for
+multiple platforms, we're developing on linux so we'll use the
+"Porcupine/lib/<em>linux</em>/x86<em>64/libpv</em>porcupine.so" path. If you're on a different
+operating system you will need to change that. Please note the the
+<code>keyword_file_paths</code> is also dependent on operating system. We're going to use
+the wakeword <code>computer</code>. </p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">porcupine</span> <span class="o">=</span> <span class="n">Porcupine</span><span class="p">(</span>                                                   
+            <span class="n">library_path</span><span class="o">=</span><span class="s2">&quot;Porcupine/lib/linux/x86_64/libpv_porcupine.so&quot;</span><span class="p">,</span>
+            <span class="n">model_file_path</span><span class="o">=</span><span class="s2">&quot;Porcupine/lib/common/porcupine_params.pv&quot;</span><span class="p">,</span>                        
+            <span class="n">keyword_file_paths</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Porcupine/resources/keyword_files/linux/computer_linux.ppn&quot;</span><span class="p">,],</span>
+            <span class="n">sensitivities</span><span class="o">=</span><span class="p">[</span><span class="mf">0.9</span><span class="p">,])</span>
+</code></pre></div>
+
+<p>One "gotcha" of this code is that <code>keyword_file_paths</code> and <code>sensitivities</code>
+accepts a list of keywords/sensitivies. You can use this to support multiple
+wakewords later on.</p>
+
+<p>You can train custom wakewords fairly easily. From the porcupine directory you
+can run something like this:</p>
+
+<div class="codehilite"><pre><span></span><code>tools/optimizer/<span class="si">${</span><span class="nv">SYSTEM</span><span class="si">}</span>/<span class="si">${</span><span class="nv">MACHINE</span><span class="si">}</span>/pv_porcupine_optimizer -r resources/optimizer_data -w <span class="si">${</span><span class="nv">WAKE_WORD</span><span class="si">}</span> <span class="se">\</span>
+-p <span class="si">${</span><span class="nv">TARGET_SYSTEM</span><span class="si">}</span> -o <span class="si">${</span><span class="nv">OUTPUT_DIRECTORY</span><span class="si">}</span>
+</code></pre></div>
+
+<p>Now that we have porcupine instantiated we can start dealing with audio streams.</p>
+
+<p>TODO: Explain how to find <code>input_device_index</code></p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">pa</span> <span class="o">=</span> <span class="n">pyaudio</span><span class="o">.</span><span class="n">PyAudio</span><span class="p">()</span>
+<span class="n">audio_stream</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">open</span><span class="p">(</span>
+    <span class="n">rate</span><span class="o">=</span><span class="n">porcupine</span><span class="o">.</span><span class="n">sample_rate</span><span class="p">,</span>
+    <span class="n">channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="n">pyaudio</span><span class="o">.</span><span class="n">paInt16</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">frames_per_buffer</span><span class="o">=</span><span class="n">porcupine</span><span class="o">.</span><span class="n">frame_length</span><span class="p">,</span>
+    <span class="n">input_device_index</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Finally, we pass the audio data into porcupine.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">waitForWakeword</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">pcm</span> <span class="o">=</span> <span class="n">audio_stream</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">porcupine</span><span class="o">.</span><span class="n">frame_length</span><span class="p">)</span>
+        <span class="n">pcm</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack_from</span><span class="p">(</span><span class="s2">&quot;h&quot;</span> <span class="o">*</span> <span class="n">porcupine</span><span class="o">.</span><span class="n">frame_length</span><span class="p">,</span> <span class="n">pcm</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">porcupine</span><span class="o">.</span><span class="n">process</span><span class="p">(</span><span class="n">pcm</span><span class="p">)</span>
+        <span class="c1">#print(&quot;Waiting for wakeword...&quot;, result)</span>
+        <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">result</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+<p>and wait for the wakeword to be recognized</p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>                        
+<span class="c1">#This blocks until we hear the wakeword</span>
+<span class="n">loop</span><span class="o">.</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">waitForWakeword</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I heard the wakeword! Shutting down now&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>If everything is working correctly you should be able to say "computer" and the
+program will complete.</p>
+
+<h1 id="passing-input-to-mozillas-deepspeech">Passing input to Mozilla's deepSpeech</h1>
+
+<p>Now that wakeword detection is working, we can get started on actual speech
+recognition. Speech recognition requires a lot more electricity then wakeword
+detection, so even though we don't need to send audio over the internet to do
+recognition we're still going to use the wakeword/recognizer system like is used
+by google/siri/alexa/etc.</p>
+
+<p>DeepSpeech can be a bit difficult to configure properly, so to save time I'm
+just going to provide an example of initializing the deepspeech api. For the
+most part these parameters aren't tunable unless you're training your own speech
+recognition.</p>
+
+<p>First, download and untar the models file and install the python deepspeech
+library.</p>
+
+<div class="codehilite"><pre><span></span><code>wget https://github.com/mozilla/DeepSpeech/releases/download/v0.5.1/deepspeech-0.5.1-models.tar.gz
+tar -xvf deepspeech-0.5.1-models.tar.gz
+pip install deepspeech
+</code></pre></div>
+
+<p>Then you can initialize your model.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">setupDsModel</span><span class="p">():</span> 
+    <span class="n">MODEL_DIR</span> <span class="o">=</span> <span class="s2">&quot;deepspeech-0.5.1-models/&quot;</span>
+    <span class="n">BEAM_WIDTH</span> <span class="o">=</span> <span class="mi">500</span>
+    <span class="n">LM_WEIGHT</span> <span class="o">=</span> <span class="mf">1.50</span>
+    <span class="n">VALID_WORD_COUNT_WEIGHT</span> <span class="o">=</span> <span class="mf">2.25</span>
+    <span class="n">N_FEATURES</span> <span class="o">=</span> <span class="mi">26</span>
+    <span class="n">N_CONTEXT</span> <span class="o">=</span> <span class="mi">9</span>
+    <span class="n">MODEL_FILE</span> <span class="o">=</span> <span class="n">MODEL_DIR</span><span class="o">+</span><span class="s1">&#39;output_graph.pbmm&#39;</span>
+    <span class="n">ALPHABET_FILE</span> <span class="o">=</span> <span class="n">MODEL_DIR</span><span class="o">+</span><span class="s1">&#39;alphabet.txt&#39;</span>
+    <span class="n">LANGUAGE_MODEL</span> <span class="o">=</span> <span class="n">MODEL_DIR</span><span class="o">+</span><span class="s1">&#39;lm.binary&#39;</span>
+    <span class="n">TRIE_FILE</span> <span class="o">=</span> <span class="n">MODEL_DIR</span><span class="o">+</span><span class="s1">&#39;trie&#39;</span>
+
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">deepspeech</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">MODEL_FILE</span><span class="p">,</span> <span class="n">N_FEATURES</span><span class="p">,</span> <span class="n">N_CONTEXT</span><span class="p">,</span> <span class="n">ALPHABET_FILE</span><span class="p">,</span> <span class="n">BEAM_WIDTH</span><span class="p">)</span>
+    <span class="n">ds</span><span class="o">.</span><span class="n">enableDecoderWithLM</span><span class="p">(</span><span class="n">ALPHABET_FILE</span><span class="p">,</span> <span class="n">LANGUAGE_MODEL</span><span class="p">,</span> <span class="n">TRIE_FILE</span><span class="p">,</span> <span class="n">LM_WEIGHT</span><span class="p">,</span>
+    <span class="n">VALID_WORD_COUNT_WEIGHT</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ds</span>
+</code></pre></div>
+
+<hr />
+
+<p>Copyright 2019-2019 Alex Davies</p>
+
+<p><a href="https://github.com/traverseda/traverseda.github.io/blob/master/code/voice-ai-tutorial.md">Revision history</a></p>
+
+<!-- last regenerated 2019-12-15 17:21:33.869729 -->
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"> </script>
+
+<p><style>
+model-viewer {
+    width:100%;
+    height:684px;
+}
+.hidden {
+    display:None;
+}
+</style></p>

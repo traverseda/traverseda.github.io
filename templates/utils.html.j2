@@ -1,0 +1,30 @@
+{% macro image(name, alttext="") -%}
+{% set svgPreview = STATIC_ROOT/'media'/'generated'/('preview_'+name+'.svg') %}
+<a href="{{name}}">
+    <picture>
+        <img src="{{STATIC_ROOT/'media'/'generated'/'684'/name}}"
+            alt="{{alttext}}" class="preview"
+        />
+    </picture>
+</a>
+        {#<img src="{{STATIC_ROOT/'media'/'generated'/('preview_'+name+'.svg')}}" #}
+{#            alt="{{alttext}}" class="preview">#}
+{%- endmacro %}
+
+{% macro stl(name, alttext="") -%}
+<model-viewer camera-controls reveal="interaction"
+    background-color="#C7E3BE"
+    src="{{STATIC_ROOT}}/media/generated/3D/{{name}}.glb">
+    <img slot="poster" src="{{STATIC_ROOT/'media'/'generated'/'3D'/(name+".png")}}" alt="{{alttext}}"/>
+    <a href="{{name}}"><button>Download</button></a>
+    <span>{{name}}</span>
+</model-viewer>
+{%- endmacro %}
+
+{% macro gallery(images) -%}
+<div class="gallery">
+{% for i in images -%}
+    {{image(i)}}
+{% endfor %}
+</div>
+{% endmacro %}

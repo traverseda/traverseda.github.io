@@ -1,0 +1,19 @@
+#These rules apply to every folder
+include_rules
+!primitive = |> primitive -i %f -o - -n 20 | scour -o %o --enable-viewboxing --enable-id-stripping \
+  --enable-comment-stripping --shorten-ids --indent=none |>
+#!primitive = |> primitive -i %f -o %o -n 20 |>
+
+#Generate individual pages.
+:foreach *.md |> $(STATIC_ROOT)/compile.py $(STATIC_ROOT) %f %o |> %f.html ^__pycache__
+
+#Handle STL files for 3D printing. 
+:foreach *.stl |> stl-thumb %f %o -b C7E3BEFF -s 684 -m 225910 338618 338618 |> $(STATIC_ROOT)/media/generated/3D/%b.png
+:foreach *.stl |> blender --background --python $(STATIC_ROOT)/media/blendStl.py -- %f %o |> $(STATIC_ROOT)/media/generated/3D/%b.glb
+
+#Handle images...
+:foreach *.png |> convert %f -resize 684 -quality 100 %o |> $(STATIC_ROOT)/media/generated/684/%B.png
+:foreach *.jpg |> convert %f -resize 684 -quality 85 %o |> $(STATIC_ROOT)/media/generated/684/%B.jpg
+
+#:foreach *.png |> !primitive |> $(STATIC_ROOT)/media/generated/preview/%b.svg
+#:foreach *.jpg |> !primitive |> $(STATIC_ROOT)/media/generated/preview/%b.svg

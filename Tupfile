@@ -1,0 +1,3 @@
+include Tupdefault
+#This file applies to unique files, the tupdefault refers to generic files
+#: css/sakura.scss |> sass %f %o && rm -r .sass-cache |> css/%B.css | css/%B.css.map
