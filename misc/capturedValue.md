@@ -11,8 +11,6 @@ Much better authors than I have explored the topic. Personally I'd recommend Sco
 >The implicit question is – if everyone hates the current system, who perpetuates it? And Ginsberg answers: “Moloch”. It’s powerful not because it’s correct – nobody literally thinks an ancient Carthaginian demon causes everything – but because thinking of the system as an agent throws into relief the degree to which the system isn’t an agent.
 
 Still there's one concept I haven't seen widely discussed, a concept that is particularly relevant to the free software community.
-
 Capturing value is not the same thing as creating value.
 
-How is it that free software is able to compete 
 

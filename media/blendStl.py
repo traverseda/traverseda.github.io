@@ -11,5 +11,4 @@ principled_bsdf = material.node_tree.nodes['Principled BSDF']
 principled_bsdf.inputs[0].default_value = (0.01, 0.2, 0.0, 0.01)
 for o in bpy.context.editable_objects:
     o.data.materials.append(material)
-    print(o.data)
 bpy.ops.export_scene.gltf(filepath=outfile)
