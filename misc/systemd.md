@@ -76,7 +76,7 @@ like screen or tmux.
 
 >The intentional and willful breaking of screen and tmux was to fix a GNOME bug of GNOME not closing up as it should when the user logs out, so systemd was changed to mass kill processes. The interplay between GNOME and systemd in backroom dealings is a major pain point.
 
- ~ kevin_b_er on hackernews
+ ~ kevin\_b\_er on hackernews
 
 There's now no way to, by default, keep a program running in the background
 without a live ssh session. This kills not only screen, tmux, and nohup, but
