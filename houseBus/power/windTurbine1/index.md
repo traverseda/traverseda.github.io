@@ -30,3 +30,8 @@ cheaper than using a specialized generator, for small to medium deployments.
 {{stl("turbine.stl")}}
 
 Some kind of strut channel can provide the actual mounting structure.
+
+## Prototyping
+
+I might try doing a small scale prototyping at some point. I've got access to a
+laser cutter, so maybe I'll do a cardboard demo unit.
