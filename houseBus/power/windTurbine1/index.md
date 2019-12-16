@@ -35,3 +35,6 @@ Some kind of strut channel can provide the actual mounting structure.
 
 I might try doing a small scale prototyping at some point. I've got access to a
 laser cutter, so maybe I'll do a cardboard demo unit.
+
+{#<meta property="og:title" content="Laser cut vertical wind turbine">
+<meta property="og:image" content="your_image_url">#}
