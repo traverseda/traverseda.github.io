@@ -8,7 +8,7 @@ bpy.ops.import_mesh.stl(filepath=infile)
 material = bpy.data.materials.new(name="base")
 material.use_nodes = True
 principled_bsdf = material.node_tree.nodes['Principled BSDF']
-principled_bsdf.inputs[0].default_value = (0.01, 0.2, 0.0, 0.01)
+principled_bsdf.inputs[0].default_value = (0.01, 0.2, 0.0, 1.0)
 for o in bpy.context.editable_objects:
     o.data.materials.append(material)
 bpy.ops.export_scene.gltf(filepath=outfile)
