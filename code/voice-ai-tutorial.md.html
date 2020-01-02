@@ -1,5 +1,4 @@
-<p><link rel="stylesheet" href="../media/sakura-earthly.css" type="text/css">
-<link rel="stylesheet" href="../media/pygments.css" type="text/css"></p>
+<p><link rel="stylesheet" href="../media/main.css" type="text/css"></p>
 
 <p><a href="../index.md.html"><h1>Outside Context Solutions</h1></a></p>
 
@@ -38,21 +37,23 @@ From your project root, run the following.</p>
 <span class="c1">#We use depth=1 because if we don&#39;t it&#39;s 4.6GB of data</span>
 </code></pre></div>
 
-<p>We're going to use python's asyncio framework as a crude 
+
+
+We're going to use python's asyncio framework as a crude 
 cooperative-multiprocessing alternative. This let's us pretend we're running multiple
 different processes (tasks) without nearly us much overhead or having to worry
 about inter-process communication or locks. Of course we are still running
 single threaded, at no point are we running more than one piece of code at a
-time. What happens is that whenever we call a function using the <code>await</code>
-function, that gives other tasks a chance to run.</p>
+time. What happens is that whenever we call a function using the `await`
+function, that gives other tasks a chance to run.
 
-<p>This makes some things a lot clearer, for example we can have one task that's
+This makes some things a lot clearer, for example we can have one task that's
 listening to a microphone, while another can "listen" to a command line
 application, while another checks to see if anything is scheduled to run, checks
-your email, or anything else.</p>
+your email, or anything else.
 
-<p>Create a <code>main.py</code> file in your project, and start by setting up all your
-imports.</p>
+Create a `main.py` file in your project, and start by setting up all your
+imports.
 
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">import</span> <span class="nn">struct</span>
@@ -61,15 +62,17 @@ imports.</p>
 <span class="kn">from</span> <span class="nn">Porcupine.binding.python.porcupine</span> <span class="kn">import</span> <span class="n">Porcupine</span>
 </code></pre></div>
 
-<p>Notice the long import path? That's because <code>Porcupine</code> doesn't have a pip
-installable package.</p>
 
-<p>Next we can start setting up <code>Porcupine</code>, porcupine ships with binaries for
+
+Notice the long import path? That's because `Porcupine` doesn't have a pip
+installable package.
+
+Next we can start setting up `Porcupine`, porcupine ships with binaries for
 multiple platforms, we're developing on linux so we'll use the
-"Porcupine/lib/<em>linux</em>/x86<em>64/libpv</em>porcupine.so" path. If you're on a different
+"Porcupine/lib/*linux*/x86_64/libpv_porcupine.so" path. If you're on a different
 operating system you will need to change that. Please note the the
-<code>keyword_file_paths</code> is also dependent on operating system. We're going to use
-the wakeword <code>computer</code>. </p>
+`keyword_file_paths` is also dependent on operating system. We're going to use
+the wakeword `computer`. 
 
 <div class="codehilite"><pre><span></span><code><span class="n">porcupine</span> <span class="o">=</span> <span class="n">Porcupine</span><span class="p">(</span>                                                   
             <span class="n">library_path</span><span class="o">=</span><span class="s2">&quot;Porcupine/lib/linux/x86_64/libpv_porcupine.so&quot;</span><span class="p">,</span>
@@ -78,20 +81,24 @@ the wakeword <code>computer</code>. </p>
             <span class="n">sensitivities</span><span class="o">=</span><span class="p">[</span><span class="mf">0.9</span><span class="p">,])</span>
 </code></pre></div>
 
-<p>One "gotcha" of this code is that <code>keyword_file_paths</code> and <code>sensitivities</code>
-accepts a list of keywords/sensitivies. You can use this to support multiple
-wakewords later on.</p>
 
-<p>You can train custom wakewords fairly easily. From the porcupine directory you
-can run something like this:</p>
+
+One "gotcha" of this code is that `keyword_file_paths` and `sensitivities`
+accepts a list of keywords/sensitivies. You can use this to support multiple
+wakewords later on.
+
+You can train custom wakewords fairly easily. From the porcupine directory you
+can run something like this:
 
 <div class="codehilite"><pre><span></span><code>tools/optimizer/<span class="si">${</span><span class="nv">SYSTEM</span><span class="si">}</span>/<span class="si">${</span><span class="nv">MACHINE</span><span class="si">}</span>/pv_porcupine_optimizer -r resources/optimizer_data -w <span class="si">${</span><span class="nv">WAKE_WORD</span><span class="si">}</span> <span class="se">\</span>
 -p <span class="si">${</span><span class="nv">TARGET_SYSTEM</span><span class="si">}</span> -o <span class="si">${</span><span class="nv">OUTPUT_DIRECTORY</span><span class="si">}</span>
 </code></pre></div>
 
-<p>Now that we have porcupine instantiated we can start dealing with audio streams.</p>
 
-<p>TODO: Explain how to find <code>input_device_index</code></p>
+
+Now that we have porcupine instantiated we can start dealing with audio streams.
+
+TODO: Explain how to find `input_device_index`
 
 <div class="codehilite"><pre><span></span><code><span class="n">pa</span> <span class="o">=</span> <span class="n">pyaudio</span><span class="o">.</span><span class="n">PyAudio</span><span class="p">()</span>
 <span class="n">audio_stream</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">open</span><span class="p">(</span>
@@ -103,7 +110,9 @@ can run something like this:</p>
     <span class="n">input_device_index</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
 </code></pre></div>
 
-<p>Finally, we pass the audio data into porcupine.</p>
+
+
+Finally, we pass the audio data into porcupine.
 
 <div class="codehilite"><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">waitForWakeword</span><span class="p">():</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
@@ -117,7 +126,9 @@ can run something like this:</p>
         <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
 
-<p>and wait for the wakeword to be recognized</p>
+
+
+and wait for the wakeword to be recognized
 
 <div class="codehilite"><pre><span></span><code><span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>                        
 <span class="c1">#This blocks until we hear the wakeword</span>
@@ -125,31 +136,35 @@ can run something like this:</p>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I heard the wakeword! Shutting down now&quot;</span><span class="p">)</span>
 </code></pre></div>
 
-<p>If everything is working correctly you should be able to say "computer" and the
-program will complete.</p>
 
-<h1 id="passing-input-to-mozillas-deepspeech">Passing input to Mozilla's deepSpeech</h1>
 
-<p>Now that wakeword detection is working, we can get started on actual speech
+If everything is working correctly you should be able to say "computer" and the
+program will complete.
+
+# Passing input to Mozilla's deepSpeech
+
+Now that wakeword detection is working, we can get started on actual speech
 recognition. Speech recognition requires a lot more electricity then wakeword
 detection, so even though we don't need to send audio over the internet to do
 recognition we're still going to use the wakeword/recognizer system like is used
-by google/siri/alexa/etc.</p>
+by google/siri/alexa/etc.
 
-<p>DeepSpeech can be a bit difficult to configure properly, so to save time I'm
+DeepSpeech can be a bit difficult to configure properly, so to save time I'm
 just going to provide an example of initializing the deepspeech api. For the
 most part these parameters aren't tunable unless you're training your own speech
-recognition.</p>
+recognition.
 
-<p>First, download and untar the models file and install the python deepspeech
-library.</p>
+First, download and untar the models file and install the python deepspeech
+library.
 
 <div class="codehilite"><pre><span></span><code>wget https://github.com/mozilla/DeepSpeech/releases/download/v0.5.1/deepspeech-0.5.1-models.tar.gz
 tar -xvf deepspeech-0.5.1-models.tar.gz
 pip install deepspeech
 </code></pre></div>
 
-<p>Then you can initialize your model.</p>
+
+
+Then you can initialize your model.
 
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">setupDsModel</span><span class="p">():</span> 
     <span class="n">MODEL_DIR</span> <span class="o">=</span> <span class="s2">&quot;deepspeech-0.5.1-models/&quot;</span>
@@ -169,26 +184,32 @@ pip install deepspeech
     <span class="k">return</span> <span class="n">ds</span>
 </code></pre></div>
 
-<div id="commento"></div>
 
-<script src="https://cdn.commento.io/js/commento.js"></script>
+
+
+
+
+
+
+<hr>
+<div id="commento">
+    <noscript>
+        <p>Please enable javascript to view comments</p>
+        <a href=https://commento.io/>Comments powered by commento</a>
+    </noscript>
+</div>
+
+<script
+    src="https://cdn.commento.io/js/commento.js"
+    data-css-override="//:example.com/null.css">
+</script>
 
 <hr />
 
-<p>Copyright 2019-2019 Alex Davies</p>
+<p>Copyright 2019-2020 Alex Davies</p>
 
 <p><a href="https://github.com/traverseda/traverseda.github.io/blob/master/code/voice-ai-tutorial.md">Revision history</a></p>
 
-<!-- last regenerated 2019-12-20 14:53:51.767360 -->
+<!-- last regenerated 2020-01-02 03:50:31.616170 -->
 
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"> </script>
-
-<p><style>
-model-viewer {
-    width:100%;
-    height:684px;
-}
-.hidden {
-    display:None;
-}
-</style></p>
