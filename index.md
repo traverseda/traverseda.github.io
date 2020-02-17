@@ -13,7 +13,8 @@ something, but not today.
 You can contact me by email at {{email}}.
 
 My father writes on medium [here](https://medium.com/@traversedavies). That can
-create some confusion since he is also a Traverse Davies.
+create some confusion since he is also a Traverse Davies. In my defence I
+started using @traverseda online first.
 
 ---
 
@@ -21,12 +22,4 @@ Here's some things you might find useful/interesting, or that otherwise I'd
 consider publishable if I was inclined to try and publish things.
 
 [Extending sympy with support for percentages and bayes
-theorum](code/bayesForSympy.md.html)
-
-The houseBus folder contains some details about my bus-to-rv conversion project,
-where I live in a van down by the river.
-
-Of particular interest might be [how I handle the electrical
-system](houseBus/power/index.md.html) on said bus.
-
-Or maybe [a wind turbine](houseBus/power/windTurbine1/index.md.html)?
+theorum](code/bayesForSympy.md.html) 
