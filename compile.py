@@ -9,6 +9,9 @@ outfile = os.path.abspath(sys.argv[3])
 
 from jinja2 import Environment, FileSystemLoader
 
+import markdown2
+extentions=['fenced-code-blocks','tables','toc','strike']
+
 class ContentLoader(FileSystemLoader):
     def get_source(self, environment, template):
         contents, filename, uptodate = super().get_source(environment, template)
@@ -16,7 +19,7 @@ class ContentLoader(FileSystemLoader):
             contents = "\n".join((
                 "{% extends 'templates/base.html' %}",
                 "{% block content %}",
-                contents,
+                markdown2.markdown(contents,extras=extentions),
                 "{% endblock %}"
             ))
         return contents, filename, uptodate
@@ -37,8 +40,6 @@ context={
     'self_path':infile,
 }
 
-import markdown2
-extentions=['fenced-code-blocks','tables','toc','strike']
 
 with open(outfile,"w+") as output:
-    output.write(markdown2.markdown(template.render(context),extras=extentions))
+    output.write(template.render(context))

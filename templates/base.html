@@ -1,9 +1,9 @@
+<header>
 <link rel="stylesheet" href="{{STATIC_ROOT}}/media/main.css" type="text/css">
+</header>
 
 <a href="{{STATIC_ROOT}}/index.md.html"><h1>Outside Context Solutions</h1></a>
-{% block content %}
-
-{% endblock %}
+{% block content %}{% endblock %}
 
 {% block comments %}
 <hr>
@@ -16,8 +16,8 @@
 <script src="https://cdn.commento.io/js/commento.js"></script>
 {% endblock %}
                             
----
-Copyright 2019-{{now.year}} Alex Davies
+<hr>
+<p>Copyright 2019-{{now.year}} Alex Davies</p>
 
 <a href="https://github.com/traverseda/traverseda.github.io/blob/master/{{self_path}}">Revision history</a>
 
