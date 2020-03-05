@@ -9,6 +9,8 @@
 <p>We use the glowforge laser cutter in our makerspace. This is the notes from a
 lesson I gave on how to use the glowforge.</p>
 
+<h3 id="raster-vs-vector">Raster vs vector</h3>
+
 <p>There are two different ways you can represent images, as an array of pixels (we
 call these raster images) or as a set of shapes (we call this vector images).
 The glowforge can engrave vector images, the laser will scan back and forth
@@ -16,6 +18,8 @@ across the substrate like an old television, but for things like cutting or
 scoring you want to be using vector images.</p>
 
 <p>[demonstration of vector vs raster]</p>
+
+<h3 id="everything-is-an-object">Everything is an object</h3>
 
 <p>We use the free and open-source software <a href="https://inkscape.org/">inkscape</a>
 for editing vector images.</p>
@@ -27,6 +31,8 @@ type of object, a path.</p>
 
 <p>[demonstration of path, editing the curve of a path]</p>
 
+<h3 id="objects-are-made-of-paths-mostly">Objects are made of paths, mostly</h3>
+
 <p>A path is composed of a number of nodes, you can curve them via "bezier curves".
 These nodes and curves are what the glowforge actually understands. The
 glowforge will use it's own internal software to reduce more complicated objects
@@ -34,18 +40,29 @@ like those squares and circles into a path, and we can do the same.</p>
 
 <p>[top menu &gt; path &gt; object to path]</p>
 
+<h3 id="sometimes-you-need-to-make-sure-an-object-is-actually-made-of-paths">Sometimes you need to make sure an object is <strong>actually</strong> made of paths</h3>
+
 <p>There are some types of objects the glowforge can't convert into a path though,
-the most important one is text/fonts.</p>
+the most important one is text/fonts. Since the glowforge doesn't have font
+files it can't know what shapes the fonts are supposed to be.</p>
 
 <p>[demonstration of converting text to a path]</p>
 
 <p>[demonstration that it is no longer editable with the text tool]</p>
+
+<p>There are also features of proprietary vector editors (like adobe illustrator)
+that won't be supported. Always make sure your file is saved as an <code>.svg</code> file,
+and avoid complicated features like clip-paths and gradients.</p>
+
+<h3 id="each-color-is-a-different-type-of-laser-cut">Each color is a different type of laser cut</h3>
 
 <p>The glowforge presumes that each color is it's own type of path, and groups
 things appropriatly. We use red for lines that we want to cut. One thing to be
 aware of is <strong>just because you can't see a line doesn't mean it doesn't exist</strong>.
 A line can be covered up, but it still exists and the glowforge will still cut
 it.</p>
+
+<h3 id="you-can-combine-shapes-using-csg-operations">You can combine shapes using CSG operations</h3>
 
 <p>One thing that you will probably find very usefull is the "CSG operations", the
 ability to cut a shape out of another shape, or combine two shapes.</p>
@@ -72,6 +89,6 @@ ability to cut a shape out of another shape, or combine two shapes.</p>
 
 <a href="https://github.com/traverseda/traverseda.github.io/blob/master/lessons/inkscape.md">Revision history</a>
 
-<!-- last regenerated 2020-03-05 11:54:36.544490 -->
+<!-- last regenerated 2020-03-05 12:04:47.347441 -->
 
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"> </script>
