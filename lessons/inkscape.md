@@ -11,7 +11,8 @@ scoring you want to be using vector images.
 
 [demonstration of vector vs raster]
 
-We use the free and open-source software inkscape for editing vector images.
+We use the free and open-source software [inkscape](https://inkscape.org/)
+for editing vector images.
 
 In vector-image editing software like inkscape your drawing is composed of a
 number of "objects", those objects can be things like sqaures, triangles,
