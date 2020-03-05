@@ -564,6 +564,18 @@ label, legend, fieldset {
 }
 
 /* Literal.Number.Integer.Long */
+@media print {
+  p a {
+    color: #4a4a4a;
+  }
+
+  p a::after {
+    content: " (" attr(href) ")";
+    color: #338618;
+    font-size: 60%;
+    vertical-align: super;
+  }
+}
 h1 {
   break-inside: avoid;
   break-after: avoid;
@@ -606,8 +618,6 @@ h6 {
 
 p {
   break-before: avoid;
-  break-inside: avoid;
-  break-after: avoid;
 }
 
 html {

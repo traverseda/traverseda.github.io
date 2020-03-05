@@ -15,6 +15,18 @@ $font-family-serif: serif;
 
 //Printing
 
+@media print {
+  p a {
+    color: $color-text;
+  }
+  p a::after {
+    content: " (" attr(href) ")";
+    color: $color-blossom;
+    font-size: 60%;
+    vertical-align: super;
+  }
+}
+
 @each $heading in h1, h2, h3, h4, h5, h6 {
   #{$heading} {
       break-inside: avoid;
@@ -29,8 +41,6 @@ $font-family-serif: serif;
 
 p {
     break-before: avoid;
-    break-inside: avoid;
-    break-after: avoid;
 }
 
 //Background
