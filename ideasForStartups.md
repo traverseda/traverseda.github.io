@@ -19,9 +19,20 @@ Hydroponics monitoring, obviously.
 
 ---
 
-Something with opically-actuated microfluidics
+Something with optically-actuated microfluidics
 
  * Medical testing
  * 3D printing (toys? hasbro, video-game/movie tie-ins?)
 
 ---
+
+Import tiny electric cars, much more practical than a bicycle in Canada.
+
+---
+
+Active noise cancelation should be a lot easier with wavenet neural nets.
+
+---
+
+Occluding telescopes, but for cars. Low-rez LCD panels are easy to make, gets
+around pesky laws involving tinted fron windows?

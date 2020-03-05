@@ -1,0 +1,76 @@
+<header>
+<link rel="stylesheet" href="../media/main.css" type="text/css">
+</header>
+
+<a href="../index.md.html"><h1>Outside Context Solutions</h1></a>
+
+<h1 id="inkscapeglowforge">Inkscape/glowforge</h1>
+
+<p>We use the glowforge laser cutter in our makerspace. This is the notes from a
+lesson I gave on how to use the glowforge.</p>
+
+<p>There are two different ways you can represent images, as an array of pixels (we
+call these raster images) or as a set of shapes (we call this vector images).
+The glowforge can engrave vector images, the laser will scan back and forth
+across the substrate like an old television, but for things like cutting or
+scoring you want to be using vector images.</p>
+
+<p>[demonstration of vector vs raster]</p>
+
+<p>We use the free and open-source software inkscape for editing vector images.</p>
+
+<p>In vector-image editing software like inkscape your drawing is composed of a
+number of "objects", those objects can be things like sqaures, triangles,
+circles, etc. Most of those higher-level objects are made out of a different
+type of object, a path.</p>
+
+<p>[demonstration of path, editing the curve of a path]</p>
+
+<p>A path is composed of a number of nodes, you can curve them via "bezier curves".
+These nodes and curves are what the glowforge actually understands. The
+glowforge will use it's own internal software to reduce more complicated objects
+like those squares and circles into a path, and we can do the same.</p>
+
+<p>[top menu &gt; path &gt; object to path]</p>
+
+<p>There are some types of objects the glowforge can't convert into a path though,
+the most important one is text/fonts.</p>
+
+<p>[demonstration of converting text to a path]</p>
+
+<p>[demonstration that it is no longer editable with the text tool]</p>
+
+<p>The glowforge presumes that each color is it's own type of path, and groups
+things appropriatly. We use red for lines that we want to cut. One thing to be
+aware of is <strong>just because you can't see a line doesn't mean it doesn't exist</strong>.
+A line can be covered up, but it still exists and the glowforge will still cut
+it.</p>
+
+<p>One thing that you will probably find very usefull is the "CSG operations", the
+ability to cut a shape out of another shape, or combine two shapes.</p>
+
+<p>[demonstration of difference, union, intersection, etc]</p>
+
+<p>[top menu &gt; path &gt; difference, union, etc]</p>
+
+
+
+
+<hr>
+<div id="commento">
+    <noscript>
+        <p>Please enable javascript to view comments</p>
+        <a href=https://commento.io/>Comments powered by commento</a>
+    </noscript>
+</div>
+<script src="https://cdn.commento.io/js/commento.js"></script>
+
+                            
+<hr>
+<p>Copyright 2019-2020 Alex Davies</p>
+
+<a href="https://github.com/traverseda/traverseda.github.io/blob/master/lessons/inkscape.md">Revision history</a>
+
+<!-- last regenerated 2020-03-05 11:41:09.913389 -->
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"> </script>

@@ -21,5 +21,7 @@ started using @traverseda online first.
 Here's some things you might find useful/interesting, or that otherwise I'd
 consider publishable if I was inclined to try and publish things.
 
+[Lessons for the crafty fox](lessons/index.md.html)
+
 [Extending sympy with support for percentages and bayes
 theorum](code/bayesForSympy.md.html) 
