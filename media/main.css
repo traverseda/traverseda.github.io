@@ -605,8 +605,8 @@ h6 {
 }
 
 p {
-  break-inside: avoid;
   break-before: avoid;
+  break-inside: avoid;
   break-after: avoid;
 }
 

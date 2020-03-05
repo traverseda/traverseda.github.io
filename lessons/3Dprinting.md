@@ -90,3 +90,10 @@ little and you may find your print has become detached in the middle of a print.
 
 The only real way to get a feel for this though is to try a bunch of prints and
 see what gives you a hard time.
+
+## Slicing with cura
+
+Cura has many parameters you can change and tweak in order to change how the
+printer produces your object.
+
+#To be continued
