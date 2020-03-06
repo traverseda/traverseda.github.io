@@ -94,6 +94,31 @@ see what gives you a hard time.
 ## Slicing with cura
 
 Cura has many parameters you can change and tweak in order to change how the
-printer produces your object.
+printer produces your object. There are thousands of options to tweak, but only
+a handfull that actually matter in the day-to-day operation of the print.
+
+#### Layer height
+
+One import option is `layer-height`. If you look closely at a 3D print you'll notice
+that it has a "grain" to it, you make that grain finer (and increase the qaulity
+of the 3D print) by reducing the layer height. Of course doing that means the
+print will take longer to finish, as there are more layers to actuall print. You
+can also go the opposite direction, increasing the layer height for faster
+printing if you're going to be sanding or painting the print, or even just if a
+bit more noticable of a grain isn't a problem.
+
+#### Support material
+
+Another important option is `support material`. Support material adds
+sacrificial support to your prints so that you don't have to print in mid-air if
+you have a large overhang. I recomend avoiding it if you can, as it can be hard
+to remove. It's especially hard to remove if it's supporting fine detail, as you
+can accidently damage the print as you try to remove it.
+
+#### Infill percentage and type
+
+3D printed objects are semi-hollow. Infill percentage determines exactly how
+hollow it is, and increasing the infill percentage will make a part stronger,
+although it will use more time and filiment.
 
 #To be continued
