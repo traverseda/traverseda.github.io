@@ -18,7 +18,9 @@ files for 3D printer is a very broad topic.
 Gcode files have ultimate control over the machine, a malicious gcode file could
 cause the machine to tear itself apart, as it tries to print outside of the
 bounds of what is physically possible. Of course many printers implement
-safeties to prevent the more common ways a machine could damage itself.
+safeties to prevent the more common ways a machine could damage itself, but
+[such measures are never
+perfect](http://www.penzba.co.uk/GreybeardStories/TheBlackTeam.html). 
 
 It's very important that you use the right machine profile in cura, otherwise
 the printer won't work properly and, in the worst cases, could damage itself.
@@ -39,7 +41,7 @@ in the shop is "PLA", or "poly-lactic acid". It's a bioplastic most commonly
 made from corn, although any plant starch will do.
 
 Previously the primary plastic used for 3D printing was ABS, in addition to
-being more enviromentally freindly PLA has mechanical properties that make it
+being more enviromentally friendly PLA has mechanical properties that make it
 better suited for 3D printing. Most notably minimal thermal-expansion, this
 means that the prints don't warp very much when they cool down. Hopefully that
 kind of warping, and how to work around it, is something you never need to worry
@@ -120,5 +122,22 @@ can accidently damage the print as you try to remove it.
 3D printed objects are semi-hollow. Infill percentage determines exactly how
 hollow it is, and increasing the infill percentage will make a part stronger,
 although it will use more time and filiment.
+
+You can also change the "shape" of the infill, normally it fills it in with a
+loose mesh of squares, but you can change it to be triangles, or more
+complicated 3D shapes.
+
+As near as I can tell these don't have much real effect on the structural
+integrity of the prints...
+
+#### All the rest
+
+The number of walls has the biggest affect on strength, vase mode only works for
+a specific shapes but can produce very nice results very quickly, if your shape
+is single walled and has the right topology. You can enable variable layer
+height to get many of the drawbacks of high and low layer heights at the same
+time. Ultimaker has spent a lot of time making their default printing profile
+rock solid, but there are many setting that are intended to effect the
+performance of the printer.
 
 #To be continued
