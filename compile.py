@@ -11,15 +11,19 @@ from jinja2 import Environment, FileSystemLoader
 
 import markdown2
 extentions=['fenced-code-blocks','tables','toc','strike']
+toc = None
 
 class ContentLoader(FileSystemLoader):
     def get_source(self, environment, template):
         contents, filename, uptodate = super().get_source(environment, template)
         if not template.startswith("templates/"):
+            md = markdown2.markdown(contents,extras=extentions)
+            global toc
+            toc = md.toc_html
             contents = "\n".join((
                 "{% extends 'templates/base.html' %}",
                 "{% block content %}",
-                markdown2.markdown(contents,extras=extentions),
+                md,
                 "{% endblock %}"
             ))
         return contents, filename, uptodate
@@ -38,6 +42,7 @@ context={
     'now':datetime.datetime.now(),
     'files':Path.cwd(),
     'self_path':infile,
+    'toc': toc,
 }
 
 

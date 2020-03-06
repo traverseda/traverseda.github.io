@@ -1,5 +1,7 @@
 # Intro to 3D printing
 
+{{toc|safe}}
+
 3D printing is a fairly complicated procedure, today we're going to focus on
 taking an existing 3D model and preparing it for the 3D printer. That process is
 refered to as "slicing" a 3D model, and we use the free and open-source software
