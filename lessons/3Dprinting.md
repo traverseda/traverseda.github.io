@@ -7,7 +7,7 @@ taking an existing 3D model and preparing it for the 3D printer. That process is
 refered to as "slicing" a 3D model, and we use the free and open-source software
 [cura](https://ultimaker.com/software/ultimaker-cura).
 
-The process of slicing converts a "mesh" (mostly commonly an `.svg` file) into a 
+The process of slicing converts a "mesh" (mostly commonly an `.stl` file) into a 
 "tool path" (most commonly a `.gcode` file). A tool path file tells the machine
 exactly what motions to make, how much plastic to extrude, what temperature to
 be at, etc.
