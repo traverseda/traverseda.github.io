@@ -23,7 +23,7 @@ consider publishable if I was inclined to try and publish things.
 
 {% import 'templates/utils.html.j2' as utils %}
 
-[Lessons for the crafty fox](lessons/index.md.html)
+[Lessons for the crafty fox](lessons/index.html)
 
 {{utils.index(files/"lessons",root="lessons/")}}
 
