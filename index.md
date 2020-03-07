@@ -31,4 +31,8 @@ consider publishable if I was inclined to try and publish things.
 [Extending sympy with support for percentages and bayes
 theorum](code/bayesForSympy.md.html)
 
+You can see the source code for this website
+[here](https://github.com/traverseda/traverseda.github.io),
+it's pretty rough though.
+
 {# {{utils.index(files)}} #}
