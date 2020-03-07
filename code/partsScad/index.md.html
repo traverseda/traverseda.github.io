@@ -1,0 +1,71 @@
+<header>
+<link rel="stylesheet" href="../../media/main.css" type="text/css">
+</header>
+
+<a href="../../index.md.html"><h1>Outside Context Solutions</h1></a>
+
+<span>
+  
+  
+  <a href="./">code</a> /
+  
+  
+  
+  <a href="./../">partsScad</a> /
+  
+  
+  index.md.html
+  
+</span>
+<hr>
+
+
+<h1 id="define-multiple-parts-in-openscad">Define multiple parts in openscad</h1>
+
+<p>This script lets you define multiple parts in openscad, and have it export each
+of them individually.</p>
+
+<p>We need to communicate a list of what parts exist, so we first evaluate the
+<code>.scad</code> file, looking for part definitions in the echo output.</p>
+
+<p>It's a hack, and would be much more useful as part of openscad core, but it does
+get the job done.</p>
+
+<h2 id="usage">usage</h2>
+
+<pre><code>use &lt;partsScad.scad&gt;;
+multiPartOutput=true;
+multiPartFirstrun=true;
+
+part(&#34;rube.stl&#34;,c=&#34;red&#34;,buildmode=&#34;default&#34;){
+    cube([10,10,10]);
+}
+
+translate([5,5,10])
+part(&#34;blegg.stl&#34;,c=&#34;blue&#34;,buildmode=&#34;default&#34;){
+    resize([10,10,20])sphere(r=10);
+}
+
+</code></pre>
+
+
+
+
+<hr>
+<div id="commento">
+    <noscript>
+        <p>Please enable javascript to view comments</p>
+        <a href=https://commento.io/>Comments powered by commento</a>
+    </noscript>
+</div>
+<script src="https://cdn.commento.io/js/commento.js"></script>
+
+                            
+<hr>
+<p>Copyright 2019-2020 Alex Davies</p>
+
+<a href="https://github.com/traverseda/traverseda.github.io/blob/master/code/partsScad/index.md">Revision history</a>
+
+<!-- last regenerated 2020-03-07 16:53:58.903594 -->
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"> </script>

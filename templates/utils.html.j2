@@ -28,3 +28,20 @@
 {% endfor %}
 </div>
 {% endmacro %}
+
+{% macro index(files, root="") %}
+<ul class="dirlisting">
+    {% for file in files.glob("*.md") if file.name != "index.md" -%}
+        <li><a href="{{root+file.name}}.html">{{file.name}}</a></li>
+    {% endfor %}
+    {% for folder in files.iterdir() if not folder.suffix
+        and not folder.name.startswith(".")
+        and folder.is_dir()
+        and folder.iterdir()|list
+        and folder.name not in ("templates", "media", "scratchpad")
+    -%}
+        <li><a href="{{root+folder.name+"/index.html"}}">{{folder.name}}</a>
+        {{index(folder, root=folder.name+"/")}}</li>
+    {% endfor %}
+</ul>
+{% endmacro %}

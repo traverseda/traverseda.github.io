@@ -1,0 +1,5 @@
+{% extends 'templates/base.html' %}
+{% block content %}
+{% import 'templates/utils.html.j2' as utils %}
+{{utils.index(files)}}
+{% endblock %}

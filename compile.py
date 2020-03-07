@@ -4,7 +4,13 @@ import base64
 BASE_DIR = os.path.abspath(sys.argv[1])
 #Jinja2 is picky about the path format of templates, so
 # we need to calculate it relative to our BASE_DIR
-infile = os.path.relpath(os.getcwd()+"/"+sys.argv[2],BASE_DIR)
+if sys.argv[2] == "__index__":
+    infile = os.path.relpath(os.getcwd()+"/index.md",BASE_DIR)
+    if not os.path.exists("./index.md"):
+        print(infile,"does not exist, using default index")
+        infile = "templates/default_index.html"
+else:
+    infile = os.path.relpath(os.getcwd()+"/"+sys.argv[2],BASE_DIR)
 outfile = os.path.abspath(sys.argv[3])
 
 from jinja2 import Environment, FileSystemLoader
@@ -41,10 +47,10 @@ context={
     'STATIC_ROOT':Path(sys.argv[1]),
     'now':datetime.datetime.now(),
     'files':Path.cwd(),
-    'self_path':infile,
+    'self_path':Path(infile),
+    'breadcrumbs':list(enumerate(Path(outfile).relative_to(BASE_DIR).parts)),
     'toc': toc,
 }
-
 
 with open(outfile,"w+") as output:
     output.write(template.render(context))

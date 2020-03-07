@@ -1,0 +1,104 @@
+<header>
+<link rel="stylesheet" href="../media/main.css" type="text/css">
+</header>
+
+<a href="../index.md.html"><h1>Outside Context Solutions</h1></a>
+
+<span>
+  
+  
+  <a href="./">code</a> /
+  
+  
+  statefullApis.md.html
+  
+</span>
+<hr>
+
+
+<h1 id="the-state-of-our-apis">The state of our apis</h1>
+
+<h2 id="musings-on-statelessness-and-remote-procedure-calls">Musings on statelessness and remote procedure calls</h2>
+
+<p>Epistemic-status: Gathering my thoughts</p>
+
+<h4 id="1">1.</h4>
+
+<p>I've been thinking about operating systems for most of my life, since I was
+about 12. It started by trying to figure out the fundamental reasons why we had
+both databases <em>and</em> file systems, since they both abstracted data-access
+patterns. So why have two different systems?</p>
+
+<p>In hindsight it's a bit of a silly question, but it led to a lot of my
+interest in operating-systems and programmer-ergonomics, what makes a
+particular set of technology, or a particular abstraction, <em>good</em>.</p>
+
+<p>I eventually settled on a way that I'd like to do things, this post is one
+attempt to talk myself out of it.</p>
+
+<p>My ideal approach involves network-transparent object proxying, the ability for
+programs to share objects freely between one another. This has a number of
+potential advantages, but some significant drawbacks as well.</p>
+
+<h4 id="2">2.</h4>
+
+<p>HTTP is, at it's core, a stateless protocol. You can think of it as an
+remote-procedure-call mechanism, a way to call a function over the internet.
+Thinking about this protocols as if they were language features can be
+elucidating. HTTP is essentially a functional, side-effect free, RPC mechanism.
+This comes with a number of benifits, the big one is that you can apply
+memoization (caching).</p>
+
+<p>You could argue that the reason HTTP is a stateless protocol is to enable that
+kind of caching, the web wouldn't work without it and there are a number of
+features intended to make caching, and cache invalidation, easier.</p>
+
+<p>Of course that kind of functional side-effect free style of programming isn't
+just good for caching. It also means that we can send the request to any number
+of servers to perform load-balancing. The benefits even partially
+extend to less "pure" web apps, which we can archive and replay using tools 
+like the internet archive's <code>WARC</code> files, at least for simple apps that don't
+rely on too much server-side processing.</p>
+
+<p>On the whole, stateless protocols make a lot of sense and enable a lot of
+performance optimization that would otherwise be impractical.</p>
+
+<h4 id="3">3.</h4>
+
+<p>Of course we can't all live in the land of pure-side-effect-free-functions. At
+some point you have to start layering on state. By far the most common way to do
+this is to create a little bundle of state, and have the users include a token
+in each of their requests that entagles their request with that bundle of
+statefull data. We call that bundle of data the users session.</p>
+
+<p>This is where we start to run into issues. Load balancing essentially means
+sending the request to a random server in a pool, and session data should be, at
+least in principle, atomic. There should be one single-source of truth.</p>
+
+<p>How do you ensure there's only one single source of truth, while also keeping
+things performant? The same way you do in any concurrent system. You <strike>throw
+everything into postgres and let it handle it</strike> use standard locking and
+concurrency models, or if you're feeling fancy use something more exotic like
+CRDTs or raft-consensus.</p>
+
+
+
+
+<hr>
+<div id="commento">
+    <noscript>
+        <p>Please enable javascript to view comments</p>
+        <a href=https://commento.io/>Comments powered by commento</a>
+    </noscript>
+</div>
+<script src="https://cdn.commento.io/js/commento.js"></script>
+
+                            
+<hr>
+<p>Copyright 2019-2020 Alex Davies</p>
+
+<a href="https://github.com/traverseda/traverseda.github.io/blob/master/code/statefullApis.md">Revision history</a>
+
+<!-- last regenerated 2020-03-07 16:53:58.904000 -->
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"> </script>

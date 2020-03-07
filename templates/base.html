@@ -3,6 +3,16 @@
 </header>
 
 <a href="{{STATIC_ROOT}}/index.md.html"><h1>Outside Context Solutions</h1></a>
+{% if breadcrumbs|length > 1 %}
+<span>
+  {% for idx, crumb in breadcrumbs %}
+  {% if not loop.last %}
+  <a href="{{"./"+"../"*idx}}">{{crumb}}</a> /
+  {% elif crumb != "index.html" %}{{crumb}}{% endif %}
+  {% endfor %}
+</span>
+<hr>
+{% endif %}
 {% block content %}{% endblock %}
 
 {% block comments %}
