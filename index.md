@@ -36,3 +36,7 @@ You can see the source code for this website
 it's pretty rough though.
 
 {# {{utils.index(files)}} #}
+
+---
+
+{{utils.index(files/"prints",root="prints/")}}

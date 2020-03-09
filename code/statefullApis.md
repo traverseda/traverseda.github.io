@@ -5,29 +5,11 @@ Epistemic-status: Gathering my thoughts
 
 #### 1.
 
-I've been thinking about operating systems for most of my life, since I was
-about 12. It started by trying to figure out the fundamental reasons why we had
-both databases *and* file systems, since they both abstracted data-access
-patterns. So why have two different systems?
-
-In hindsight it's a bit of a silly question, but it led to a lot of my
-interest in operating-systems and programmer-ergonomics, what makes a
-particular set of technology, or a particular abstraction, *good*.
-
-I eventually settled on a way that I'd like to do things, this post is one
-attempt to talk myself out of it.
-
-My ideal approach involves network-transparent object proxying, the ability for
-programs to share objects freely between one another. This has a number of
-potential advantages, but some significant drawbacks as well.
-
-#### 2.
-
 HTTP is, at it's core, a stateless protocol. You can think of it as an
 remote-procedure-call mechanism, a way to call a function over the internet.
-Thinking about this protocols as if they were language features can be
+Thinking about these protocols as if they were language features can be
 elucidating. HTTP is essentially a functional, side-effect free, RPC mechanism.
-This comes with a number of benifits, the big one is that you can apply
+This comes with a number of benefits, the big one is that you can apply
 memoization (caching).
 
 You could argue that the reason HTTP is a stateless protocol is to enable that
@@ -44,7 +26,7 @@ rely on too much server-side processing.
 On the whole, stateless protocols make a lot of sense and enable a lot of
 performance optimization that would otherwise be impractical.
 
-#### 3.
+#### 2.
 
 Of course we can't all live in the land of pure-side-effect-free-functions. At
 some point you have to start layering on state. By far the most common way to do

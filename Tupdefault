@@ -15,7 +15,8 @@ include_rules
 
 #Handle images...
 :foreach *.png |> convert %f -resize 684 -quality 100 %o |> $(STATIC_ROOT)/media/generated/684/%B.png
-:foreach *.jpg |> convert %f -resize 684 -quality 85 %o |> $(STATIC_ROOT)/media/generated/684/%B.jpg
+:foreach *.jpg |> convert %f -resize 684 -strip -interlace Plane -quality 80 %o |> $(STATIC_ROOT)/media/generated/684/%B.jpg
+#Progressive jpeg, so that each image can load as thumbnails.
 
 #:foreach *.png |> !primitive |> $(STATIC_ROOT)/media/generated/preview/%b.svg
 #:foreach *.jpg |> !primitive |> $(STATIC_ROOT)/media/generated/preview/%b.svg

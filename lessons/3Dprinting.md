@@ -56,6 +56,14 @@ different colours/filaments in one print.
 Filament comes in two common variaties, 3mm and 1.75mm. We use 1.75mm in our
 shop.
 
+### Model scale
+
+Printing is subject to the cubic law, so an object that's twice as big actually
+takes 4 times as much filament, weights 4 times as much, and takes 4 times as
+long as a normal sized print.
+
+Cura has a handy scaling function you can use to change how big an object is.
+
 ### Finding models
 
 I use [yeggi](https://www.yeggi.com/) as a search engine specifically for 3D
