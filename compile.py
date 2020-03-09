@@ -16,16 +16,18 @@ outfile = os.path.abspath(sys.argv[3])
 from jinja2 import Environment, FileSystemLoader
 
 import markdown2
-extentions=['fenced-code-blocks','tables','toc','strike']
+extentions=['fenced-code-blocks','tables','toc','strike','code-friendly','metadata']
 toc = None
+metadata = None
 
 class ContentLoader(FileSystemLoader):
     def get_source(self, environment, template):
         contents, filename, uptodate = super().get_source(environment, template)
         if not template.startswith("templates/"):
             md = markdown2.markdown(contents,extras=extentions)
-            global toc
+            global toc, metadata
             toc = md.toc_html
+            metadata = md.metadata
             contents = "\n".join((
                 "{% extends 'templates/base.html' %}",
                 "{% block content %}",
@@ -50,6 +52,7 @@ context={
     'self_path':Path(infile),
     'breadcrumbs':list(enumerate(Path(outfile).relative_to(BASE_DIR).parts)),
     'toc': toc,
+    'metadata': metadata
 }
 
 with open(outfile,"w+") as output:

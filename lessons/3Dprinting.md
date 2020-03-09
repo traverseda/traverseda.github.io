@@ -147,7 +147,7 @@ a specific shapes but can produce very nice results very quickly, if your shape
 is single walled and has the right topology. You can enable variable layer
 height to get many of the drawbacks of high and low layer heights at the same
 time. Ultimaker has spent a lot of time making their default printing profile
-rock solid, but there are many setting that are intended to effect the
+rock solid, but there are many setting that are intended to affect the
 performance of the printer.
 
 #To be continued
