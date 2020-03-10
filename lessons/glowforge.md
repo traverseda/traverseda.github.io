@@ -4,7 +4,7 @@ The glowforge is the laser cutter we use in the crafty fox makerspace. This is
 more notes than an actual lesson plan, but I figured I'd make my notes
 available.
 
-You can access the glowforge at https://app.glowforge.com . The glowforge relies
+You can access the glowforge at <https://app.glowforge.com>. The glowforge relies
 on that app in order to do anything, and they can pretty much decide they don't
 want to keep doing business with us for any reason. Live in constant fear, don't
 violate the ToS, etc.
@@ -15,7 +15,10 @@ violate the ToS, etc.
 
 ### 3mm baltic birch plywood
 
-##### Rough cut
+We normally just treat it like "medium basswood plywood". But here are some
+more specific settings.
+
+ * Rough cut
 
 power: full, speed: 190,
 
