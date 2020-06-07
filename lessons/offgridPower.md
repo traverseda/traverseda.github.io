@@ -1,9 +1,14 @@
 <h1>Designing off-grid power systems</h1>
 
-The goal of this workshop is to provide a solid foundation for your own research,
+The goal of this workshop is to provide a foundation for your own research,
 to give you the tools you need to be able to assess different ways of building
 yourself an off-grid mini power grid, and to be able to make the calculations
 nessesary to estimate things like how much power you actually need.
+
+There are turn-key off grid solutions, and consulting companies that can help
+you create your ideal off-grid installation. As I'm not in the affiliate
+marketing business I'll leave it up to you to find those solutions, but
+hopefully this can at least point you in the right direction.
 
 This was written in 2020, and while the fundamentals should be useful for a long
 time, some specific recomendations on things like batteries, might need to be
@@ -74,6 +79,34 @@ energy efficient. We call the devices that just drop a voltage down a "voltage
 regulator". If it can also increase the voltage we call it a "boost-buck
 regulator".
 
+You can find those components just by searching wherever you buy hobbyist
+electonrics. I personally use aliexpress.
+
+---
+
+Let's say you had a power adapter like this one, and you wanted to make a new
+power adapter that runs directly off your batteries.
+
+![](/media/misc/power_supply_label.jpg)
+
+You can see that the *output* is 19.5v. If we had a 12v battery bank, we'd need
+a boost-buck converter. Since I have a 24v battery bank I should be able to get
+away with just a voltage regulator though. I also note that it's able to output
+4.62 amps, which is pretty high for a voltage regulator. I probably want
+something a bit beefier, probably something with a heatsink. I search aliexpress
+for `voltage regulator 19.5v` and eventually I find
+[this](https://archive.li/1djPm) voltage regulator. It accepts 24v (a range of
+20-36 volts) and can output up to 6.15 amps, so it's a suitable replacement for
+my laptops charging brick. It doesn't say what leads are what, but I know that
+black is always the negative terminal in DC systems, so I try hooking the red
+and a black wire up, and test it with my multimeter.
+
+I have some [barrel connectors](https://archive.li/oJyKe) left over from a 
+previous project, so it's pretty easy to actually hook it up to my laptop.
+
+Other devices will follow pretty simialr workflows, find out what voltage the
+power supply output and find an appropriate voltage regulator online. 
+
 ## Components of an off-grid power system
 
 In general this section is going to be less useful, as there are a *lot* of
@@ -83,6 +116,24 @@ what's available where you are. You may find that there are some massive
 tarriffs on lithium batteries, or some massive recycling fees on lead-acid
 batteries. It's pretty difficult to figure out exactly what's going to work for
 you.
+
+### Things you probably shouldn't use electricity for
+
+It takes a *lot* of power to make heat, heat is about the least efficient thing
+you can use your electricity for. I'd *strongly* recomend not using electric
+heat. There are a lot of great heating options out there. Personally I'd
+recomend propane, with an optional wood stove. When you need electric heat the
+most is when you will be getting the least from your solar panels, which means
+in order to use electric heat you need to massivly over-provision your entire
+installation, and end up wasting a lot of power in the summer.
+
+Don't use an electric water heater, instead consider a tankless propane water
+heater.
+
+Don't use an electric stove, instead use a propane stove.
+
+There are also natural gas clothes dryers if you *must* have clothes dryer. My
+understanding is that they can be converted to run on propane with some effort.
 
 ### Batteries
 
@@ -100,7 +151,9 @@ durable, repairable, and simple.
 It's important that you get batteries that are rated for "deep cycle". These
 don't provide as much amperage as a normal car battery, but they're a lot more
 durable and can withstand a lot more charge cycles. Generally golf cart or
-marine batteries are good places to start.
+marine batteries are good places to start. I've never tried a regular car
+battery, but I'm told they die after just a few cycles, that you're unlikely to
+get more than 6 months of reliable performance out of them.
 
 #### Lithium
 
@@ -136,11 +189,28 @@ lithium BMS's can also do that sort of thing.
 
 The big difference between
 something like the vat1300 and just measuring the voltage is that the vat1300
-measures all the power entering or leaving the battery.
+measures all the power entering or leaving the battery. Since you can't reliable 
+tell how much power a battery has stored just from measuring the voltage, that's
+very useful.
 
 ### Inverters
 
+Pretty much everything you buy can run off of 110v AC power, although as we
+discussed earlier almost everything has some kind of power supply that turns
+that power into lower voltage DC.
 
+What we want to avoid is situation like `24v DC -> 110v AC -> 5v DC -> your
+cellphone`. We'd much rather go `24v DC -> 5v -> your cellphone`. Still, there
+are a handful of items that actually use AC power, mostly it's things with
+bigger electric motors in them like blenders or refrigierators. For those we
+need to use an inverter to step up to 110v. For 12v systems you can generally
+just buy an inverter, 24v inverters are a bit harder to find. 24v inverters
+don't have to stop the power up as much, so they lose a bit less during the
+conversion process.
+
+You definitly should have an inverter, even a small 500 watt one, don't
+underestimate the convenience of just being able to plug something in without
+having to put a bunch of thought in.
 
 ### Power generation
 #### Solar
