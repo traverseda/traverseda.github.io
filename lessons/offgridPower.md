@@ -1,3 +1,4 @@
+<title>Designing off-grid power systems</title>
 <h1>Designing off-grid power systems</h1>
 
 The goal of this workshop is to provide a foundation for your own research,
@@ -8,7 +9,8 @@ nessesary to estimate things like how much power you actually need.
 There are turn-key off grid solutions, and consulting companies that can help
 you create your ideal off-grid installation. As I'm not in the affiliate
 marketing business I'll leave it up to you to find those solutions, but
-hopefully this can at least point you in the right direction.
+hopefully this can at least point you in the right direction for your own
+research.
 
 This was written in 2020, and while the fundamentals should be useful for a long
 time, some specific recomendations on things like batteries, might need to be
@@ -22,7 +24,7 @@ Electricity can seem very complicated, it can be hard to get an intuitive sense
 of how these systems work. I like to imagine electrical systems as if they were
 networks of water-powered devices.
 
- * **Amperage** means how fast the water if flowing through your pipe.
+ * **Amperage** means how fast the water is flowing through your pipe.
      * The faster your water flows the more of its energy is lost to friction,
          transforming into heat.
  * **Voltage** is how much water you're moving, how big your pipe is.
@@ -89,14 +91,18 @@ power adapter that runs directly off your batteries.
 
 ![](/media/misc/power_supply_label.jpg)
 
-You can see that the *output* is 19.5v. If we had a 12v battery bank, we'd need
-a boost-buck converter. Since I have a 24v battery bank I should be able to get
+What we need to do is figure out the relevant specification and find a voltage
+regulator that we can use to replace it. Then we wire the voltage regulator up
+to whatever connectors we need. This will probably require soldering.
+
+You can see that the *output* is **19.5v**. If we had a **12v** battery bank we'd need
+a boost-buck converter. Since I have a **24v** battery bank I should be able to get
 away with just a voltage regulator though. I also note that it's able to output
-4.62 amps, which is pretty high for a voltage regulator. I probably want
+**4.62 amps**, which is pretty high for a voltage regulator. I probably want
 something a bit beefier, probably something with a heatsink. I search aliexpress
 for `voltage regulator 19.5v` and eventually I find
-[this](https://archive.li/1djPm) voltage regulator. It accepts 24v (a range of
-20-36 volts) and can output up to 6.15 amps, so it's a suitable replacement for
+[this](https://archive.li/1djPm) voltage regulator. It accepts **24v** (a range of
+20-36 volts) and can output up to **6.15 amps**, so it's a suitable replacement for
 my laptops charging brick. It doesn't say what leads are what, but I know that
 black is always the negative terminal in DC systems, so I try hooking the red
 and a black wire up, and test it with my multimeter.
@@ -111,7 +117,7 @@ power supply output and find an appropriate voltage regulator online.
 
 In general this section is going to be less useful, as there are a *lot* of
 different products on the market. This is a rough introduction to what options
-exist, but a lof of it is going to come down to personal preference and just
+exist, but a lot of it is going to come down to personal preference and just
 what's available where you are. You may find that there are some massive
 tarriffs on lithium batteries, or some massive recycling fees on lead-acid
 batteries. It's pretty difficult to figure out exactly what's going to work for
@@ -199,8 +205,8 @@ Pretty much everything you buy can run off of 110v AC power, although as we
 discussed earlier almost everything has some kind of power supply that turns
 that power into lower voltage DC.
 
-What we want to avoid is situation like `24v DC -> 110v AC -> 5v DC -> your
-cellphone`. We'd much rather go `24v DC -> 5v -> your cellphone`. Still, there
+What we want to avoid is situation like `24v DC -> 110v AC -> 5v DC -> your cellphone`.
+We'd much rather go `24v DC -> 5v DC -> your cellphone`. Still, there
 are a handful of items that actually use AC power, mostly it's things with
 bigger electric motors in them like blenders or refrigierators. For those we
 need to use an inverter to step up to 110v. For 12v systems you can generally
@@ -213,7 +219,65 @@ underestimate the convenience of just being able to plug something in without
 having to put a bunch of thought in.
 
 ### Power generation
+
 #### Solar
+
+Solar power is the *default*, and with good reason. It generally produces at
+least *some* power ever day.
+
 #### Wind turbines
+
+With solar power you can be pretty much guranteed to get *some* amount of sunlight
+every day. There's no such gurantee with wind power, it's very dependent on
+exactly where you've set up your turbine. If you've got a good spot though wind
+turbines are often quite a bit cheaper per watt. They also work just as well in
+the winter as the summer.
+
+If you can use wind turbines they're a very good option though. Unlike solar
+panels they can run 24 hours a day and small wind turbines can work with even
+relativly light breezes. Generally when your solar panels are the weakest,
+during periods of long rain or storm, a wind turbine will be producing at peak
+output.
+
+There are however some disadvantages.
+
+ * Mechanical parts can fail and require maintence
+ * Power output is unpridictable. You might get more power per dollar but you
+     can't rely on that power showing up a little bit every day.
+ * They're a lot louder
+ * They can fail catestrophically in high winds
+
+There's a reason why wind turbines are the de-facto choice for large scale
+industrial deployments, why they're cropping up in more and more of the
+countryside. When deployed in an area with good wind they produce more power for
+less money. If it wasn't for the disadvantages I think we'd see a lot more small
+wind turbines pop up. If you can deal with the disadvantages and have enough
+wind a small wind turbine can really help during the winter months.
+
 #### Gas Generators
 
+Having a gas generator is a very good idea for emergencies. You're most likely
+to need to use your generator during the winter, when you're getting a lot less
+power from your solar panels. It's worth noting that gasoline generators are
+~18-20 percent efficient. All that wasted energy? It gets turned into heat, so
+it might be worth figuring out a way use that extra heat to heat your home. You
+don't need a very big generator, as ideally you'll just be using it to charge
+your batteries.
+
+There are a lot of different sub-types of generator, the most common are
+propane, gasoline, and diesel.
+
+**Diesel** generators are the cheapest to run but they're generally very large and
+very expensive. I wouldn't recomend them unless you want a lot of power and you
+want to generate it regularily.
+
+**Gasoline** generators are the *default* generator option. They're all around a
+good option, but be careful because gasoline has a limited shelf life. If you're
+not using it often make sure to add a gasoline stabilizer.
+
+**Propane** generators are probably the least efficient, and by extention the
+most expensive to run. They're not a bad option, and they get better if you can
+use the wast heat to heat your home.
+Propane has an indefinite shelf life which is a major advantage for intermittent
+use. The pricing gets better if you have large propane tanks, as the fill-up cost 
+can be a significant portion of the price.

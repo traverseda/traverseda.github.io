@@ -19,7 +19,8 @@ I started this position as a CTO in order to head up new cryptocurrency
 integrations, when the bitcoin market slowed I moved into a position as CEO in
 an attempt to pivot to offering crypto-currency related financial services.
 
-We worked closely with regulators to try and
+We worked closely with regulators to try and design a regulatory framework for
+our "stable coin" electronics payment system. Unfortunatly we were unsuccesfull.
 
 **Freelance Software engineer**
 
