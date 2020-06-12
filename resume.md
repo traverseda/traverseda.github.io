@@ -16,11 +16,14 @@ experience in software engineering and systems administration roles.
 2018-02--2019-11
 
 I started this position as a CTO in order to head up new cryptocurrency
-integrations, when the bitcoin market slowed I moved into a position as CEO in
-an attempt to pivot to offering crypto-currency related financial services.
+integrations. When the bitcoin market ~~collapsed~~ slowed we pivoted towards
+offering blockchain-based financial services. During this transition I took over
+as CEO.
 
 We worked closely with regulators to try and design a regulatory framework for
 our "stable coin" electronics payment system. Unfortunatly we were unsuccesfull.
+
+---
 
 **Freelance Software engineer**
 
