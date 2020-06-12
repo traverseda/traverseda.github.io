@@ -21,7 +21,7 @@ offering blockchain-based financial services. During this transition I took over
 as CEO.
 
 We worked closely with regulators to try and design a regulatory framework for
-our "stable coin" electronics payment system. Unfortunatly we were unsuccesfull.
+our "stable coin" electronics payment system. Unfortunately we were unsuccessful.
 
 ---
 
@@ -37,7 +37,7 @@ Developed solutions for a variety of clients.
   * Worked with bokeh to deliver **interactive data visualization** in client web
     apps.
   * Set deadlines and made accurate time estimates.
-  * Used ansible to **automate deployment** to production, testing, and development enviroments.
+  * Used ansible to **automate deployment** to production, testing, and development environments.
   * Analyzed client requirements to build **minimum viable products**.
   * Updated **legacy applications** to meet modern software standards.
   * Integrated data from sensors
