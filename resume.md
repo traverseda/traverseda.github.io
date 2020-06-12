@@ -28,6 +28,8 @@ our "stable coin" electronics payment system. Unfortunatly we were unsuccesfull.
 
 Developed solutions for a variety of clients.
 
+  * Prototyped IoT devices with **micropython** on the **esp32** platform.
+  * Created embedded linux deployments with **buildroot**.
   * **Managed subcontractors** in meeting clients user-experience expectations.
   * Worked with bokeh to deliver **interactive data visualization** in client web
     apps.
