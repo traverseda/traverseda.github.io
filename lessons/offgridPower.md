@@ -76,7 +76,8 @@ battery a number of things will happen
  * As you use power the voltage in the battery will go down, causing the led
      strip to dim.
  * The led strip will keep draining power even when it looks like it's not
-     producing any light. This wastes power and would very likely damage the battery.
+     producing any light, well under the rated voltage for both the battery and 
+     the led strip. This wastes power and would very likely damage the battery.
 
 Generally whatever devices you hook up will take as much amperage as they want,
 and no more. You don't need to worry about amperage aside from making sure you
@@ -153,7 +154,12 @@ understanding is that they can be converted to run on propane with some effort.
 Batteries are ~~one of~~ the most expensive parts of any off-grid system. If you
 don't *need* to be off grid, if you're just interested in alternative energy, I
 highly recomend you look into systems that let you sell extra power back to the
-power company.
+power company. This means none of the power you produce gets wasted, and that
+you don't need to worry about when you're actually producing your power as long
+as you have enough power "banked" with the power company. It's probably a lot
+better for the enviroment to go that route, to do grid-tied solar. Still there
+are a lot of legitimate reasons for going full or hybrid off-grid, especially in
+places where the grid is unreliable or unavailable.
 
 #### Lead Acid
 
