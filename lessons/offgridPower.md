@@ -37,6 +37,13 @@ networks of water-powered devices.
      use watts and watt-hours interchangebly. For example if you have a 1 watt
      lightbulb and a 10 "watt" (actually watt-hour) battery, you can run your 
      lightbulb for 10 hours.
+ * Ineffeciency is like a leak in your pipes, only instead of water leaking out
+     you get heat leaking out. It's impossible to do any *work* without some of
+     the energy being wasted. Consider the [hydraulic ram
+     pump](https://www.youtube.com/watch?v=zFdyqTGx32A) as an example. It's a 
+     water powered water pump, analogous to a device that increases voltage.
+
+![](/media/misc/ramPump.gif)
 
 There are other things like resistance, capacitance, and inductance. We
 typically don't need to worry about those for off-grid power, so we're going to
@@ -209,9 +216,11 @@ What we want to avoid is situation like `24v DC -> 110v AC -> 5v DC -> your cell
 We'd much rather go `24v DC -> 5v DC -> your cellphone`. Still, there
 are a handful of items that actually use AC power, mostly it's things with
 bigger electric motors in them like blenders or refrigierators. For those we
-need to use an inverter to step up to 110v. For 12v systems you can generally
+need to use an inverter to step up to 110v.
+
+For 12v systems you can generally
 just buy an inverter, 24v inverters are a bit harder to find. 24v inverters
-don't have to stop the power up as much, so they lose a bit less during the
+don't have to step the power up as much, so they lose a bit less during the
 conversion process.
 
 You definitly should have an inverter, even a small 500 watt one, don't
