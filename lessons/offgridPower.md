@@ -62,7 +62,7 @@ more or less what a battery is.
 
 It's important to note that a 12v battery doesn't store *exactly* 12 volts. At
 full charge they provide closer to ~14v, and they're considered empty when they
-only provide 10 volts, trying to pull power out past that point could damage the
+only provide 12 volts, trying to pull power out past that point could damage the
 battery.
 
 That's a pretty large range of voltages, but generally most electronics require
