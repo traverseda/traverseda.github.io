@@ -27,7 +27,7 @@ networks of water-powered devices.
  * **Amperage** means how fast the water is flowing through your pipe.
      * The faster your water flows the more of its energy is lost to friction,
          transforming into heat.
- * **Voltage** is how much water you're moving, how big your pipe is.
+ * **Voltage** is your water pressure.
  * **Watts** are a combination of how much water you're moving and how fast it's
      moving, we use that to determine how much energy something produces or
      consumes.
