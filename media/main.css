@@ -564,6 +564,11 @@ label, legend, fieldset {
 }
 
 /* Literal.Number.Integer.Long */
+p > img {
+  display: block;
+  margin: 0 auto;
+}
+
 @media print {
   p a {
     color: #4a4a4a;

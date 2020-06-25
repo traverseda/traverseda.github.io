@@ -13,6 +13,14 @@ $font-family-serif: serif;
 @import "_sakura";
 @import "_pygments";
 
+//General tweaks
+
+p > img {
+    display: block;
+    margin: 0 auto;
+}
+
+
 //Printing
 
 @media print {
