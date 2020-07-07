@@ -15,6 +15,14 @@ $font-family-serif: serif;
 
 //Printing
 
+@media print {
+  a[href*="//"]::after {
+    content: " ("attr(href)") ";
+    vertical-align: super;
+    font-size: smaller;
+  }
+}
+
 @for $i from 1 through 6 {
   h#{$i} {
       page-break-inside: avoid;

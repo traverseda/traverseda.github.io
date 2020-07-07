@@ -564,6 +564,13 @@ label, legend, fieldset {
 }
 
 /* Literal.Number.Integer.Long */
+@media print {
+  a[href*="//"]::after {
+    content: " (" attr(href) ") ";
+    vertical-align: super;
+    font-size: smaller;
+  }
+}
 h1 {
   page-break-inside: avoid;
   page-break-after: avoid;

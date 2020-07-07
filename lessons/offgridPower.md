@@ -40,7 +40,7 @@ networks of water-powered devices.
  * Ineffeciency is like a leak in your pipes, only instead of water leaking out
      you get heat leaking out. It's impossible to do any *work* without some of
      the energy being wasted. Consider the [hydraulic ram
-     pump](https://www.youtube.com/watch?v=zFdyqTGx32A) as an example. It's a 
+     pump](https://youtu.be/zFdyqTGx32A) as an example. It's a 
      water powered water pump, analogous to a device that increases voltage.
 
 ![](/media/misc/ramPump.gif)
