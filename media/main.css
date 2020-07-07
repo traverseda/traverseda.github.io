@@ -564,57 +564,43 @@ label, legend, fieldset {
 }
 
 /* Literal.Number.Integer.Long */
-p > img {
-  display: block;
-  margin: 0 auto;
-}
-
-@media print {
-  p a {
-    color: #4a4a4a;
-  }
-
-  p a::after {
-    content: " (" attr(href) ")";
-    color: #338618;
-    font-size: 60%;
-    vertical-align: super;
-  }
-}
 h1 {
-  break-inside: avoid;
-  break-after: avoid;
-  break-before: auto;
+  page-break-inside: avoid;
+  page-break-after: avoid;
 }
 
 h2 {
-  break-inside: avoid;
-  break-after: avoid;
-  break-before: auto;
+  page-break-inside: avoid;
+  page-break-after: avoid;
 }
 
 h3 {
-  break-inside: avoid;
-  break-after: avoid;
-  break-before: auto;
+  page-break-inside: avoid;
+  page-break-after: avoid;
 }
 
 h4 {
-  break-inside: avoid;
-  break-after: avoid;
-  break-before: auto;
+  page-break-inside: avoid;
+  page-break-after: avoid;
 }
 
 h5 {
-  break-inside: avoid;
-  break-after: avoid;
-  break-before: auto;
+  page-break-inside: avoid;
+  page-break-after: avoid;
 }
 
 h6 {
-  break-inside: avoid;
-  break-after: avoid;
-  break-before: auto;
+  page-break-inside: avoid;
+  page-break-after: avoid;
+}
+
+p, img {
+  page-break-inside: avoid;
+}
+
+p > img {
+  display: block;
+  margin: 0 auto;
 }
 
 #commento {

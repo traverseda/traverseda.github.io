@@ -13,6 +13,19 @@ $font-family-serif: serif;
 @import "_sakura";
 @import "_pygments";
 
+//Printing
+
+@for $i from 1 through 6 {
+  h#{$i} {
+      page-break-inside: avoid;
+      page-break-after: avoid;
+  }
+}
+
+p, img {
+  page-break-inside: avoid;
+}
+
 //General tweaks
 
 p > img {
@@ -20,28 +33,6 @@ p > img {
     margin: 0 auto;
 }
 
-
-//Printing
-
-@media print {
-  p a {
-    color: $color-text;
-  }
-  p a::after {
-    content: " (" attr(href) ")";
-    color: $color-blossom;
-    font-size: 60%;
-    vertical-align: super;
-  }
-}
-
-@each $heading in h1, h2, h3, h4, h5, h6 {
-  #{$heading} {
-      break-inside: avoid;
-      break-after: avoid;
-      break-before: auto;
-  }
-}
 
 #commento {
     break-before: always;
