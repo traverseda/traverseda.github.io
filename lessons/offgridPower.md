@@ -28,7 +28,7 @@ networks of water-powered devices.
      * The faster your water flows the more of its energy is lost to friction,
          transforming into heat.
  * **Voltage** is your water pressure.
- * **Watts** are a combination of how much water you're moving and how fast it's
+ * **Watts** are a combination of your water pressure and how fast it's
      moving, we use that to determine how much energy something produces or
      consumes.
  * **Watt-hours** are a measure of how many watts something will use over the course
@@ -48,6 +48,20 @@ networks of water-powered devices.
 There are other things like resistance, capacitance, and inductance. We
 typically don't need to worry about those for off-grid power, so we're going to
 ignore them.
+
+These basic metaphors provide a great underpinning for getting that intuitive
+understanding of how electrical systems work. For example, can you guess what
+happens when you start taking too much "water" from a source? If you guessed that
+the "water pressure" (voltage) goes down you'd be correct. You can think of most
+voltage sources as sort of like a pump that's trying to maintain a specific
+water pressure.
+
+Can you guess what happens if you try to supply too many *amps* to a device?
+Well in our metaphors *amps* are how fast the water is flowing. You can't supply
+too many amps without raising your "water pressure" (voltage). Just make sure
+whatever device you have hooked in can actually handle that much pressure.
+
+---
 
 There are two main standards for delivering power, alternating current and
 direct current. When you imagine a compressor-powered tool or a water wheel
