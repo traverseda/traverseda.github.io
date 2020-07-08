@@ -104,7 +104,7 @@ regulator". If it can also increase the voltage we call it a "boost-buck
 regulator".
 
 You can find those components just by searching wherever you buy hobbyist
-electonrics. I personally use aliexpress.
+electronics. I personally use aliexpress.
 
 ---
 
@@ -300,17 +300,22 @@ your batteries.
 There are a lot of different sub-types of generator, the most common are
 propane, gasoline, and diesel.
 
-**Diesel** generators are the cheapest to run but they're generally very large and
-very expensive. I wouldn't recomend them unless you want a lot of power and you
-want to generate it regularily.
+**Diesel** generators are the cheapest to run, generally if generation is part
+of your actual power strategy, instead of an emergency backup, you'll want
+diesel. They're also fairly flexible on what kind of fuel they can use. People
+run them off of kerosene, heating oil, cooking oil, and a whole lot else. Diesel
+fuel is also shelf-stable for a lot longer than gasoline is. If you need a
+serious generator diesel is the way to go. They're also a lot cheaper and easier
+to maintain. The downside is that diesel engines are big and powerfull, probably
+more than you need for a single household.
 
 **Gasoline** generators are the *default* generator option. They're all around a
 good option, but be careful because gasoline has a limited shelf life. If you're
 not using it often make sure to add a gasoline stabilizer.
 
 **Propane** generators are probably the least efficient, and by extention the
-most expensive to run. They're not a bad option, and they get better if you can
-use the wast heat to heat your home.
+most expensive to run. I'd say they're still not a bad option though, and they 
+get better if you can use the waste heat to heat your home.
 Propane has an indefinite shelf life which is a major advantage for intermittent
 use. The pricing gets better if you have large propane tanks, as the fill-up cost 
 can be a significant portion of the price.
