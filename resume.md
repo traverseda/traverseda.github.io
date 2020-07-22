@@ -2,6 +2,8 @@
 # Alex Davies
 ## System Architect
 
+Not currently seeking employment
+
 ## Summary
 
 Passionate technology professional with over a decade of combined
@@ -10,6 +12,12 @@ experience in software engineering and systems administration roles.
 ---
 
 ## Employment
+
+** Senior Software Developer - Spiri Robotics
+
+2020-08 -- present
+
+ * TBD
 
 **CEO/CTO anchor-financial/coin-nation-atms**
 
