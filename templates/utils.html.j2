@@ -1,14 +1,6 @@
 {% macro image(name, alttext="") -%}
-{% set svgPreview = STATIC_ROOT/'media'/'generated'/('preview_'+name+'.svg') %}
-<a href="{{name}}">
-    <picture>
-        <img src="{{STATIC_ROOT/'media'/'generated'/'684'/name}}"
-            alt="{{alttext}}" class="preview"
-        />
-    </picture>
-</a>
-        {#<img src="{{STATIC_ROOT/'media'/'generated'/('preview_'+name+'.svg')}}" #}
-{#            alt="{{alttext}}" class="preview">#}
+    <img src="{{name}}"
+        alt="{{alttext}}"/>
 {%- endmacro %}
 
 {% macro stl(name, alttext="") -%}
@@ -29,13 +21,17 @@
 </div>
 {% endmacro %}
 
-{% macro index(files, root="") %}
+{% macro index(files, root="./", depth=10) %}
 <ul class="dirlisting">
     {% for file in files.iterdir()
-        if file.name != "index.md" 
+        if file.name != "index.md"
         and file.suffix != ".html" 
         and not file.is_dir() -%}
+        {% if file.suffix == ".md" %}
         <li><a href="{{root+file.name}}.html">{{file.name}}</a></li>
+        {% else %}
+        <li><a href="{{root+file.name}}">{{file.name}}</a></li>
+        {% endif %}
     {% endfor %}
     {% for folder in files.iterdir() if not folder.suffix
         and not folder.name.startswith(".")
@@ -43,8 +39,10 @@
         and folder.iterdir()|list
         and folder.name not in ("templates", "media", "scratchpad")
     -%}
+    {% if depth %}
         <li><a href="{{root+folder.name+"/index.html"}}">{{folder.name}}</a>
-        {{index(folder, root=folder.name+"/")}}</li>
+        {{index(folder, root=root+folder.name+"/",depth=depth-1)}}</li>
+    {% endif %}
     {% endfor %}
 </ul>
 {% endmacro %}

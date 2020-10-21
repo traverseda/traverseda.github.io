@@ -54,7 +54,7 @@ Active noise cancellation should be a lot easier with wavenet neural nets?
 ---
 
 Occluding telescopes, but for cars. Low-rez LCD panels are easy to make, gets
-around pesky laws involving tinted from windows?
+around pesky laws involving tinted front windows?
 
 ---
 

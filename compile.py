@@ -50,7 +50,7 @@ context={
     'now':datetime.datetime.now(),
     'files':Path.cwd(),
     'self_path':Path(infile),
-    'breadcrumbs':list(enumerate(Path(outfile).relative_to(BASE_DIR).parts)),
+    'breadcrumbs':Path(outfile).relative_to(BASE_DIR),
     'toc': toc,
     'metadata': metadata
 }

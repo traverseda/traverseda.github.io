@@ -1,13 +1,13 @@
 #These rules apply to every folder
 include_rules
-!primitive = |> primitive -i %f -o - -n 20 | scour -o %o --enable-viewboxing --enable-id-stripping \
+!primitive = |> primitive -i %f -o - -n 80 | scour -o %o --enable-viewboxing --enable-id-stripping \
   --enable-comment-stripping --shorten-ids --indent=none |>
 
 #Generate individual pages.
-:foreach *.md |> $(STATIC_ROOT)/compile.py $(STATIC_ROOT) %f %o |> %f.html ^__pycache__
+:foreach *.md |> python $(STATIC_ROOT)/compile.py $(STATIC_ROOT) %f %o |> %f.html ^__pycache__
 
 #Generate directory indexes
-: *.md |> $(STATIC_ROOT)/compile.py $(STATIC_ROOT) __index__ %o |> index.html
+: *.md |> python $(STATIC_ROOT)/compile.py $(STATIC_ROOT) __index__ %o |> index.html
 
 #Handle STL files for 3D printing. 
 :foreach *.stl |> stl-thumb %f %o -b C7E3BEFF -s 684 -m 225910 338618 338618 |> $(STATIC_ROOT)/media/generated/3D/%b.png

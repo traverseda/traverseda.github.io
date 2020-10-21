@@ -6,6 +6,8 @@ are actual legitimate problems, not just a bunch of old people whining because
 they don't like change.
 
 Some of these incidents happened years ago, so my memory of the details may be faulty.
+I will also admit that systemd *is* getting better, although I still think the
+underlying philosophy is bad and try to use OpenRC based init when I can.
 
 First though, is the obligatory philisophical complaint.
 Systemd is complicated, and does a
@@ -32,6 +34,8 @@ I could complain about service files being spread all over the file tree,
 instead of in one central obvious place, but as I understand it systemd has some
 reason why that's better for them and that's fine.
 
+I imagine it must be useful for enterprise programmers?
+
 ```
 #Places you can find systemd unit files
 /etc/systemd/system/*
@@ -56,20 +60,24 @@ $HOME/profile #Maybe, if you want to run a service when you log in.
 Anyway, enough nitpicking. There are a bunch of little things like that that
 aren't really a problem, but are just annoying enough to tempt me into a rant.
 
----
+### Systemd issues I've had
 
 Years ago I wanted to run debian on a kobo ereader. Unfortunatly the built-in OS
 image was not running systemd, and the kernal was several revisions out of date.
-While I hard no problem getting a debian chroot running, all of the services
+While I had no problem getting a debian chroot running, all of the services
 were designed to run under systemd, this made the whole project much more of a
 pain in the ass than it should have been.
 
-Journactl segfaults when running under qemu and systemd-nspawn. When
-troubleshooting a raid array using a mipsel processor, I had persistant network
+---
+
+When troubleshooting a raid array using a mipsel processor, I had persistant network
 issues. I took the boot media out for trouble shooting, but when I ~~chrooted~~
 systemd-nspawned into the host to try to address the problem, I discovered that
-journalctl didn't work. Thankfully /var/log still had all the entries I needed
-to fix the problem.
+journalctl would segault. Thankfully /var/log still had all the entries I needed
+to fix the problem. This appeared to be a general issue with running journalctl 
+using qemu-static and binfmt.
+
+---
 
 By default systemd will kill long-running processes when I log out. Processes
 like screen or tmux.
@@ -82,6 +90,12 @@ There's now no way to, by default, keep a program running in the background
 without a live ssh session. This kills not only screen, tmux, and nohup, but
 also tools like [mosh](https://mosh.org/) for non-admin users.
 
+---
+
+For some reason my mother's computer can no longer resolve DNS. Ripping out
+systemd-resolved seemes to have fixed it, but note before I lost a few more
+hours.
+
 ## Other peoples problems
 
 Sometimes I see a post about a problem someone else is having, and I document it
@@ -90,3 +104,5 @@ here if it seems reasonable.
 >I used to think the systemd hate was silly... until I tried to get a VPN running and realized that all my DNS requests were going through a mysterious local DNS server. I spend about 3 hours figuring out how that thing works, and how to configure it, before giving up and writing up and down scripts that bypassed it entirely while the VPN was running.
 
  ~ pkulak on reddit
+
+---

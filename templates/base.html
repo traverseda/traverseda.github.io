@@ -1,15 +1,16 @@
 <header>
 <link rel="stylesheet" href="{{STATIC_ROOT}}/media/main.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+{% import 'templates/utils.html.j2' as utils with context %}
+
 </header>
 
 <a href="{{STATIC_ROOT}}/index.md.html"><h1>Outside Context Solutions</h1></a>
-{% if breadcrumbs|length > 1 %}
+{% if breadcrumbs.parts|length > 1 %}
 <span>
-  {% for idx, crumb in breadcrumbs %}
-  {% if not loop.last %}
-  <a href="{{"./"+"../"*idx}}">{{crumb}}</a> /
-  {% elif crumb != "index.html" %}{{crumb}}{% endif %}
+  {% for crumb in breadcrumbs.parts %}
+  <a href="/{{"/".join(breadcrumbs.parts[:loop.index])}}">{{crumb}}</a>{% if not loop.last %} / {% endif %}
   {% endfor %}
 </span>
 <hr>

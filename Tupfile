@@ -1,4 +1,4 @@
 include Tupdefault
 #This file applies to unique files, the tupdefault refers to generic files
 #: media/main.scss |> sass %f %o && rm -r .sass-cache |> media/%B.css | media/%B.css.map
-: media/main.scss |> sass %f %o |> media/%B.css | media/%B.css.map
+: media/main.scss |> sassc %f %o -m |> media/%B.css | media/%B.css.map

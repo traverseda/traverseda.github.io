@@ -1,17 +1,18 @@
 <header>
 <link rel="stylesheet" href="../media/main.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+
 </header>
 
 <a href="../index.md.html"><h1>Outside Context Solutions</h1></a>
 
 <span>
   
+  <a href="/scratchpad">scratchpad</a> / 
   
-  <a href="./">misc</a> /
-  
-  
-  systemd.md.html
+  <a href="/scratchpad/systemd.md.html">systemd.md.html</a>
   
 </span>
 <hr>
@@ -24,7 +25,9 @@ I'd document my own problems with it and hopefully help them realize that there
 are actual legitimate problems, not just a bunch of old people whining because
 they don't like change.</p>
 
-<p>Some of these incidents happened years ago, so my memory of the details may be faulty.</p>
+<p>Some of these incidents happened years ago, so my memory of the details may be faulty.
+I will also admit that systemd <em>is</em> getting better, although I still think the
+underlying philosophy is bad and try to use OpenRC based init when I can.</p>
 
 <p>First though, is the obligatory philisophical complaint.
 Systemd is complicated, and does a
@@ -51,6 +54,8 @@ I could complain about service files being spread all over the file tree,
 instead of in one central obvious place, but as I understand it systemd has some
 reason why that's better for them and that's fine.</p>
 
+<p>I imagine it must be useful for enterprise programmers?</p>
+
 <pre><code>#Places you can find systemd unit files
 /etc/systemd/system/*
 /run/systemd/system/*
@@ -74,20 +79,24 @@ $HOME/profile #Maybe, if you want to run a service when you log in.
 <p>Anyway, enough nitpicking. There are a bunch of little things like that that
 aren't really a problem, but are just annoying enough to tempt me into a rant.</p>
 
-<hr />
+<h3 id="systemd-issues-ive-had">Systemd issues I've had</h3>
 
 <p>Years ago I wanted to run debian on a kobo ereader. Unfortunatly the built-in OS
 image was not running systemd, and the kernal was several revisions out of date.
-While I hard no problem getting a debian chroot running, all of the services
+While I had no problem getting a debian chroot running, all of the services
 were designed to run under systemd, this made the whole project much more of a
 pain in the ass than it should have been.</p>
 
-<p>Journactl segfaults when running under qemu and systemd-nspawn. When
-troubleshooting a raid array using a mipsel processor, I had persistant network
+<hr />
+
+<p>When troubleshooting a raid array using a mipsel processor, I had persistant network
 issues. I took the boot media out for trouble shooting, but when I <strike>chrooted</strike>
 systemd-nspawned into the host to try to address the problem, I discovered that
-journalctl didn't work. Thankfully /var/log still had all the entries I needed
-to fix the problem.</p>
+journalctl would segault. Thankfully /var/log still had all the entries I needed
+to fix the problem. This appeared to be a general issue with running journalctl 
+using qemu-static and binfmt.</p>
+
+<hr />
 
 <p>By default systemd will kill long-running processes when I log out. Processes
 like screen or tmux.</p>
@@ -102,6 +111,12 @@ like screen or tmux.</p>
 without a live ssh session. This kills not only screen, tmux, and nohup, but
 also tools like <a href="https://mosh.org/">mosh</a> for non-admin users.</p>
 
+<hr />
+
+<p>For some reason my mother's computer can no longer resolve DNS. Ripping out
+systemd-resolved seemes to have fixed it, but note before I lost a few more
+hours.</p>
+
 <h2 id="other-peoples-problems">Other peoples problems</h2>
 
 <p>Sometimes I see a post about a problem someone else is having, and I document it
@@ -113,6 +128,8 @@ here if it seems reasonable.</p>
 
 <p>~ pkulak on reddit</p>
 
+<hr />
+
 
 
 
@@ -121,7 +138,7 @@ here if it seems reasonable.</p>
 <hr>
 <p>Copyright 2019-2020 Alex Davies</p>
 
-<a href="https://github.com/traverseda/traverseda.github.io/blob/master/misc/systemd.md">Revision history</a>
+<a href="https://github.com/traverseda/traverseda.github.io/blob/master/scratchpad/systemd.md">Revision history</a>
 
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"> </script>
 <script data-goatcounter="https://traverseda.goatcounter.com/count"

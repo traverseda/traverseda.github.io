@@ -20,12 +20,9 @@ started using @traverseda online first.
 Here's some things you might find useful/interesting, or that otherwise I'd
 consider publishable if I was inclined to try and publish things.
 
-{% import 'templates/utils.html.j2' as utils %}
-
 [Lessons for the crafty fox](lessons/index.html)
 
 {{utils.index(files/"lessons",root="lessons/")}}
-
 
 [Extending sympy with support for percentages and bayes
 theorum](code/bayesForSympy.md.html)
@@ -38,4 +35,6 @@ it's pretty rough though.
 
 ---
 
-{{utils.index(files/"prints",root="prints/")}}
+## Sitemap
+
+{{utils.index(files)}}

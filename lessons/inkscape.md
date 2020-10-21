@@ -7,7 +7,7 @@ lesson I gave on how to use the glowforge.
 
 There are two different ways you can represent images, as an array of pixels (we
 call these raster images) or as a set of shapes (we call this vector images).
-The glowforge can engrave vector images, the laser will scan back and forth
+The glowforge can engrave raster images, the laser will scan back and forth
 across the substrate like an old television, but for things like cutting or
 scoring you want to be using vector images.
 
@@ -24,6 +24,9 @@ circles, etc. Most of those higher-level objects are made out of a different
 type of object, a path.
 
 [demonstration of path, editing the curve of a path]
+
+Paths are what the glowforge understands best, the laser will literally follow
+the path cutting (or scoring) along the line you've drawn.
 
 ### Objects are made of paths, mostly
 

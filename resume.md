@@ -1,6 +1,6 @@
 
 # Alex Davies
-## System Architect
+## Software Developer
 
 Not currently seeking employment
 
@@ -13,11 +13,24 @@ experience in software engineering and systems administration roles.
 
 ## Employment
 
-** Senior Software Developer - Spiri Robotics
+**Senior Software Developer - Spiri Robotics**
+
+Turns out it was more deveops than software dev...
 
 2020-08 -- present
 
- * TBD
+ * Spearheaded development of "Spiri Cloud" product
+ * Developed guidelines for integrating apps into our in-house SSO portal
+ * Used django and OIDC to develop login portal
+ * Integrated multiple third-party applications into our "spiri-cloud" product,
+     including webdav/files and user-login integration
+ * Worked with containerization frameworks like docker and systemd-nspawn to
+     create lightweight virtual servers, significantly reducing our web
+     hosting costs.
+ * Integrated systemd-nspawn with host GPU drivers, allowing us to create remote
+     development enviroments with stable access to our GPU compute resources.
+
+---
 
 **CEO/CTO anchor-financial/coin-nation-atms**
 

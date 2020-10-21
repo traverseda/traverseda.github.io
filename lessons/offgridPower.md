@@ -111,7 +111,7 @@ electronics. I personally use aliexpress.
 Let's say you had a power adapter like this one, and you wanted to make a new
 power adapter that runs directly off your batteries.
 
-![](/media/misc/power_supply_label.jpg)
+{{utils.image("/media/misc/power_supply_label.jpg")}}
 
 What we need to do is figure out the relevant specification and find a voltage
 regulator that we can use to replace it. Then we wire the voltage regulator up
