@@ -14,5 +14,7 @@ of tabs to something appropriate for that size.
 
 [Download](FluidLasercutBox.svg)
 
-The primitives I used to build this are on the "primitives" layer. You can't
-group the objects or else the live path effects will stop updating.
+The primitives I used to build this are on the "primitives" layer. You can
+modify those primitives to work with different depths of plywood.
+
+You can't group the objects or else the live path effects will stop updating.
