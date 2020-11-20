@@ -21,28 +21,31 @@
 </div>
 {% endmacro %}
 
-{% macro index(files, root="./", depth=10) %}
+{%- macro index(files, root="./", depth=10) -%}
 <ul class="dirlisting">
-    {% for file in files.iterdir()
+    {%- for file in files.iterdir()
         if file.name != "index.md"
         and file.suffix != ".html" 
         and not file.is_dir() -%}
-        {% if file.suffix == ".md" %}
-        <li><a href="{{root+file.name}}.html">{{file.name}}</a></li>
-        {% else %}
-        <li><a href="{{root+file.name}}">{{file.name}}</a></li>
-        {% endif %}
-    {% endfor %}
-    {% for folder in files.iterdir() if not folder.suffix
+        {%- if file.suffix == ".md" %}
+    <li><a href="{{root+file.name}}.html">{{file.name}}</a></li>
+        {%- else %}
+    <li><a href="{{root+file.name}}">{{file.name}}</a></li>
+        {%- endif %}
+    {%- endfor %}
+    {%- for folder in files.iterdir() if not folder.suffix
         and not folder.name.startswith(".")
         and folder.is_dir()
         and folder.iterdir()|list
         and folder.name not in ("templates", "media", "scratchpad")
     -%}
-    {% if depth %}
-        <li><a href="{{root+folder.name+"/index.html"}}">{{folder.name}}</a>
-        {{index(folder, root=root+folder.name+"/",depth=depth-1)}}</li>
-    {% endif %}
-    {% endfor %}
+    {%- if depth %}
+    <li>
+        <a href="{{root+folder.name+"/index.html"}}">{{folder.name}}</a>
+        {{index(folder, root=root+folder.name+"/",depth=depth-1)|indent|indent}}
+    </li>
+
+    {%- endif %}
+    {%- endfor %}
 </ul>
-{% endmacro %}
+{%- endmacro %}

@@ -1,9 +1,8 @@
 <header>
-<link rel="stylesheet" href="{{STATIC_ROOT}}/media/main.css" type="text/css">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="UTF-8">
-{% import 'templates/utils.html.j2' as utils with context %}
-
+  <link rel="stylesheet" href="{{STATIC_ROOT}}/media/main.css" type="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+{%- import 'templates/utils.html.j2' as utils with context %}
 </header>
 
 <a href="{{STATIC_ROOT}}/index.md.html"><h1>Outside Context Solutions</h1></a>
@@ -17,8 +16,8 @@
 {% endif %}
 {% block content %}{% endblock %}
 
-{% block comments %}
-{% endblock %}
+{%- block comments %}
+{%- endblock %}
                             
 <hr>
 <p>Copyright 2019-{{now.year}} Alex Davies</p>

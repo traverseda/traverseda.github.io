@@ -5,7 +5,8 @@ notes, and most projects I think are worth publishing.
 That being said, a lot of stuff here isn't worth publishing, and quality is
 going to vary widely. This isn't really for you, it's just a convenient place to
 put all my crap. Maybe someday this will be a public-facing profesional blog or
-something, but not today.
+something, but not today. It's also not in any particular order, it's more a
+wiki than a blog.
 
 {% set email = '&#x74;&#x72;&#x61;&#x76;&#x65;&#x72;&#x73;&#x65;&period;&#x64;&#x61;&plus;&#x62;&#x6c;&#x6f;&#x67;&#x73;&#x70;&#x61;&#x6d;&commat;&#x67;&#x6d;&#x61;&#x69;&#x6c;&period;&#x63;&#x6f;&#x6d;' %}
 
@@ -30,8 +31,6 @@ theorum](code/bayesForSympy.md.html)
 You can see the source code for this website
 [here](https://github.com/traverseda/traverseda.github.io),
 it's pretty rough though.
-
-{# {{utils.index(files)}} #}
 
 ---
 

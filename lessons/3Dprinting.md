@@ -58,7 +58,7 @@ shop.
 
 ### Model scale
 
-Printing is subject to the cubic law, so an object that's twice as big actually
+Printing is subject to the square-cube law, so an object that's twice as big actually
 takes 4 times as much filament, weights 4 times as much, and takes 4 times as
 long as a normal sized print.
 

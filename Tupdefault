@@ -11,11 +11,12 @@ include_rules
 
 #Handle STL files for 3D printing. 
 :foreach *.stl |> stl-thumb %f %o -b C7E3BEFF -s 684 -m 225910 338618 338618 |> $(STATIC_ROOT)/media/generated/3D/%b.png
+#I'd rather render the STL directly...
 :foreach *.stl |> blender --background --python $(STATIC_ROOT)/media/blendStl.py -- %f %o |> $(STATIC_ROOT)/media/generated/3D/%b.glb
 
 #Handle images...
-:foreach *.png |> convert %f -resize 684 %o |> $(STATIC_ROOT)/media/generated/684/%B.png
-:foreach *.jpg |> convert %f -resize 684 -strip -interlace Plane -quality 80 %o |> $(STATIC_ROOT)/media/generated/684/%B.jpg
+:foreach *.png |> convert %f -resize 684 %o |> .684_%B.png
+:foreach *.jpg |> convert %f -resize 684 -strip -interlace Plane -quality 80 %o |> .684_%B.jpg
 #Progressive jpeg, so that each image can load as thumbnails.
 
 #:foreach *.png |> !primitive |> $(STATIC_ROOT)/media/generated/preview/%b.svg
