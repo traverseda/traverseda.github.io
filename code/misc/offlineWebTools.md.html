@@ -1,0 +1,65 @@
+<header>
+  <link rel="stylesheet" href="../../media/main.css" type="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+</header>
+
+<a href="../../index.md.html"><h1>Outside Context Solutions</h1></a>
+
+<span>
+  
+  <a href="/code">code</a> / 
+  
+  <a href="/code/misc">misc</a> / 
+  
+  <a href="/code/misc/offlineWebTools.md.html">offlineWebTools.md.html</a>
+  
+</span>
+<hr>
+
+
+<h1 id="better-web-archiving-tools">Better web archiving tools</h1>
+
+<p>First, the state as of the year 2021.
+There are currently two main standards for web archiving, well sort of.</p>
+
+<p>There's kiwix, part of the offline-wikipedia reader project. It uses "zim" files
+which are basically just highly compressed blobs of html, with a (xapian-based) search
+engine glued onto it. This works <em>pretty well</em> with some important caveats. One
+important factor is that all the HTML is pretty-heavily pre-processed, which
+creates a better user experience but really makes this a special-purpose tool,
+not suitable for general-purpose archiving.</p>
+
+<p>There's also the internet-archives "WARC" file format. WARC is suited for
+general-purpose archiving. It stores requests and headers, and emulates all
+manner of http requests. This means that it can generally work with ("play back")
+sites that rely on javascript. If the site you're archiving uses ajax to request
+resources, well generally WARC will be able to capture and replay that ajax
+request. If your sites uses client-side rendering, it will generally work.
+Generally it's a lot more robust, and supports a lot more complex applications.
+Being intended for web-archiving first-and-foremost it also supports storing
+multiple versions of the same page, or a "revisit" saying that a page didn't
+change the last time you checked.</p>
+
+<p>Both of these formats can be frustrating, WARC files require a seperate index to
+tell you where in each file each entry is, and generally I've found the tooling
+around WARC to be pretty underwhelming. Doing simple things like de-duplicating
+the file, removing all the previous versions of a page to save file size, can
+take a very long time. Then you have to re-create your index and if you want
+your users to be able to search generate a search index...
+All of these basically require you to loop through your entire WARC file,
+possibly multiple times.</p>
+
+<p>I think there's a much simpler way, <a href="https://news.ycombinator.com/item?id=18754634">just throw it all into
+sqlite</a>.</p>
+
+
+                            
+<hr>
+<p>Copyright 2019-2021 Alex Davies</p>
+
+<a href="https://github.com/traverseda/traverseda.github.io/blob/master/code/misc/offlineWebTools.md">Revision history</a>
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"> </script>
+<script data-goatcounter="https://traverseda.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>

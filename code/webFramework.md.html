@@ -1,0 +1,169 @@
+<header>
+  <link rel="stylesheet" href="../media/main.css" type="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+</header>
+
+<a href="../index.md.html"><h1>Outside Context Solutions</h1></a>
+
+<span>
+  
+  <a href="/code">code</a> / 
+  
+  <a href="/code/webFramework.md.html">webFramework.md.html</a>
+  
+</span>
+<hr>
+
+
+<h2 id="notes-on-a-web-framework">Notes on a web framework</h2>
+
+<p>I've been using django with a system I call "query perms", to quickly build
+powerful admin interfaces. On the whole this is going pretty well, but the more
+I use django (and I've been using django for about 10 years) the more I start to
+get frustrated with it's limitations. For all the stuff it got right there are
+definitly some mistakes, and there are a lot of things that while they aren't
+really bad I would do differently.</p>
+
+<p>I didn't intend to make this a critique of django, more as a "how I'd make a new
+web framework if I had the resources", but it's probably easiest if I just
+explain what I'd do different than django and flask.</p>
+
+<h3 id="queryperms">QueryPerms</h3>
+
+<p>I haven't published QueryPerms anywhere yet, as I've been too busy. If you're
+interested in sponsoring that work, or finding out how it works in more detail,
+drop me a line. I don't think my current solutions would really work for anyone
+else.</p>
+
+<p>A code sample is worth 1000 words...</p>
+
+<div class="codehilite"><pre><span></span><code><span class="sd">&quot;&quot;&quot;Simple queryperm example, not to be taken seriously</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">threadlocals.threadlocals</span> <span class="kn">import</span> <span class="n">get_current_request</span>
+
+<span class="k">class</span> <span class="nc">Store</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">owner</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="c1">#[...] other model fields</span>
+
+    <span class="c1">#Adds a &quot;permissions&quot; filter to all querysets</span>
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">QpermQueryset</span><span class="o">.</span><span class="n">as_manager</span><span class="p">()</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">qperms_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#In reality this user filtering is handled by qperms_register</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">get_current_request</span><span class="p">()</span><span class="o">.</span><span class="n">user</span>
+        <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_superuser</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Q</span><span class="p">()</span> <span class="c1">#superusers can do anything</span>
+        <span class="k">return</span> <span class="n">Q</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+<span class="n">qperms_register</span><span class="p">(</span><span class="n">Store</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Product</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">)</span>
+    <span class="n">shop</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Shop</span><span class="p">,</span><span class="n">limit_choices_to</span><span class="o">=</span><span class="n">Store</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">permissions</span><span class="p">(</span><span class="s2">&quot;edit&quot;</span><span class="p">))</span>
+    <span class="c1">#[...]</span>
+
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">QpermQueryset</span><span class="o">.</span><span class="n">as_manager</span><span class="p">()</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">qperms_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#I&#39;d really rather do something like</span>
+        <span class="c1"># return shop.objects.qperms_edit()</span>
+        <span class="c1"># just not sure how to make that work nicely.</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">get_current_request</span><span class="p">()</span><span class="o">.</span><span class="n">user</span>
+        <span class="k">return</span> <span class="n">Q</span><span class="p">(</span><span class="n">store__owner</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+
+<span class="n">qperms_register</span><span class="p">(</span><span class="n">Product</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">ProductMedia</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Pictures/video of product</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">product</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Product</span><span class="p">,</span><span class="n">limit_choices_to</span><span class="o">=</span><span class="n">Product</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">permissions</span><span class="p">(</span><span class="s2">&quot;edit&quot;</span><span class="p">))</span>
+
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">QpermQueryset</span><span class="o">.</span><span class="n">as_manager</span><span class="p">()</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">qperms_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">get_current_request</span><span class="p">()</span><span class="o">.</span><span class="n">user</span>
+        <span class="k">return</span> <span class="n">Q</span><span class="p">(</span><span class="n">product__store__owner</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
+</code></pre></div>
+
+<p>This lets us chain togther more complicated permissions based on object
+relationships. I think this is a really powerful way to handle it, although I'm
+still working on getting the developer ergonomics working nicer. It also relies
+on <a href="https://github.com/benrobster/django-threadlocals">django-threadlocal</a>,
+which makes requests work more like how they do under flask.</p>
+
+<p>These queryperms make it a <em>lot</em> easier to make complicated auth flows than
+something like django-gaurdian. One thing I think is important for any
+permission system is that there's a <em>single source of truth</em> about who's allowed
+to access a row. That single source of truth is also relativly easy to reason
+about. It also lets us easily filter based on what the user currently has
+available to themselves.</p>
+
+<p>If I was desinging a web framework these days I'd build a system like queryperms
+in from the very begining. I'd probably make it so that queryperms were applied
+automatically and if you wanted unfiltered database access you'd need to
+explicitly bypass the queryperms.</p>
+
+<h3 id="htmx">HTMX</h3>
+
+<p>I really like <a href="https://htmx.org/">htmx</a>. I'd use it for the admin interface. I
+think an auto-generated admin interface is important and that the concept could
+probably be extended even furthur to auto-generate more complex views.</p>
+
+<h2 id="complaining-about-django">Complaining about django</h2>
+
+<h3 id="django-actually-does-repeat-itself-a-lot">Django actually does repeat itself a lot</h3>
+
+<p>I think this is, in part, due to the "loose coupling and tight cohesion"
+principle it tries to abide by. I consider this a bit of a failure, django has
+probably the best ORM and I'd love to use it in non-django apps but it's too
+tightly coupled in the framework...</p>
+
+<p>One of my biggest annoyences with django is the "urls.py" file. I see it as
+essentially naming the same function twice. I'm a big fan of fastApi style url
+definition/registration. I'd much rather have something like flask's app
+registration, and adding type-hints on to that is very pleasent.</p>
+
+<h3 id="django-has-no-way-to-auto-configure-apps">Django has no way to auto configure apps</h3>
+
+<p>Django has a weird directory layout, especially for simpler sites. For a variety
+of reasons (complicated multi-app migrations break easily) you probably want to 
+only have one main "app", django makes this pretty difficult though. Normally I
+end up naming my site "Settings" and then having one main app named after what
+the site actually is. Sometimes if two parts of the sight really aren't coupled
+I'll have two apps, for example "market" and "forum", but most sites only really
+make sense as a single django app.</p>
+
+<p>Except of course when you start plugging in apps that other people have written,
+where which is where the apps system really starts to shine. The problem with
+this however is that when apps start to depend on other apps things can start to
+get weird and finicky.</p>
+
+<p>In a perfect world you'd be able to use a wordpress-like "app/plugin store" for
+your django app. Unfortunatly Apps can't depend on other apps, so you need to explicitly
+add an app and all of it's dependencies to the configuration. You also need to 
+get the order right, and add in any middleware or template context processors or
+anything else the app depends on. </p>
+
+<p>I'd start under the presumption that any app installed in your virtualenv is one
+that you're actually using, and auto-import them, and resolve their dependencies
+in the correct order.</p>
+
+<p>I'd also handle most config through enviroment variables/files. I think you'd
+end up with a less flexible config that would require more work to do
+complicated stuff (like dealing with multiple databases) but in the end I think
+you'd be able to encourage a much healthier ecosystem, a CMS that could compete
+with wordpress if nothing else.</p>
+
+
+                            
+<hr>
+<p>Copyright 2019-2021 Alex Davies</p>
+
+<a href="https://github.com/traverseda/traverseda.github.io/blob/master/code/webFramework.md">Revision history</a>
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"> </script>
+<script data-goatcounter="https://traverseda.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
