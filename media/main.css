@@ -504,6 +504,9 @@ p > img {
 p {
   break-before: avoid; }
 
+.feedLoader {
+  min-height: 300px; }
+
 .gallery {
   display: flex;
   flex-wrap: wrap;
