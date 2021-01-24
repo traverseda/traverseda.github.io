@@ -14,7 +14,8 @@ You can contact me by email at {{email}}, do remove the +blogspam text though.
 
 My father writes on medium [here](https://medium.com/@traversedavies). That can
 create some confusion since he is also a Traverse Davies. In my defence I
-started using @traverseda online first.
+started using @traverseda online first, and although I go by Alex that's my
+middle name.
 
 ---
 
