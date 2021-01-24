@@ -5,10 +5,25 @@ partDefinition = 'ECHO: "Defined new part ---",'
 tmpf = tempfile.NamedTemporaryFile(suffix=".ast")
 
 
-
-out = subprocess.check_output(["openscad", "-o",
+out = subprocess.run(["openscad", "-o",
                                tmpf.name, sys.argv[1],
                                "-D","multiPartOutput=true",
                                "-D","multiPartFirstRun=true",
-                               ])
-print(out)
+                               ],
+                     stdout=subprocess.PIPE,
+                     stderr=subprocess.PIPE,
+                     encoding="utf-8"
+                     )
+
+parts=set()
+for line in out.stderr.splitlines():
+    if line.startswith(partDefinition):
+        parts.add(line.removeprefix(partDefinition).strip().strip('"'))
+
+print(f"Found these parts: {parts}")
+
+for part in parts:
+    subprocess.run(["openscad", "-o",
+                    part, sys.argv[1],
+                    "-D",f'multiPartOutput="{part}"'
+                    ])
