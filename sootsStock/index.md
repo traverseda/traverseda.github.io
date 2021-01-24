@@ -9,7 +9,7 @@ although you need a password to open it. There's also an etsy page
 
 {% set email = '&#x74;&#x72;&#x61;&#x76;&#x65;&#x72;&#x73;&#x65;&period;&#x64;&#x61;&plus;&#x62;&#x6c;&#x6f;&#x67;&#x73;&#x70;&#x61;&#x6d;&commat;&#x67;&#x6d;&#x61;&#x69;&#x6c;&period;&#x63;&#x6f;&#x6d;' %}
 
-You can contact me by email at {{email}}, do remove the +blogspam text though.
+You can contact me by email at {{email}}.
 
 {{toc}}
 
