@@ -50,6 +50,23 @@ p {
     break-before: avoid;
 }
 
+//Gallery
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.gallery > a {
+  display: block;
+  max-width:224px;
+  width: auto;
+  height: auto;
+  margin: 2px;
+}
+
 //Background
 
 html {

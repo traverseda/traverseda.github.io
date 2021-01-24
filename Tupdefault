@@ -15,9 +15,15 @@ include_rules
 :foreach *.stl |> blender --background --python $(STATIC_ROOT)/media/blendStl.py -- %f %o |> $(STATIC_ROOT)/media/generated/3D/%b.glb
 
 #Handle images...
-:foreach *.png |> convert %f -resize 684 %o |> .684_%B.png
-:foreach *.jpg |> convert %f -resize 684 -strip -interlace Plane -quality 80 %o |> .684_%B.jpg
+:foreach *.png |> convert %f -resize 684 %o |> .thumbs/fullwidth/%B.png
+:foreach *.jpg |> convert %f -resize 684 -strip -interlace Plane -quality 80 %o |> .thumbs/fullwidth/%B.jpg
 #Progressive jpeg, so that each image can load as thumbnails.
+
+#MiniGallery
+!squarify = |> convert %f -resize "132^>" -gravity center -crop 132x132+0+0 -strip %o |>
+
+:foreach *.png |> !squarify |> .thumbs/square/%B.png
+:foreach *.jpg |> !squarify |> .thumbs/square/%B.jpg
 
 #:foreach *.png |> !primitive |> $(STATIC_ROOT)/media/generated/preview/%b.svg
 #:foreach *.jpg |> !primitive |> $(STATIC_ROOT)/media/generated/preview/%b.svg

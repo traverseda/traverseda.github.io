@@ -27,8 +27,6 @@ Turns out it was more deveops than software dev...
  * Worked with containerization frameworks like docker and systemd-nspawn to
      create lightweight virtual servers, significantly reducing our web
      hosting costs.
- * Integrated systemd-nspawn with host GPU drivers, allowing us to create remote
-     development enviroments with stable access to our GPU compute resources.
 
 ---
 

@@ -120,7 +120,7 @@ I'll have two apps, for example "market" and "forum", but most sites only really
 make sense as a single django app.
 
 Except of course when you start plugging in apps that other people have written,
-where which is where the apps system really starts to shine. The problem with
+which is where the apps system really starts to shine. The problem with
 this however is that when apps start to depend on other apps things can start to
 get weird and finicky.
 
