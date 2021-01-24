@@ -23,6 +23,7 @@ for line in out.stderr.splitlines():
 print(f"Found these parts: {parts}")
 
 for part in parts:
+    print(f"Generating \033[92m{part}\033[0m")
     subprocess.run(["openscad", "-o",
                     part, sys.argv[1],
                     "-D",f'multiPartOutput="{part}"'
