@@ -32,20 +32,20 @@ get the job done.</p>
 
 <h2 id="usage">usage</h2>
 
-<pre><code>use &lt;partsScad.scad&gt;;
-multiPartOutput=true;
-multiPartFirstrun=true;
+<pre><code>include &lt;partsScad.scad&gt;;
 
-part(&#34;rube.stl&#34;,c=&#34;red&#34;,buildmode=&#34;default&#34;){
+part(&#34;rube.stl&#34;,c=&#34;red&#34;){
     cube([10,10,10]);
 }
 
 translate([5,5,10])
-part(&#34;blegg.stl&#34;,c=&#34;blue&#34;,buildmode=&#34;default&#34;){
+part(&#34;blegg.stl&#34;,c=&#34;blue&#34;){
     resize([10,10,20])sphere(r=10);
 }
 
 </code></pre>
+
+<p>Download here: <a href="partsScad.scad">partsScad.scad</a> | <a href="multipart.py">multipart.py</a></p>
 
 
 </div>

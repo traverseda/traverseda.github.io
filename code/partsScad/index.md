@@ -15,3 +15,5 @@ get the job done.
 ```
 {{(files/"demo.scad").read_text()|escape}}
 ```
+
+Download here: [partsScad.scad](partsScad.scad) | [multipart.py](multipart.py)

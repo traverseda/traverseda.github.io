@@ -8,4 +8,3 @@ translate([5,5,10])
 part("blegg.stl",c="blue"){
     resize([10,10,20])sphere(r=10);
 }
-
