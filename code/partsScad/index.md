@@ -12,7 +12,7 @@ get the job done.
 
 ## usage
 
-```
+```openscad
 {{(files/"demo.scad").read_text()|escape}}
 ```
 

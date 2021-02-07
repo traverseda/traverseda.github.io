@@ -12,7 +12,7 @@ software solutions that scale, building things like distributed task-queus for
 data-processing, doing large-scale data-scraping, and building data-management
 tools on top of the django-admin tools.
 
-I'm probably a good fit for your project if
+I'm probably a very good fit for your project if
 
  * You're developing in python.
  * You're developing with django.
@@ -32,6 +32,8 @@ I'm probably not a good fit for your project if
      quickly, but if you want it to look good have someone else do that.
  * You have a large (non-django/python) code base that you're going to need
      changes made to.
+ * Your project is a single page web app, or otherwise heavily relies on
+     the modern javascript ecosystem
 
 Technology wise I generally reach for django and htmx first.
 
