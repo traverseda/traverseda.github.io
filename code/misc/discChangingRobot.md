@@ -31,9 +31,10 @@ discs. Unfortunatly that would be a lot more expensive than just buying a bunch
 of hard drives and putting them on a shelf when they're not in use.
 
 I doubt there's a big enough market willing to pay a premium in not only cost
-but also access time, just to get a media that will last a few decades. Those
-kinds of organizations will probably just shift media as new technology becomes
-available.
+but also access time, just to get a media that will last a few decades
+(1000 years? todo, look into [m-disks](https://en.wikipedia.org/wiki/M-DISC) claims).
+Those kinds of organizations will probably just shift media as new technology
+becomes available.
 
 Sony's optical disc archiving system does look pretty cool though.
 

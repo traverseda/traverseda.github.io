@@ -1,0 +1,1091 @@
+<header>
+  <link rel="stylesheet" href="../media/main.css" type="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+</header>
+
+<a href="../index.md.html"><h1>Outside Context Solutions</h1></a>
+
+<span>
+  
+  <a href="/code">code</a> / 
+  
+  <a href="/code/catCadChat.md.html">catCadChat.md.html</a>
+  
+</span>
+<hr>
+
+<div class="bodyContent">
+
+<p><style>
+h2 {
+    font-size:20px
+}
+p {
+    margin-bottom:10px;
+    margin-top:10px;
+}
+</style></p>
+
+<h2 id="alex">Alex</h2>
+
+<p>Tristan! Do you c++? I think I'm just going to bite the bullet and c++</p>
+
+<p>And use an IDE to do it</p>
+
+<h2 id="tristan">Tristan</h2>
+
+<p>I am currently entering c++, but it's a big place.</p>
+
+<p>Why IDE? I'd encourage IDEing so we can compare contrast. I use grep+vim+gdb</p>
+
+<h2 id="alex-2">Alex</h2>
+
+<p>I'm using vscode</p>
+
+<p>It's not great</p>
+
+<p>I will stop once I figure out why IDEs are good</p>
+
+<p>And get better at vim</p>
+
+<h2 id="tristan-2">Tristan</h2>
+
+<p>Neither is grep+vim+gdb</p>
+
+<h2 id="alex-3">Alex</h2>
+
+<p>Yeah</p>
+
+<p>Alternatively I might write an IDE, Mahi-Gui is going pretty well</p>
+
+<p>Everything else is not</p>
+
+<p>But Mahi-Gui is</p>
+
+<h2 id="tristan-3">Tristan</h2>
+
+<p>I like c++ though, mostly for defacto reasons. Like, the newcomers might be
+better, but they are also newcomers.</p>
+
+<h2 id="alex-4">Alex</h2>
+
+<p>Mostly I've been using jump to source so that's a feature I want for vim</p>
+
+<h2 id="tristan-4">Tristan</h2>
+
+<p>I would like to write 15 guis, I feel the 15th would be passable.</p>
+
+<h2 id="alex-5">Alex</h2>
+
+<p>Nah man, Mahi gui is great</p>
+
+<h2 id="tristan-5">Tristan</h2>
+
+<p>Supposedly you can put it in with ctags, but I didn't have luck with my 20 min
+of trying so gave up.</p>
+
+<h2 id="alex-6">Alex</h2>
+
+<p>It's a GUI toolkit esigned for making actual tools</p>
+
+<h2 id="tristan-6">Tristan</h2>
+
+<p>s/gui/ide/</p>
+
+<p>sorry</p>
+
+<h2 id="alex-7">Alex</h2>
+
+<p>Oh yeah, well obviously I'd just embed neovim in something</p>
+
+<h2 id="tristan-7">Tristan</h2>
+
+<p>I've been using pyimgui and it annoys me in new and different ways.</p>
+
+<h2 id="alex-8">Alex</h2>
+
+<p>I know right?</p>
+
+<p>Talk to me about annoyances</p>
+
+<p>(also it doesn't seem to perform worse than pure cpp imgui, in my admittedly
+limited experience)</p>
+
+<h2 id="tristan-8">Tristan</h2>
+
+<p>Buttons and fields are indexed by their name. You can't have two ok buttons on
+the same window.</p>
+
+<p>or send or whatever</p>
+
+<h2 id="alex-9">Alex</h2>
+
+<p>You can, you just need to give them a unique name. Annoying it's true, I think
+everying before or after a # is stripped from the display</p>
+
+<h2 id="tristan-9">Tristan</h2>
+
+<p>Also I end up writing retaining systems myself because of the way I manage
+data.</p>
+
+<h2 id="alex-10">Alex</h2>
+
+<p>You you'd do "send#send1" "send#send2"</p>
+
+<p>writing retaining systems yourself is probably the cleanest way to couple it
+to the code, most of the time?</p>
+
+<h2 id="tristan-10">Tristan</h2>
+
+<p>Does #notshown not get shown? <br />
+I have a habit of writing spagetti since I'm not forced to break out
+functions, though that's more a complaint about my own code DX.</p>
+
+<h2 id="alex-11">Alex</h2>
+
+<p>It does not</p>
+
+<p>get shown</p>
+
+<h2 id="tristan-11">Tristan</h2>
+
+<p>That is good to know. I already invented a terrible work around that I'm not
+taking out, but it is good to know.</p>
+
+<h2 id="alex-12">Alex</h2>
+
+<p>And yeah, imgui really is for rapid prototyping shitty code</p>
+
+<p>Also I invented a terrible thing I call the "withif"</p>
+
+<p>Don't remember where I put it, but basically it's a with statement that can be
+conditional by modifying how python managees top-level exceptions to exit a
+with statement early</p>
+
+<h2 id="tristan-12">Tristan</h2>
+
+<p>Oh, and my biggest grievance is that retained and immode are both ways of
+specifying a thing. It should be possible to write immode and have it retain
+except when it actually needs to update.</p>
+
+<h2 id="alex-13">Alex</h2>
+
+<p>With no extra syntax</p>
+
+<h2 id="tristan-13">Tristan</h2>
+
+<p>withif... what kind of context would you use that in?</p>
+
+<h2 id="alex-14">Alex</h2>
+
+<p><a href="https://gist.github.com/traverseda/4bdc8d6446b6cc15d4ef66df229a5d6c"> https://gist.github.com/traverseda/4bdc8d6446b6cc15d4ef66df229a5d6c
+</a></p>
+
+<p>So you'd use it as</p>
+
+<p>with imgui.Window("myWindow"):
+Do a bunch of stuff, but only if window is visible</p>
+
+<h2 id="tristan-14">Tristan</h2>
+
+<p>Ok... that's interesting. I think that makes sense.
+As an aside, your description of the withif as a 'hack' has given me insight
+into something I've long complained about.
+In math many things are named "weird new unnatural thing x" and it annoys me
+because those things are often normal old reasonable things. But it's because
+when they are proposed, its "I don't know if this makes sense or not" and once
+everyone says "yeah, this seems to make sense" the name has already stuck.</p>
+
+<h2 id="alex-15">Alex</h2>
+
+<p>I do not believe withif is one of those things</p>
+
+<h2 id="tristan-15">Tristan</h2>
+
+<p>So my new complaint is not calling things new hacky, but rather the nature of
+the lifecycle of naming things.</p>
+
+<h2 id="alex-16">Alex</h2>
+
+<p>I believe it to be generally bad, only useful in an incredibly narrow situatio</p>
+
+<h2 id="tristan-16">Tristan</h2>
+
+<p>No, certainly not something that will stick around for hundreds of years as it
+stands.</p>
+
+<h2 id="alex-17">Alex</h2>
+
+<p>I think python really needs better syntax for building trees though, and maybe
+the solution is lists</p>
+
+<p>is withs</p>
+
+<p>not lists</p>
+
+<p>LIke this!: <a href="https://gist.github.com/traverseda/da367acbf7fdabac41b923265536c3e9">
+https://gist.github.com/traverseda/da367acbf7fdabac41b923265536c3e9
+</a></p>
+
+<p>I forgot I wrote that</p>
+
+<h2 id="tristan-17">Tristan</h2>
+
+<p>Are you aware that dictionaries exist?</p>
+
+<h2 id="alex-18">Alex</h2>
+
+<p>Yes, but I like yaml?! Syntactically significant whitespace for defining more
+complicated relationships</p>
+
+<p>Admittedly I was thinking about imgui when I made this.</p>
+
+<p>You can slap an if statement right in the middle of that</p>
+
+<p>But yeah, I think this is likely also bad, but could be good for more
+complicated xml-ey type situations</p>
+
+<p>Anyway, take a look at this. I've gotten demo windows drawing in c++, with
+support for cool imgui docking:  </p>
+
+<p><a href="http://0fb41a0e35b3.ngrok.io/catCad"> http://0fb41a0e35b3.ngrok.io/catCad </a></p>
+
+<p>(link is very ephemeral)</p>
+
+<h2 id="tristan-18">Tristan</h2>
+
+<p>I'm more dubious on tree thing than withif, though I think it probably makes
+good sense in context.</p>
+
+<h2 id="alex-19">Alex</h2>
+
+<p>They're both pretty dubious</p>
+
+<h2 id="tristan-19">Tristan</h2>
+
+<p>alas</p>
+
+<p>My code is a tower of mistakes. I don't think I have any insight within it
+worth sharing.</p>
+
+<h2 id="alex-20">Alex</h2>
+
+<p>QueryPerms is pretty solid though, the president of the django software
+foundation said so: <a href="https://gist.github.com/traverseda/dabe97d56f28d9a2d12aedf1eab7eff5">
+https://gist.github.com/traverseda/dabe97d56f28d9a2d12aedf1eab7eff5
+</a></p>
+
+<h2 id="tristan-20">Tristan</h2>
+
+<p>I'm trying to move away from the style "be clever enough to work with your own
+terrible code" and towards "be clever enough to write readable code" but it is
+a struggle.</p>
+
+<h2 id="alex-21">Alex</h2>
+
+<p>Yeah</p>
+
+<p>I worry about cpp</p>
+
+<h2 id="tristan-21">Tristan</h2>
+
+<p>Yeah, query perms is a really good idea.</p>
+
+<p>What's the worry?</p>
+
+<h2 id="alex-22">Alex</h2>
+
+<p>That it's going to encourage cleverness, and that no one ever really documents
+their shit</p>
+
+<h2 id="tristan-22">Tristan</h2>
+
+<p>I like pointers. Working with them makes sense.</p>
+
+<p>Encapsulation paradigm is also good</p>
+
+<p>python is worse for not having it.</p>
+
+<h2 id="alex-23">Alex</h2>
+
+<p>What's the difference between pointers and weakref?</p>
+
+<h2 id="tristan-23">Tristan</h2>
+
+<p>I didn't know weakref existed. I'll have to read about it, but it looks like
+it might be the same thing.</p>
+
+<h2 id="alex-24">Alex</h2>
+
+<p>Except if de-references when the object gets GC'd, instead of pointing to the
+wrong object</p>
+
+<p>I think, no habla C</p>
+
+<h2 id="tristan-24">Tristan</h2>
+
+<p>Don't dereference the null pointer.</p>
+
+<p>Yeah, most people use abstraction over pointers in cpp</p>
+
+<h2 id="alex-25">Alex</h2>
+
+<p>That's good</p>
+
+<h2 id="tristan-25">Tristan</h2>
+
+<p>Depends on the context I guess. It's nice to have the option to go that low if
+you need to, and understanding pointers and pass by ref vs pass by copy and
+all that is needed. You just have to learn it in c, you can get by without in
+python...</p>
+
+<p>So, not really a benefit that applies to you.</p>
+
+<p>And I'm sure there are ways to do encapsulation in python, but I and most
+proggers haven't sought them out.
+Maybe insideFun and dunders is enough.</p>
+
+<h2 id="alex-26">Alex</h2>
+
+<p>It's all pass by reference unless the object is immutable or I explicitly make
+a copy</p>
+
+<h2 id="tristan-26">Tristan</h2>
+
+<p>not for primitives</p>
+
+<p>Have you forgotten what it's like to work with raw variables from your object
+ivory tower?!</p>
+
+<h2 id="alex-27">Alex</h2>
+
+<p>Primitives are immutable!</p>
+
+<p>but also yes</p>
+
+<h2 id="tristan-27">Tristan</h2>
+
+<p>lol</p>
+
+<p>That's probs a good thing.</p>
+
+<p>I keep passing piles of variables through functions when it should instead be
+a nicely designed object structure and it makes me want to puke.</p>
+
+<h2 id="alex-28">Alex</h2>
+
+<p>Not a fan of functional programming?</p>
+
+<h2 id="tristan-28">Tristan</h2>
+
+<p>Cause I write my code in layers and don't refactor enough.</p>
+
+<h2 id="alex-29">Alex</h2>
+
+<p>"passing piles of variables thorough functions".jpeg</p>
+
+<p>Any thoughts on how to make a good CAD program? In particular parametric cad
+with minimal programming? I'd like to avoid my solution of "everything is a
+python object" for reasons, but I'd like to be able to do things like
+reference the diameter of a gear and maybe do some kind of geometric
+constraint solving on top of that</p>
+
+<p>Probably start with a mini programming language, then build gui tools on top
+of that...</p>
+
+<p>You've used solvespace?</p>
+
+<h2 id="tristan-29">Tristan</h2>
+
+<p>I think it's not a problem with functional vs oop vs anything on the program
+level, I think I actually don't like words... I'm going to have to think about
+this before complaining about it again... <br />
+Minimal programming in the interface? Yes. <br />
+Minimal programming to build it? No. <br />
+I will look at solvespace. <br />
+Fusion 360 constraints look good. <br />
+See also bret victor.</p>
+
+<h2 id="alex-30">Alex</h2>
+
+<p>Not minimal programming to build, god no</p>
+
+<h2 id="tristan-30">Tristan</h2>
+
+<p>Sorry, first sentence was ref pile of vars.</p>
+
+<p>I think a good one would be vertex based and create the finished model through
+an operation tree, where each operation would be subject to constraints. Is
+that too obvious?</p>
+
+<p>Or I guess it would actually be an operation list, or an upside down tree. You
+know, like an irl tree, lol.</p>
+
+<h2 id="alex-31">Alex</h2>
+
+<p>Nah, I've got that. It's more how to reference constrains on related objects
+and stuff. Like I want it to be heavily parametric, I want you to give a
+"gear" object a bunch of variables, and be able to read a bunch of variables
+out from them</p>
+
+<p>So like I hand the gear a "tooth_count" and can reference it's final diameter,
+or it's center position</p>
+
+<h2 id="tristan-31">Tristan</h2>
+
+<p>Each of those vars should have a graphical representation on the part you are
+working with.</p>
+
+<h2 id="alex-32">Alex</h2>
+
+<p>Yeah, that's also really true</p>
+
+<h2 id="tristan-32">Tristan</h2>
+
+<p>I guess there will need to be a good system to control what variables are
+currently visible.</p>
+
+<p>Movement into and out of objects, and up and down the tree.</p>
+
+<h2 id="alex-33">Alex</h2>
+
+<p>I was thinking force-directed graphs</p>
+
+<h2 id="tristan-33">Tristan</h2>
+
+<p>What's a force</p>
+
+<h2 id="alex-34">Alex</h2>
+
+<p>And yeah, moving up and down the tree is part of the challenge</p>
+
+<h2 id="tristan-34">Tristan</h2>
+
+<p>Don't forget into and out of abstraction on the tree!</p>
+
+<h2 id="alex-35">Alex</h2>
+
+<p>The labels all sort of try to get as close to the object as they can while
+trying to stay away from other labels</p>
+
+<h2 id="tristan-35">Tristan</h2>
+
+<p>Add gear is a node, but it's made up of a tree itself.</p>
+
+<h2 id="alex-36">Alex</h2>
+
+<p>Probably using dead simple physics.</p>
+
+<p>Yeah</p>
+
+<p>It's hard to actually implement, or to imagine what the language looks like in
+practice</p>
+
+<h2 id="tristan-36">Tristan</h2>
+
+<p>Eww, no. No force directed graph.</p>
+
+<h2 id="alex-37">Alex</h2>
+
+<p>Just for the labels</p>
+
+<h2 id="tristan-37">Tristan</h2>
+
+<p>No. No... maybe... I don't think so, let me explain.</p>
+
+<p>Like, if you need to edit them as individual ints or whatever, use a menu.</p>
+
+<p>But this should be avoided most of the time, because the shape of the object
+should describe the shape of the object.</p>
+
+<p>Not numbers or whatever.</p>
+
+<p>Likewise, if you want to see all of the operations, it should just be in a
+menu list. Otherwise, you are thinking about the direction from the operation
+you are currently working on, so you use hotkeys or menu buttons to move up
+and down, in and out, and do your work.</p>
+
+<p>What would be the advantage of glooby graphs of things?</p>
+
+<p>(except as an operation that one might apply to their part)</p>
+
+<h2 id="alex-38">Alex</h2>
+
+<p>Documentation, you can see what the variables are doing, what they're attached
+to</p>
+
+<h2 id="tristan-38">Tristan</h2>
+
+<p>I tentatively think that should be done through interaction and highlighting,
+not lines connecting nodes. More exploration needed, but for example, you have
+this gear is locked so it meshes with that gear, so when you have this gear
+selected, it also highlights the circle around the center of that gear
+representing the mesh point. If you then select that circle you may be able to
+see how it is made up of the mesh diameters of the two gears and set around
+that gear.</p>
+
+<h2 id="alex-39">Alex</h2>
+
+<p>Sensible</p>
+
+<h2 id="tristan-39">Tristan</h2>
+
+<p>And if you are ever just saying "oh, whatever make the gear this big" that
+doesn't need to be shown, and if you ever want to see it it's just "0.5486..."
+in a window.</p>
+
+<p>"How to think through what needs to be related" and "How to come to understand
+parts / operations you didn't write" are interesting to think on, and gooby
+graphs might creep in there, but I think well defined expand/collaps-able
+lists and well defined hotkey motion in operation space is the salve.</p>
+
+<p>Oh, also really good flexibility for changing the operation directed graph,
+it's a dir-graph sorry, I called it a tree wrongly earlier. Anyway it should
+obviously attempt to be flexible enough that it's easy to go back in a
+finished part and modify add and move operations to fix your mistakes in the
+required relations. <br />
+I mean, that's kinda obvious as well, that's kinda the whole point isn't it?
+Combine the flexibility of direct modeling with the ease of modification of
+parametric?</p>
+
+<p>Ulg, this is a good subject. <br />
+Good goal. Difficult though. Are you actually want to build one of these?</p>
+
+<h2 id="alex-40">Alex</h2>
+
+<p>I need better CAD, it's not happening on it's own</p>
+
+<p>I imagine I'll build something shitty that does the job that inkscape does,
+but with support for geometric constrains</p>
+
+<p>Not unlike solvespace but less shitty</p>
+
+<h2 id="tristan-40">Tristan</h2>
+
+<p>Mmm... each operation function thing should have a 'gRepr' function, saying
+how it shows itself in the part/scene. And there needs to be the division of
+view and model so its easy to make it look sleek like original autocat
+oscilloscope stuff but also make it look normie tier new.</p>
+
+<p>We can just write the shitty sleek view, but it needs to be easy for someone
+else to write the shiny view.</p>
+
+<p>imo</p>
+
+<p>I haven't into solvespace much. Can you point at what it does wrong?</p>
+
+<h2 id="alex-41">Alex</h2>
+
+<p>A few things:  </p>
+
+<p>Generally it handles layers poorly, since layers are the only tool you have to
+segment your code into different parts that's a big problem  </p>
+
+<p>No programmability, you couldn't make say a parametric gear except via
+copy+paste I guess  </p>
+
+<p>Generally intolerable UX, full modal windows that lock the app if you click
+the wrong things when you create a constraint  </p>
+
+<p>Waaaay too many constraints visible  </p>
+
+<p>No support for variables, no way to make a constraint reference another
+constraint except for things like the same length constraints</p>
+
+<p>Basically there's no way to make a gear with a variable number of teeth
+parametrically</p>
+
+<h2 id="tristan-41">Tristan</h2>
+
+<p>Layers -> that is a big problem. <br />
+no programm -> damn big problem <br />
+modes are good, but locking interfaces are bad. <br />
+Yeah, movement in operation space is a better way of thinking about it I think
+than "look at all these constraints" <br />
+no constraint ref other constraint -> unacceptable.</p>
+
+<h2 id="alex-42">Alex</h2>
+
+<p>It's not modes, it's a modal window. A popup you need to click to get it to go
+away.</p>
+
+<h2 id="tristan-42">Tristan</h2>
+
+<p>Yeah, ok, is it open source? The base may be salvageable, but I'm thinking
+you're right it's not, operation-space-abstraction needs to be fundamental
+from the start.</p>
+
+<p>A punishment for clicking the wrong window window? Gross.</p>
+
+<h2 id="alex-43">Alex</h2>
+
+<p>I'm thinking the base probably isn't salvageable, and there are better
+geometric constraint solvers available nowdays. It's got a custom one that is
+apparently pretty hard to work with, I've talked to the ex-maintainer</p>
+
+<p>If the constraint solving core wasn't purportedly a PITA I'd be into it</p>
+
+<p>But proabbly better to build on something like <a href="https://www.gecode.org/doc-latest/MPG.pdf"> https://www.gecode.org/doc-
+latest/MPG.pdf </a></p>
+
+<h2 id="tristan-43">Tristan</h2>
+
+<p>I think constraints might be the wrong way to think of things. Constraints are
+like making an environment where you can play with a thing, but still have it
+stay in certain bounds... That's interesting, but not how I was thinking about
+it. <br />
+I was thinking "I put a circle down! I put it's center on this other circle!"
+and so it's not like it's constrained, that's just where you put it. You could
+add a new operation where you move it base on something else you built, but
+you don't really 'move it around with this constraint' you 'go back and change
+where you originally put it'.</p>
+
+<h2 id="alex-44">Alex</h2>
+
+<p>Also cmake is hard</p>
+
+<h2 id="tristan-44">Tristan</h2>
+
+<p>cmake can s#ck a d*ck</p>
+
+<h2 id="alex-45">Alex</h2>
+
+<p>Is there a flag for that?</p>
+
+<h2 id="tristan-45">Tristan</h2>
+
+<p>Why is bash ok for managing builds? Answer: it's not. It's something you put
+up with so you can work with C and gcc</p>
+
+<p>I think there should be a flag for that.</p>
+
+<h2 id="alex-46">Alex</h2>
+
+<p>I think constraints are <em>probably</em> a decent way of having things be dependent
+on other variables? What you're actually building is a big set od math that
+depends on other math, one big equation</p>
+
+<p>But doing that in openscad is unpleasant</p>
+
+<p>Variables that depend on other variables</p>
+
+<p>But yeah, you need to by default constrain objects to where you actually put
+them</p>
+
+<h2 id="tristan-46">Tristan</h2>
+
+<p>Yeah, I think "default constrain objects where you put them" says it. To move
+an object is not to move an object but to change or add an operation done to
+it, such as changing the operation of placing it in its original location.
+Certain operations like move operations should want to just merge together so
+adding a move is just changing a move (or put) unless you have a really good
+reason for having different moves... the composition of those operations and
+how they work with one another is the thing to care about. Constraints if they
+can be called such a thing are just ways of getting vars to feed operations.
+"Find me the point where these circles intersect, I place it on the most
+clockwise one from this circle."  </p>
+
+<p>An aside, cmake should not wander through directories looking for changes but
+just go to where my git diff says the changes are, unless I'm misunderstanding
+what it's doing wandering through all the dirs. Linking should not take that
+long?</p>
+
+<h2 id="alex-47">Alex</h2>
+
+<p>I really enjoy the tup build system, for things where I know what I'm doing
+well enough to actually write my build from scratch</p>
+
+<p>I use it for my personal site</p>
+
+<p><a href="https://github.com/traverseda/traverseda.github.io/blob/master/Tupdefault"> https://github.com/traverseda/traverseda.github.io/blob/master/Tupdefault
+</a></p>
+
+<h2 id="tristan-47">Tristan</h2>
+
+<p>tup looks nice. <br />
+@catcat, I think one of the problems we will see is that "most clockwise one"
+thing, cause it's easy to see you want to put the thing 'here' it's harder to
+see 'why' you want to put it there. First you get a set of space, and you need
+to narrow it down to a single point somehow. That's the 'constraint solver'
+but it does need to go down to an actual single point, (or set of points if
+multiple objs) so there's a lot of ways to go with that. Once you select the
+set of points on the edge of two intersecting circles, you really have two
+points and have to choose only one of them in a way that will continue to make
+sense when you fiddle with other operations. That's one of the reasons it
+needs to of course be flexible. You start moving an operation and oh, the gear
+popped over to the wrong place, I just set it to 'leftmost' but it needed to
+be 'clockwise from gear a' just change that selection over eh?</p>
+
+<p>Maybe that's a good way to think of it, you can't 'add a circle' you can only
+select a point and a length and only then can you generate a circle with that
+center point and given radius.</p>
+
+<h2 id="alex-48">Alex</h2>
+
+<p>People describe objects as fully constrained or partially constrained,
+depending. Play with solvespace a bit, it's crappy but it deals with these
+problems in a way that sort of almost works</p>
+
+<p>At least the problems are problems are probably the right problems</p>
+
+<h2 id="tristan-48">Tristan</h2>
+
+<p>No, I don't like it, partially constrained objects don't make any more sense
+than partially placed objects.</p>
+
+<h2 id="alex-49">Alex</h2>
+
+<p>What they actually are is objects where one of the constraints is variable,
+where it can be filled in with whatever to make the equation work</p>
+
+<p>Solve for X, where X is axis that isn't fully constrained</p>
+
+<p>If you could add dependant constraints it would be much better</p>
+
+<p>This line must be at least 10 mm</p>
+
+<p>Under constraint is just implicit dependent constraints</p>
+
+<h2 id="tristan-49">Tristan</h2>
+
+<p>maybe... maybe...</p>
+
+<h2 id="tristan-50">Tristan</h2>
+
+<p>Yes, ok, I agree. When defining a gear there is a relationship between the
+tooth size, radius, and num teeth. So would modeling a gear involve specifying
+that relationship and then filling it with specific values? That would be
+difficult to make a good interface for doing naturally. Interesting, but
+difficult. <br />
+I think we want most modules to be built from primitives in the same way as
+parts are built, but is that possible? Or would you instead need to write a
+gear(selector(possibleGearSet(radius,toothsize)) module and if anyone wants to
+make a gear with 11 2mm teeth they need to instead use the gear(radius,#teeth)
+module... <br />
+I guess having a natural way to specify constraint relationships is the more
+worthy goal. I will brood on it.</p>
+
+<h2 id="alex-50">Alex</h2>
+
+<p>Yeah, I imagining you define the relationship between the parts all at once,
+and the user gets a set of variables and they can edit whatever ones make
+sense</p>
+
+<p><img src="https://lh3.googleusercontent.com/-bRVcrcPhb1I/YCFpvN_0LwI/AAAAAAAAFW4/A0GUh5QZ-
+ZYX5sPFeC_zhcu1Ri6AGtJ6QCK8BGAsYHg/s512/image945.png" alt="" /></p>
+
+<p>I'm imagining it auto-generates Equations for every possible constraint</p>
+
+<p>Then you fill in the ones that make sense</p>
+
+<p>You name the constrains, and other people can use that as a module, and define
+whatever constraints make sense.</p>
+
+<p>Then you put all the parts together</p>
+
+<h2 id="tristan-51">Tristan</h2>
+
+<p>I guess 'selector' above would actually be "max(below(" or some such... It
+would be interesting to see and work with those 'selectors', like, 'below'
+would look like a line or circle, and you would see it as a line or circle
+with it's passing possibilities highlighted and the outer ones faded. Then
+'max' you wouldn't see the too big possibilities from below, and would see
+highlighted the biggest with the other possibilities faded. <br />
+Interesting here is that the context of what's being selected should inform
+how possibilities are visualized. <br />
+'possibleGearSet' would also be a selector selecting from all real numbers
+based on radius and toothsize. <br />
+It would be possible to have selectors return empty or multiple and would have
+to raise an exception in those cases. That feels ugly but is probably
+something that has to be lived with. <br />
+I do like the idea though that when modeling you go through selectors to get
+the appropriate args before generating objects, rather than the other way
+around.  </p>
+
+<p>It's order of constraints. Auto generating functions that take values and
+return sets of possibilities... and yeah, auto generating them from
+constraints is the right way... but my thinking here is definitely still
+fuzzy...</p>
+
+<h2 id="alex-51">Alex</h2>
+
+<p>I presume there's a way to define a set of constraints and get a pretty
+equation from it</p>
+
+<p>That's admittedly a big presumption</p>
+
+<h2 id="tristan-52">Tristan</h2>
+
+<p>Oh! There's infinite variables that one may want to constrain... so you are
+both breaking out variables, and constraining them. For the triangle, should
+it by default break out volume and allow calculation of angle based on volume?
+What about square root of volume? Obviously not, so the act of creating
+modules is not just constraining, but breaking out variables that are useful
+to constrain, as well as constraining variables already broken out.</p>
+
+<h2 id="alex-52">Alex</h2>
+
+<p>Yep, that just completed the line of thought I was having</p>
+
+<p>And you can have an online thing with object inheritance, someone defines a
+good base thread object, other people constrain it with common thread types</p>
+
+<p>As I imagine good base objects like a generic "thread" is going to have a lot
+of variables broken out</p>
+
+<p>Where as an "ISO garden hose thread" will have much fewer variables broken
+out, or at least defaults for most of the annoying bits like thread profiles</p>
+
+<h2 id="tristan-53">Tristan</h2>
+
+<p>Online lib gets pointing in a direction that would be complicated but good...
+If you grab a module, it should look to you like a part you're working on. You
+can zoom inside it's operations and look around. Maybe there's an indication
+that you've crossed the bound into external code. But then you can start
+modifying it, and if you modify it it will become another module, either more
+or less primative. This way you adapting it to your needs may be seen &amp;
+possibly used by others. Are many people adapting it in this way? Maybe it
+should come up in the search before the more constrained version. Fuzzy
+thoughts. <br />
+Yeah... ISO... like, you'd have a tag 'ISO' tag that is only true so long as
+this radius is xyz and nothing else in the module has been changed.</p>
+
+<h2 id="alex-53">Alex</h2>
+
+<p>I'm imagining modules live in a different panel than your main work-piece, not
+just a zoom in. Since they're re-usable</p>
+
+<p>You'd need to make an explicit copy to edit it</p>
+
+<p>Source files basically</p>
+
+<p>But with content-addressable hashes</p>
+
+<h2 id="tristan-54">Tristan</h2>
+
+<p>So there are 'parts', 'relations' and 'selectors'. I prefer 'selector' to
+'constraint'. Feels more of a general concept. Also more cheery for people who
+aren't really into bondage. By applying relations, you can a ascertain values
+that will become properties of higher level parts.</p>
+
+<h2 id="alex-54">Alex</h2>
+
+<p>I want to implement cubic bezier as a generic part, I think it would prove the
+flexibility of the system really well., but be quite challenging to actually
+do</p>
+
+<p>Any system that you can implement your own cubic bezier in is powerfull enough</p>
+
+<h2 id="tristan-55">Tristan</h2>
+
+<p>I think there should be one primitive part. Vertex. But making a bunch of
+generics would be good.</p>
+
+<h2 id="alex-55">Alex</h2>
+
+<p>I have two primitive parts defined, points and lineSegments</p>
+
+<h2 id="tristan-56">Tristan</h2>
+
+<p>cubic beizer would be more of a selecter you put vertexes on, right?</p>
+
+<h2 id="alex-56">Alex</h2>
+
+<p>But points don't really count</p>
+
+<h2 id="tristan-57">Tristan</h2>
+
+<p>Points are the only thing that counts.</p>
+
+<h2 id="alex-57">Alex</h2>
+
+<p>Ehh, it outputs a bunch of line segments, so I'm not sure</p>
+
+<p>I think it would be a part</p>
+
+<h2 id="tristan-58">Tristan</h2>
+
+<p>Shouldn't it output an stl?</p>
+
+<p>Oh, I guess for working in 2d.</p>
+
+<h2 id="alex-58">Alex</h2>
+
+<p>Yeah</p>
+
+<p>Beziers output line segments in 2D, line segments are straight</p>
+
+<h2 id="tristan-59">Tristan</h2>
+
+<p>You may have it figured out, but I need to be more clear on how 'parts',
+'relations', and 'selectors' work. Are those the only object level things that
+the UI must allow interaction with?</p>
+
+<p>Is that in fact a good way of thinking of these things?</p>
+
+<h2 id="alex-59">Alex</h2>
+
+<p>I'm imagining each worksheet has, at the top, a list of named variables.  </p>
+
+<p>I've been imagining it as relations are the variables that you broke out,
+those are named variables. Variables that aren't broken out are anonymous
+variables. Parts can also have names.  </p>
+
+<p>So for example if you wanted to reference the tooth count on your main gears
+sun-gear you'd do something like <code>myvar=Maingear.sun.tooth_count</code></p>
+
+<p>A part is an object that exposes some number of variables</p>
+
+<p>If you wanted to reference an un-named variable I guess you'd go in and name
+it? Tricky for parts that are auto-generated, we need some kind of loop
+primitive...</p>
+
+<p>Selectors are just binding a variable to a name, really</p>
+
+<p>We probably need to allow for anonymous selectors as well though</p>
+
+<p>So no, I don't have a super clear view of what's going on, except that parts
+are a DAG of smaller parts</p>
+
+<p>And you explicitly name what variables exist</p>
+
+<h2 id="tristan-60">Tristan</h2>
+
+<p>I was thinking variables are relations you broke out... or they don't exist at
+all. Can we call them properties. Properties have relations. A certain number
+of properties must be specified to actually specify a part, rather than a set
+of possible parts. Selectors are how you go from a set of possible parts to a
+smaller set of possible parts to a single actual part.</p>
+
+<p>s/./?/</p>
+
+<h2 id="alex-60">Alex</h2>
+
+<p>Constraint really is the right term, not selector. It's what all the other cad
+programs call it, and what the geometric constraint solvers call it</p>
+
+<p>Properties have relations, yeah</p>
+
+<h2 id="tristan-61">Tristan</h2>
+
+<p>Also, relations are unknown, like actually not calculated at all in most
+cases, unless they have been 'created' or 'named' or whatever we are calling
+it.</p>
+
+<p>I need to think more about 'constraint' vs 'selector'...</p>
+
+<h2 id="alex-61">Alex</h2>
+
+<p>Yeah, that follows I think</p>
+
+<h2 id="tristan-62">Tristan</h2>
+
+<p>Obviously its just a name, but I had an inclination there is some reason what
+we should be thinking of isn't really that thing they are using...</p>
+
+<p>query might be better...</p>
+
+<h2 id="alex-62">Alex</h2>
+
+<p>Fair, selector like an html selector? Grabbing a node out of the DoM?</p>
+
+<p>I imagine it more like database constraints</p>
+
+<p>And relations like database queries, like <code>maingear.sun.tooth_count</code></p>
+
+<h2 id="tristan-63">Tristan</h2>
+
+<p>Yeah, no, 'query' works much better, 'query' and 'filter'...</p>
+
+<p>'maingear.sun.tooth_count' would be a property, right, it would be fit into
+the relation between the radiuses and number of other gears and stuff</p>
+
+<h2 id="alex-63">Alex</h2>
+
+<p>It's a property, but it's a property on a different part, yeah</p>
+
+<h2 id="tristan-64">Tristan</h2>
+
+<p>Maybe I want to grab every gear tooth, filter to every second one, then find
+it's middle and add an insignia there. That feels much more like a selection,
+filter, property thing thing, not a constraint. Yeah, I 'constrain' the
+insignias to what I get from that selection, but it's not like I'm
+constraining theme there, I'm just creating them there. Constraining never
+happened, except for the filter 'constraining to odd number tooth id's' or if
+you want to say that it is a 'constraint' to a set of real points, but that's
+baloney.</p>
+
+<h2 id="alex-64">Alex</h2>
+
+<p>Hmm, I suppose when you start getting into any kind of loop/map then selector
+makes a lot more sense, yeah</p>
+
+<p>I'm not sure a selector is the same as the constraint though, I imagine you
+query (select?) based on something, and then you do your constraint as a
+seperate step</p>
+
+<h2 id="tristan-65">Tristan</h2>
+
+<p>And I feel like with most modeling that's the default, and constraint is the
+exception, making it a more specific case of a query/filter thing.</p>
+
+<p>yeah, a lot of stuff starts out with querying all real numbers, or doing a get
+on a specific point, I imagine...</p>
+
+<h2 id="alex-65">Alex</h2>
+
+<p>for i in select("gears"): <br />
+constrain(emblem.center=i.center)</p>
+
+<p>Only you know, in a way that isn't turning complete</p>
+
+<h2 id="tristan-66">Tristan</h2>
+
+<p>And ideally more like 'mouse hover over relevent already broken out property,
+select, filter hotkey -> pop open menu for complex filter -> id %2==0, make
+hotkey -> insignia'</p>
+
+<h2 id="alex-66">Alex</h2>
+
+<p>Yeah, that looks like a reasonable workflow</p>
+
+<p>Frustrating for a certain kind of part, but it should be mathematically
+solvable you know?</p>
+
+<p>Like we should be able to make stuff like that part of the giant equation</p>
+
+<p>And have gecode solve it</p>
+
+<p>Also gecode was easy to add to cmake so I like it</p>
+
+<h2 id="tristan-67">Tristan</h2>
+
+<p>It looks cool. I don't know enough about it yet.</p>
+
+<h2 id="alex-67">Alex</h2>
+
+<p>Seems like it's the best constraint solver for cpp</p>
+
+<p>Constraint solvers are just computer algebra systems I think</p>
+
+<p><a href="https://www.minizinc.org/"> https://www.minizinc.org/ </a>  </p>
+
+<p>Lots and lots of stuff</p>
+
+<p><a href="https://pypi.org/project/python-constraint/"> https://pypi.org/project/python-constraint/
+</a> looks good for playing around
+with, of course it doesn't do any geometry you need to add the geometry
+yourself</p>
+
+
+</div>
+                            
+<hr>
+<p>Copyright 2019-2021 Alex Davies</p>
+
+<a href="https://github.com/traverseda/traverseda.github.io/blob/master/code/catCadChat.md">Revision history</a>
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"> </script>
+<script data-goatcounter="https://traverseda.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
