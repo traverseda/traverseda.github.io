@@ -49,7 +49,7 @@ engraving as it needs time to decelerate the glowforge head.
 ### Stroke fonts
 
 For text I try to use stroke fonts, unless the client has a very specific font
-in mind. A dead simple stroke font will cut incredibly thick, some of them
+in mind. A dead simple stroke font will cut incredibly fast, some of them
 consist of essentially one line, like you'd write a letter with a pen. More
 complex serif fonts are slower, but still much faster than engraving.
 
