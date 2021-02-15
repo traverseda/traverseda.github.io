@@ -1,0 +1,109 @@
+<header>
+  <link rel="stylesheet" href="../media/main.css" type="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+</header>
+
+<a href="../index.md.html"><h1>Outside Context Solutions</h1></a>
+
+<span>
+  
+  <a href="/lessons">lessons</a> / 
+  
+  <a href="/lessons/fastGlowforgeDesign.md.html">fastGlowforgeDesign.md.html</a>
+  
+</span>
+<hr>
+
+<div class="bodyContent">
+
+<h1 id="designing-for-the-glowforge">Designing for the glowforge</h1>
+
+<p><ul>
+  <li><a href="#designing-for-the-glowforge">Designing for the glowforge</a>
+  <ul>
+    <li><a href="#tech-overview">Tech Overview</a></li>
+    <li><a href="#tips-and-tricks">Tips and tricks</a>
+    <ul>
+      <li><a href="#stroke-fonts">Stroke fonts</a></li>
+    </ul></li>
+  </ul></li>
+</ul>
+</p>
+
+<h2 id="tech-overview">Tech Overview</h2>
+
+<p>Here are some tipes, assuming you're already a graphic designer, for how to get
+the most out of a glowforge. The glowforge accepts SVG files.</p>
+
+<p><strong>The glowforge does not understand fonts at all</strong>, convert your text to shapes
+before uploading. Embedded fonts don't work, built-in fonts don't work, fonts
+don't work.</p>
+
+<p>The glowforge has two main ways of drawing artwork, and it can also cut. It
+decides what is what based on color, but you can always override in the
+glowforge interface. Think of colors as like layers, and you can tell each color
+to be a different type of operation.</p>
+
+<ul>
+<li>Engrave</li>
+</ul>
+
+<p>Generally this is how the glowforge treats shapes that have a fill color.</p>
+
+<p>This is a raster mode where the glowforge will scan back and forth like an old
+CRT television. At standard definition I find it takes about 2 hours to do a
+drawing that covers the entire board.</p>
+
+<p>The glowforge moves a lost faster left/right than it does up/down, so when
+possible you want your engraves to be wide, not tall. For example if you're
+engraving a long string of text try to keep it horizontal, or rotate the object
+until it is horizontal. That can shave off entire minutes for each row of text.</p>
+
+<ul>
+<li>Score</li>
+</ul>
+
+<p>Generally this (or cut) is how the glowforge treates objects that have just a
+stroke defined.</p>
+
+<p>In this mode the laser follow your SVG path, laying down a line that's ~0.4mm.
+This tends to be a fair bit faster than engraving most of the time. You need to
+have a really complicated design before it's better to engrave than score.</p>
+
+<hr />
+
+<p>The glowforge has an 19x11 inch area it can cut in, a bit smaller if you're
+engraving as it needs time to decelerate the glowforge head.</p>
+
+<h2 id="tips-and-tricks">Tips and tricks</h2>
+
+<h3 id="stroke-fonts">Stroke fonts</h3>
+
+<p>For text I try to use stroke fonts, unless the client has a very specific font
+in mind. A dead simple stroke font will cut incredibly thick, some of them
+consist of essentially one line, like you'd write a letter with a pen. More
+complex serif fonts are slower, but still much faster than engraving.</p>
+
+<p>I use the "Hershey Text" extention built in to inkscape.</p>
+
+<p><img src="./inkscapeDemos/strokeFont.svg" alt="Stroke font example" /></p>
+
+<hr />
+
+<p><img src="./inkscapeDemos/strokeFontIndex.svg" alt="list of stroke fonts" /></p>
+
+<p>If the client requires a more specific font I just use a normal font, convert it
+to a path, and engrave it.</p>
+
+
+</div>
+                            
+<hr>
+<p>Copyright 2019-2021 Alex Davies</p>
+
+<a href="https://github.com/traverseda/traverseda.github.io/blob/master/lessons/fastGlowforgeDesign.md">Revision history</a>
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"> </script>
+<script data-goatcounter="https://traverseda.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
