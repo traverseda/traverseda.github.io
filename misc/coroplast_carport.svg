@@ -48,9 +48,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.53983661"
-     inkscape:cx="128.19836"
-     inkscape:cy="360.84888"
+     inkscape:zoom="0.85000462"
+     inkscape:cx="426.21787"
+     inkscape:cy="420.09193"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -65,7 +65,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -118,16 +118,16 @@
        xml:space="preserve"
        style="font-size:7.60337px;line-height:1.25;font-family:'Liberation Serif';-inkscape-font-specification:'Liberation Serif';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke-width:0.264583"
        x="142.59673"
-       y="143.82687"
+       y="141.71024"
        id="text861"><tspan
          sodipodi:role="line"
          id="tspan859"
          x="142.59673"
-         y="143.82687"
+         y="141.71024"
          style="stroke-width:0.264583">$323 in coroplast sheets from grimco</tspan><tspan
          sodipodi:role="line"
          x="143.54715"
-         y="153.33109"
+         y="151.21445"
          style="stroke-width:0.264583"
          id="tspan1115">(much cheaper from alibaba) </tspan></text>
     <path
