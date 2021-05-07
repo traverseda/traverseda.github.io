@@ -1,3 +1,13 @@
+//Top Diameter
+base2=108;  //  [20:1:500]
+// Bottom Diameter
+base1=93;  //  [20:1:500]
+//height
+planter_height=100;  //  [20:1:1000]
+
+//bar diameter (probably don't change this unless you're making something really big)
+barD = 5; // [20]
+
 module ring(d,barD=5){
     c = PI*d;
     bar_count=floor(c/barD);
@@ -44,4 +54,5 @@ module planter(d1,d2,h,barD=5){
     }
 }
 
-planter(93,108,60);
+
+planter(base1,base2,planter_height,barD=barD);
