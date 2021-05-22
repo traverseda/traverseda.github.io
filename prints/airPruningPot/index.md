@@ -23,4 +23,17 @@ src="/{{(f.resolve().relative_to(STATIC_ROOT.resolve())).parent}}/.thumbs/square
 
 ---
 
+I also have a version of this pot I've designed for bonsai trees, it's larger
+and since I can't put it in a pop bottle is comes with a water reservoir plate.
+
+It's my hope that the air-pruning pot's root management will work well with
+bonsai, removing the need to manually trim their roots.
+
+{{ utils.stl("large-bonsai-planter.stl")}}
+
+---
+{{ utils.stl("plate_large-bonsai-planter.stl")}}
+
+---
+
 {{utils.index(files)}}
