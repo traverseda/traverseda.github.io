@@ -59,8 +59,8 @@ sending the request to a random server in a pool, and session data should be, at
 least in principle, atomic. There should be one single-source of truth.</p>
 
 <p>How do you ensure there's only one single source of truth, while also keeping
-things performant? The same way you do in any concurrent system. You <strike>throw
-everything into postgres and let it handle it</strike> use standard locking and
+things performant? The same way you do in any concurrent system. You <s>throw
+everything into postgres and let it handle it</s> use standard locking and
 concurrency models, or if you're feeling fancy use something more exotic like
 CRDTs or raft-consensus.</p>
 
@@ -68,7 +68,7 @@ CRDTs or raft-consensus.</p>
 </div>
                             
 <hr>
-<p>Copyright 2019-2021 Alex Davies</p>
+<p>Copyright 2019-2023 Alex Davies</p>
 
 <a href="https://github.com/traverseda/traverseda.github.io/blob/master/scratchpad/statefullApis.md">Revision history</a>
 

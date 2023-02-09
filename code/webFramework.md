@@ -50,9 +50,7 @@ class Product(models.Model)
 
     @classmethod
     def qperms_edit(self):
-        #I'd really rather do something like
-        # return shop.objects.qperms_edit()
-        # just not sure how to make that work nicely.
+	#Define permission based on relationship to store
         user = get_current_request().user
         return Q(store__owner=user)
 
@@ -88,6 +86,10 @@ If I was desinging a web framework these days I'd build a system like queryperms
 in from the very begining. I'd probably make it so that queryperms were applied
 automatically and if you wanted unfiltered database access you'd need to
 explicitly bypass the queryperms.
+
+Of course the performance implications are left as an excerize to the reader,
+but realistically you'd be doing similar queries anyway. You can also use this
+to do fun stuff like query for all the objects that a user can access.
 
 ### HTMX
 

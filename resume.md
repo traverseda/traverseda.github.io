@@ -2,7 +2,6 @@
 # Alex Davies
 ## Software Developer
 
-Not currently seeking employment
 
 ## Summary
 
@@ -13,15 +12,26 @@ experience in software engineering and systems administration roles.
 
 ## Employment
 
+**Director of information system - Spiri Robotics**
+
+2023-01 -- present
+
+ * Responsible for all kinds of stuff, fill this in later.
+
 **Senior Software Developer - Spiri Robotics**
 
-Turns out it was more deveops than software dev...
+Turns out it was more devops than software dev...
 
 2020-08 -- present
 
  * Spearheaded development of "Spiri Cloud" product
  * Developed guidelines for integrating apps into our in-house SSO portal
- * Used django and OIDC to develop login portal
+ * Developed in-house SSO portal
+ * Developed data warehousing policies for intermittently connected embedded
+   linux devices
+ * Directed co-workers on implementing data warehousing
+ * Worked with embedded linux devices to ensure reasonable performance across
+   adverse network conditions
  * Integrated multiple third-party applications into our "spiri-cloud" product,
      including webdav/files and user-login integration
  * Worked with containerization frameworks like docker and systemd-nspawn to
@@ -35,7 +45,7 @@ Turns out it was more deveops than software dev...
 2018-02--2019-11
 
 I started this position as a CTO in order to head up new cryptocurrency
-integrations. When the bitcoin market ~~collapsed~~ slowed we pivoted towards
+integrations. When the bitcoin market slowed we pivoted towards
 offering blockchain-based financial services. During this transition I took over
 as CEO.
 

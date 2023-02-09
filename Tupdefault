@@ -4,10 +4,10 @@ include_rules
   --enable-comment-stripping --shorten-ids --indent=none |>
 
 #Generate individual pages.
-:foreach *.md |> python $(STATIC_ROOT)/compile.py $(STATIC_ROOT) %f %o |> %f.html ^__pycache__
+:foreach *.md |> poetry run python $(STATIC_ROOT)/compile.py $(STATIC_ROOT) %f %o |> %f.html ^__pycache__
 
 #Generate directory indexes
-: *.md |> python $(STATIC_ROOT)/compile.py $(STATIC_ROOT) __index__ %o |> index.html
+: *.md |> poetry run python $(STATIC_ROOT)/compile.py $(STATIC_ROOT) __index__ %o |> index.html
 
 #Handle STL files for 3D printing. 
 :foreach *.stl |> stl-thumb %f %o -b C7E3BEFF -s 684 -m 225910 338618 338618 |> $(STATIC_ROOT)/media/generated/3D/%b.png

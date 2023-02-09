@@ -43,5 +43,3 @@ things performant? The same way you do in any concurrent system. You ~~throw
 everything into postgres and let it handle it~~ use standard locking and
 concurrency models, or if you're feeling fancy use something more exotic like
 CRDTs or raft-consensus.
-
-

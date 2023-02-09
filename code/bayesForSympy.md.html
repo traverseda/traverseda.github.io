@@ -31,57 +31,59 @@ That's probably what you want to use for serious stats work. This is a
 dead-simple type for bayes theorem, and can't do things like "what's the
 probability that X==5".</p>
 
-<pre><code>from sympy import S
-from wrapt import ObjectProxy
+<div class="codehilite">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">S</span>
+<span class="kn">from</span> <span class="nn">wrapt</span> <span class="kn">import</span> <span class="n">ObjectProxy</span>
 
-one = S(1)
+<span class="n">one</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-"""
-A class for quickly doing math on percentages,
-using bayes theorem.
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A class for quickly doing math on percentages,</span>
+<span class="sd">using bayes theorem.</span>
 
-We use object proxying because we don't know what type
-of number the underlying probability is. Although
-probably we could just treat it as a rational number.
+<span class="sd">We use object proxying because we don&#39;t know what type</span>
+<span class="sd">of number the underlying probability is. Although</span>
+<span class="sd">probably we could just treat it as a rational number.</span>
 
-Still, as an object proxy we can use PI as a probability,
-or inifinity, or whatever. Any type of number can
-be treated like a probability.
+<span class="sd">Still, as an object proxy we can use PI as a probability,</span>
+<span class="sd">or inifinity, or whatever. Any type of number can</span>
+<span class="sd">be treated like a probability.</span>
 
-It's surprisngly performant, but if you get performance
-issues you might try replacing `ObjectProxy` with `S.rational`
-and removing the init method.
-"""
+<span class="sd">It&#39;s surprisngly performant, but if you get performance</span>
+<span class="sd">issues you might try replacing `ObjectProxy` with `S.rational`</span>
+<span class="sd">and removing the init method.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-class Probability(ObjectProxy):
-    """
-    A percentage object, you can use it to properly
-    add or subtract percentage from one another.
-    When used with a regular number, acts like
-    a regular number.
-    """
-    def __init__(self,wrapped):
-        super().__init__(S(wrapped))
+<span class="k">class</span> <span class="nc">Probability</span><span class="p">(</span><span class="n">ObjectProxy</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A percentage object, you can use it to properly</span>
+<span class="sd">    add or subtract percentage from one another.</span>
+<span class="sd">    When used with a regular number, acts like</span>
+<span class="sd">    a regular number.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">wrapped</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">wrapped</span><span class="p">))</span>
 
-    def __add__(self,other):
-        if isinstance(other, Probability):
-            return Probability(self+(one-self)*other)
-        return super().__add__(other)
-    def __sub__(self,other):
-        if isinstance(other, Probability):
-            return Probability(self-self*other)
-        return super().__sub__(other)
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Probability</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">Probability</span><span class="p">(</span><span class="bp">self</span><span class="o">+</span><span class="p">(</span><span class="n">one</span><span class="o">-</span><span class="bp">self</span><span class="p">)</span><span class="o">*</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Probability</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">Probability</span><span class="p">(</span><span class="bp">self</span><span class="o">-</span><span class="bp">self</span><span class="o">*</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__sub__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
 
-p = Probability
+<span class="n">p</span> <span class="o">=</span> <span class="n">Probability</span>
 
-print(float(p("1/3")+p("1/4")+p(0.5))) #0.75
+<span class="nb">print</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="s2">&quot;1/3&quot;</span><span class="p">)</span><span class="o">+</span><span class="n">p</span><span class="p">(</span><span class="s2">&quot;1/4&quot;</span><span class="p">)</span><span class="o">+</span><span class="n">p</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)))</span> <span class="c1">#0.75</span>
 </code></pre>
+</div>
 
 
 </div>
                             
 <hr>
-<p>Copyright 2019-2021 Alex Davies</p>
+<p>Copyright 2019-2023 Alex Davies</p>
 
 <a href="https://github.com/traverseda/traverseda.github.io/blob/master/code/bayesForSympy.md">Revision history</a>
 

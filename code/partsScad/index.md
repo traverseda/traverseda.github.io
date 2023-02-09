@@ -16,4 +16,8 @@ get the job done.
 {{(files/"demo.scad").read_text()|escape}}
 ```
 
+To actually generate the parts from your openscad file you'll need to be able
+to use python and the command line. Simple call the script like
+`python multipart.py path_to_you_file.scad`.
+
 Download here: [partsScad.scad](partsScad.scad) | [multipart.py](multipart.py)

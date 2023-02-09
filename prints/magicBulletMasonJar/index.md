@@ -20,15 +20,6 @@ of how bad the thread library is.
 
 {{ utils.stl("MagicMasonJar.stl") }}
 
-<div class="gallery">
-{% for f in (files/"gallery").iterdir() if f.is_file() %}
-<a href="/{{(f.resolve().relative_to(STATIC_ROOT.resolve()))}}">
-<img
-src="/{{(f.resolve().relative_to(STATIC_ROOT.resolve())).parent}}/.thumbs/square/{{f.name}}">
-</a>
-{% endfor %}
-</div>
-
 ---
 
 {{utils.index(files)}}

@@ -33,7 +33,7 @@ I'm probably not a good fit for your project if
  * You have a large (non-django/python) code base that you're going to need
      changes made to.
  * Your project is a single page web app, or otherwise heavily relies on
-     the modern javascript ecosystem
+     the modern javascript ecosystem 
 
 Technology wise I generally reach for django and htmx first.
 

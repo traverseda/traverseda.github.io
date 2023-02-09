@@ -39,55 +39,55 @@ else.</p>
 
 <p>A code sample is worth 1000 words...</p>
 
-<pre><code>"""Simple queryperm example, not to be taken seriously
-"""
-from threadlocals.threadlocals import get_current_request
+<div class="codehilite">
+<pre><span></span><code><span class="sd">&quot;&quot;&quot;Simple queryperm example, not to be taken seriously</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">threadlocals.threadlocals</span> <span class="kn">import</span> <span class="n">get_current_request</span>
 
-class Store(models.Model):
-    owner = models.ForeignKey(User)
-    #[...] other model fields
+<span class="k">class</span> <span class="nc">Store</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">owner</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+    <span class="c1">#[...] other model fields</span>
 
-    #Adds a "permissions" filter to all querysets
-    objects = QpermQueryset.as_manager()
+    <span class="c1">#Adds a &quot;permissions&quot; filter to all querysets</span>
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">QpermQueryset</span><span class="o">.</span><span class="n">as_manager</span><span class="p">()</span>
 
-    @classmethod
-    def qperms_edit(self):
-        #In reality this user filtering is handled by qperms_register
-        user = get_current_request().user
-        if user.is_superuser:
-            return Q() #superusers can do anything
-        return Q(owner=user)
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">qperms_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1">#In reality this user filtering is handled by qperms_register</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">get_current_request</span><span class="p">()</span><span class="o">.</span><span class="n">user</span>
+        <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_superuser</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Q</span><span class="p">()</span> <span class="c1">#superusers can do anything</span>
+        <span class="k">return</span> <span class="n">Q</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
 
-qperms_register(Store)
+<span class="n">qperms_register</span><span class="p">(</span><span class="n">Store</span><span class="p">)</span>
 
-class Product(models.Model)
-    shop = models.ForeignKey(Shop,limit_choices_to=Store.objects.permissions("edit"))
-    #[...]
+<span class="k">class</span> <span class="nc">Product</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">)</span>
+    <span class="n">shop</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Shop</span><span class="p">,</span><span class="n">limit_choices_to</span><span class="o">=</span><span class="n">Store</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">permissions</span><span class="p">(</span><span class="s2">&quot;edit&quot;</span><span class="p">))</span>
+    <span class="c1">#[...]</span>
 
-    objects = QpermQueryset.as_manager()
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">QpermQueryset</span><span class="o">.</span><span class="n">as_manager</span><span class="p">()</span>
 
-    @classmethod
-    def qperms_edit(self):
-        #I'd really rather do something like
-        # return shop.objects.qperms_edit()
-        # just not sure how to make that work nicely.
-        user = get_current_request().user
-        return Q(store__owner=user)
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">qperms_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1">#Define permission based on relationship to store</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">get_current_request</span><span class="p">()</span><span class="o">.</span><span class="n">user</span>
+        <span class="k">return</span> <span class="n">Q</span><span class="p">(</span><span class="n">store__owner</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
 
-qperms_register(Product)
+<span class="n">qperms_register</span><span class="p">(</span><span class="n">Product</span><span class="p">)</span>
 
-class ProductMedia(models.Model):
-    """Pictures/video of product
-    """
-    product = models.ForeignKey(Product,limit_choices_to=Product.objects.permissions("edit"))
+<span class="k">class</span> <span class="nc">ProductMedia</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pictures/video of product</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">product</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">Product</span><span class="p">,</span><span class="n">limit_choices_to</span><span class="o">=</span><span class="n">Product</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">permissions</span><span class="p">(</span><span class="s2">&quot;edit&quot;</span><span class="p">))</span>
 
-    objects = QpermQueryset.as_manager()
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">QpermQueryset</span><span class="o">.</span><span class="n">as_manager</span><span class="p">()</span>
 
-    @classmethod
-    def qperms_edit(self):
-        user = get_current_request().user
-        return Q(product__store__owner=user)
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">qperms_edit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">get_current_request</span><span class="p">()</span><span class="o">.</span><span class="n">user</span>
+        <span class="k">return</span> <span class="n">Q</span><span class="p">(</span><span class="n">product__store__owner</span><span class="o">=</span><span class="n">user</span><span class="p">)</span>
 </code></pre>
+</div>
 
 <p>This lets us chain togther more complicated permissions based on object
 relationships. I think this is a really powerful way to handle it, although I'm
@@ -106,6 +106,10 @@ available to themselves.</p>
 in from the very begining. I'd probably make it so that queryperms were applied
 automatically and if you wanted unfiltered database access you'd need to
 explicitly bypass the queryperms.</p>
+
+<p>Of course the performance implications are left as an excerize to the reader,
+but realistically you'd be doing similar queries anyway. You can also use this
+to do fun stuff like query for all the objects that a user can access.</p>
 
 <h3 id="htmx">HTMX</h3>
 
@@ -162,7 +166,7 @@ with wordpress if nothing else.</p>
 </div>
                             
 <hr>
-<p>Copyright 2019-2021 Alex Davies</p>
+<p>Copyright 2019-2023 Alex Davies</p>
 
 <a href="https://github.com/traverseda/traverseda.github.io/blob/master/code/webFramework.md">Revision history</a>
 
