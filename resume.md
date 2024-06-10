@@ -1,142 +1,104 @@
-
 # Alex Davies
-## Software Developer
 
+## Senior Software Architect
+
+---
 
 ## Summary
 
-Passionate technology professional with over a decade of combined
-experience in software engineering and systems administration roles.
+Passionate technology professional with over a decade of experience in software engineering and systems administration roles. Adept at leading development projects, integrating complex systems, and optimizing performance across various platforms. Expertise in ROS and embedded Linux.
 
----
+## Open Source Projects
+
+
+- [PySdfScad](https://github.com/traverseda/PySdfScad)
+
+A sophisticated project that compiles the OpenSCAD programming language into Python, providing seamless integration with proper tracebacks. This project also includes a QT-based graphical user interface (GUI) for enhanced usability. Although still in development, PySdfScad showcases advanced programming techniques and cross-language compilation capabilities.
+
+ - [My nixos config](https://codeberg.org/traverseda/nixos-config)
+
+A comprehensive NixOS configuration repository that highlights a deep understanding of Linux system administration and reliable deployments. This project includes custom configurations and packages, demonstrating proficiency in creating stable and reproducible Linux environments using the Nix package manager.
 
 ## Employment
 
-**Director of information system - Spiri Robotics**
+### Senior Software Architect - Spiri Robotics
+*August 2020 – Present*
 
-2023-01 -- present
+- Led the design and implementation of robotics software using ROS (Robot Operating System).
+- Developed and maintained software for embedded Linux devices to ensure optimal performance under varying network conditions.
+- Created data warehousing policies for intermittently connected embedded Linux devices.
+- Directed the integration of multiple third-party applications into various projects.
+- Utilized containerization frameworks like Docker and systemd-nspawn to create lightweight virtual servers, significantly reducing web hosting costs.
+- Developed and implemented guidelines for integrating applications into our in-house SSO portal.
+- Designed and developed an in-house SSO portal.
+- Developed a system to build root filesystem base images using a Docker-build pipeline.
+- Created project templates for deploying ROS code.
+- Developed a system for deploying ROS nodes securely using Docker.
+- Created onboarding and systems documentation for new team members.
+- Collaborated with cross-functional teams to ensure seamless integration and deployment of new features.
 
- * Responsible for all kinds of stuff, fill this in later.
+### Director of Information Systems - Spiri Robotics
+*January 2023 – Present*
 
-**Senior Software Developer - Spiri Robotics**
+- Overseeing all aspects of the company's information systems and infrastructure.
+- Responsible for strategic planning and execution of IT initiatives.
+- Leading a team to ensure the delivery of high-quality technology solutions.
 
-Turns out it was more devops than software dev...
+### Freelance Software Engineer
+*2016 – 2018*
 
-2020-08 -- present
+- Prototyped IoT devices using Micropython on the ESP32 platform.
+- Developed embedded Linux deployments with Buildroot.
+- Managed subcontractors to meet client user-experience expectations.
+- Delivered interactive data visualizations using Bokeh in client web apps.
+- Automated deployment processes with Ansible for production, testing, and development environments.
+- Built minimum viable products based on client requirements.
+- Updated legacy applications to modern software standards.
+- Analyzed sensor data to generate proprietary metrics.
+- Implemented REST APIs using Django REST framework.
+- Delivered real-time data to client apps via WebSocket communication.
 
- * Spearheaded development of "Spiri Cloud" product
- * Developed guidelines for integrating apps into our in-house SSO portal
- * Developed in-house SSO portal
- * Developed data warehousing policies for intermittently connected embedded
-   linux devices
- * Directed co-workers on implementing data warehousing
- * Worked with embedded linux devices to ensure reasonable performance across
-   adverse network conditions
- * Integrated multiple third-party applications into our "spiri-cloud" product,
-     including webdav/files and user-login integration
- * Worked with containerization frameworks like docker and systemd-nspawn to
-     create lightweight virtual servers, significantly reducing our web
-     hosting costs.
+### Software Developer - Brave New World Halifax
+*May 2015 – December 2015*
 
----
+- Implemented REST APIs using Django REST framework.
+- Expanded knowledge in ReactJS development.
+- Worked with and debugged a complex stack of CSS and JavaScript preprocessors, including SCSS and Babel.
+- Assessed technical feasibility of client requests and developed strategies and deadlines.
+- Followed Agile methodologies for project management.
+- Utilized Travis CI, Docker, and other development and build tools.
 
-**CEO/CTO anchor-financial/coin-nation-atms**
+### Software Developer - Resource Intelligence
+*July 2013 – May 2015*
 
-2018-02--2019-11
+- Developed software solutions using Python, web technologies, and front-end design.
+- Created a rollover policy that significantly reduced system downtime.
+- Directed the implementation of a Haystack/Solr search engine integration, improving NLP task performance.
+- Led a project to develop a complex data entry and validation platform.
+- Introduced a distributed task queue design pattern, cutting hours off common data-preparation tasks.
+- Integrated Django with legacy databases.
+- Developed tools to interface with third-party SOAP APIs, reducing implementation time for new functionalities.
+- Maintained database schema and optimized database migrations with Django South.
+- Implemented interactive mapping with GeoDjango.
 
-I started this position as a CTO in order to head up new cryptocurrency
-integrations. When the bitcoin market slowed we pivoted towards
-offering blockchain-based financial services. During this transition I took over
-as CEO.
+### Systems Administrator - Healthpark.ca
+*April 2011 – April 2013*
 
-We worked closely with regulators to try and design a regulatory framework for
-our "stable coin" electronics payment system. Unfortunately we were unsuccessful.
+- Managed AWS deployments and clinic LAN infrastructure.
+- Created development virtual machines for a consistent remote development environment.
+- Debugged and maintained Django-based FastCGI services, reducing downtime and latency.
+- Managed Nginx servers.
 
----
+### Systems Administrator - Brightcrow Media
+*January 2008 – February 2010*
 
-**Freelance Software engineer**
-
-2016--2018
-
-Developed solutions for a variety of clients.
-
-  * Prototyped IoT devices with **micropython** on the **esp32** platform.
-  * Created embedded linux deployments with **buildroot**.
-  * **Managed subcontractors** in meeting clients user-experience expectations.
-  * Worked with bokeh to deliver **interactive data visualization** in client web
-    apps.
-  * Set deadlines and made accurate time estimates.
-  * Used ansible to **automate deployment** to production, testing, and development environments.
-  * Analyzed client requirements to build **minimum viable products**.
-  * Updated **legacy applications** to meet modern software standards.
-  * Integrated data from sensors
-  * Introduced distributed **task queue** design pattern that cut hours off of common data-preparation and analysis tasks.
-  * Analyzed **sensor data** to generate proprietary metrics.
-  * Implemented **REST APIs** using [django-REST](http://www.django-rest-framework.org/).
-  * Utilized **websocket communication** to deliver **real-time data** to client
-    apps.
-
----
-
-**Brave New World Halifax**
-
-2015-05--2015-12 
-
-Worked as part of a team delivering multi-media projects.
-
-  * Implemented **REST APIs** using [django-REST](http://www.django-rest-framework.org/).
-  * Expanded my knowledge of reactjs development.
-  * Worked with and debugged large stack of CSS and Javascript preproccessors, including SCSS and Babel
-  * Participated in meetings assessing technical feasibility of client requests and developing **strategies/deadlines**.
-  * Set deadlines and reported responsibilities according to **agile methodologies**.
-  * Used travis-ci, docker, and others in a wide ecosystem of **development and build tools.**
+- Managed a shared hosting environment.
+- Deployed PHP applications and managed domain names.
+- Scripted backup routines and managed user accounts.
 
 ---
-
-**Resource Intelligence**
-
-2013-07 -- 2015-05 
-
-Developed systems for collecting data from a variety of sources and in-house
-software projects.
-
-  * Created a variety of software solutions, largely using python but touching on web technologies and front end design.
-  * Created and enforced **rollover policy** that significantly reduced downtime of data entry system.
-  * Directed the implementation of [haystack/solr](http://haystacksearch.org/) **search engine integration**, significantly speeding up long-running natural language processing tasks.
-  * Spearheaded project to create complicated **data entry and validation** platform.
-  * Introduced distributed **task queue** design pattern that cut hours off of common data-preparation tasks.
-  * Integrated Django with **legacy databases**.
-  * Created tools to integrate with third party **SOAP api**'s, significantly reducing turnaround time for implementing new api based functionality.
-  * Created and maintained **database schema**, resolving industry knowledge from experts into a solid technical platform.
-  * Used [Django-south](http://south.aeracode.org/) to optimize **database migrations**, leading to a tighter feedback/development loop and faster development cycles.
-  * Implemented interactive mapping using geoDjango.
-
----
-
-**Healthpark.ca**
-
-2011-04--2013-04 
-
-Maintained Cloud Infrastructure as well as clinic LAN
-
-  * Managed AWS deployments.
-  * Created development virtual machines, enabling the remote development team to work in a more consistent environment, significantly reducing deployment time and integration issues.
-  * Managed and debugged Django based FastCGI services, reducing downtime and server latency.
-  * Maintained nginx servers.
-
----
-
-**Brightcrow media** 
-
-2008-01--2010-02 
-
-Managed a shared hosting environment
-
-  * Deployed PHP applications.
-  * Managed domain names.
-  * Scripted backup routines.
-  * Managed user accounts.
 
 ## References
 
 Available on request.
+

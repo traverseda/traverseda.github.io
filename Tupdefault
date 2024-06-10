@@ -10,7 +10,7 @@ include_rules
 : *.md |> poetry run python $(STATIC_ROOT)/compile.py $(STATIC_ROOT) __index__ %o |> index.html
 
 #Handle STL files for 3D printing. 
-:foreach *.stl |> stl-thumb %f %o -b C7E3BEFF -s 684 -m 225910 338618 338618 |> $(STATIC_ROOT)/media/generated/3D/%b.png
+# :foreach *.stl |> stl-thumb %f %o -b C7E3BEFF -s 684 -m 225910 338618 338618 |> $(STATIC_ROOT)/media/generated/3D/%b.png
 #I'd rather render the STL directly...
 :foreach *.stl |> blender --background --python $(STATIC_ROOT)/media/blendStl.py -- %f %o |> $(STATIC_ROOT)/media/generated/3D/%b.glb
 
