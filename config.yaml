@@ -14,14 +14,24 @@ markup:
     style: monokai
 menu:
   main:
-    - identifier: search
-      name: search
-      url: /search/
+    # - weight: 25
+    #   pre: "|"
+    - identifier: art
+      name: art
+      url: /art/
       weight: 10
+    - identifier: programming
+      name: programming
+      url: /programming/
+      weight: 20
     - identifier: archive
       name: archive
       url: /archive/
-      weight: 20
+      weight: 30
+    - identifier: search
+      name: search
+      url: /search/
+      weight: 40
 
 outputs:
   home:
@@ -38,6 +48,7 @@ params:
   archive: true
   ShowCodeCopyButtons: true
   ShowToc: false
+  ShowReadingTime: true
   assets:
     js:
       - "https://unpkg.com/@justinribeiro/stl-part-viewer@2.1.1/dist/stl-part-viewer.min.js"

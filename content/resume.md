@@ -1,6 +1,7 @@
 ---
-date: '2025-02-07T15:52:14-04:00'
+date: '2025-02-08T15:52:14-04:00'
 title: 'Resume'
+ShowToc: true
 ---
 
 # Alex Davies

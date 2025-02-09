@@ -1,6 +1,6 @@
 ---
 date: '2025-02-08T11:15:09-04:00'
-draft: false
+draft: true
 title: 'Docker Services for homelabs'
 ShowToc: true
 ShowReadingTime: true
@@ -21,8 +21,8 @@ You can probably ignore all of this.
 If you're using podman or some other containerization technology, this is more
 general principles and as long as it supports docker-compose you should be fine.
 
-If you need special security measures like 2 factor auth, or high-availability, this
-problem becomes a lot harder generally.
+If you need special security measures like 2 factor auth, or high-availability, deploying
+and maintaining this kind of stack becomes a lot harder.
 
 # Principles and lessons learned
 
@@ -158,6 +158,66 @@ a great understanding of how it maps labels to config.
 
 ## Example deployment with traefik
 
+
+```yaml
+#services/traefik/docker-compose.yaml
+
+networks:
+  proxy:
+    external: true
+
+services:
+  traefik:
+    image: "traefik:v3.1"
+    restart: always
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+        # - "--log.level=DEBUG"  
+      - "--providers.docker.exposedbydefault=false"
+      - "--entryPoints.web.address=:80"
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+      - "--entrypoints.web.http.redirections.entrypoint.permanent=true"
+      - "--entryPoints.websecure.address=:443"
+      - "--certificatesresolvers.letsencrypt.acme.tlschallenge=true"
+      - "--certificatesresolvers.letsencrypt.acme.email=you@example.com"
+      - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+      # We use this to enable ldap auth in free traefik
+      - "--experimental.plugins.ldapAuth.modulename=github.com/wiltonsr/ldapAuth"
+      - "--experimental.plugins.ldapAuth.version=v0.1.8"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080" #Monitor port for ensuring everything is set up properly
+    volumes:
+      - "./data_letsecnrypt/:/letsencrypt/"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - proxy
+```
+
+
+```yaml
+#services/example/docker-compose.yaml
+
+networks:
+  proxy:
+    external: true
+
+services:
+  whoami:
+    image: "traefik/whoami"
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.yourdomain.com`)"
+      - "traefik.http.routers.whoami.entrypoints=websecure"
+      - "traefik.http.routers.whoami.tls.certresolver=letsencrypt"
+    networks:
+      - proxy
+```
+
 # Centralized authentication
 
 ## technologies
@@ -188,6 +248,65 @@ These are more enterprise scale technologies you should probably ignore as long 
 
 ## example deployment with LLDAP
 
-# Example Service
+
+```yaml
+#services/lldap/docker-compose.yaml
+
+networks:
+  proxy:
+    external: true
+
+services:
+  lldap:
+    image: lldap/lldap:stable
+    restart: always
+    ports:
+      - "17170:17170"
+    volumes:
+      - "./data_lldap:/data"
+    environment:
+      - UID=1000
+      - GID=1000
+      - TZ=America/Halifax
+      #Generate a random secret with `python3 -c "import secrets; print(secrets.token_urlsafe(32))"`
+      - LLDAP_JWT_SECRET=<secret1>
+      - LLDAP_KEY_SEED=<secret2>
+      - LLDAP_LDAP_BASE_DN=dc=yourdomain,dc=com
+      #- LLDAP_HTTP_URL=https://auth.youdomain.com
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.lldap.rule=Host(`auth.yourdomain.com`)"
+      - "traefik.http.routers.lldap.entrypoints=websecure"
+      - "traefik.http.routers.lldap.tls.certresolver=letsencrypt"
+      - "traefik.http.services.lldap.loadbalancer.server.port=17170"
+    networks:
+      - proxy
+```
 
 
+```yaml
+#services/example_secure/docker-compose.yaml
+
+networks:
+  proxy:
+    external: true
+
+services:
+  whoami:
+    image: "traefik/whoami"
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami_secure.rule=Host(`whoami_secure.yourdomain.com`)"
+      - "traefik.http.routers.whoami_secure.entrypoints=websecure"
+      - "traefik.http.routers.whoami_secure.tls.certresolver=letsencrypt"
+      - traefik.http.routers.whoami_secure.middlewares=ldap_auth
+      # ldapAuth Options=================================================================
+      - traefik.http.middlewares.ldap_auth.plugin.ldapAuth.enabled=true
+      - traefik.http.middlewares.ldap_auth.plugin.ldapAuth.url=ldap://lldap
+      - traefik.http.middlewares.ldap_auth.plugin.ldapAuth.port=3890
+      - traefik.http.middlewares.ldap_auth.plugin.ldapAuth.baseDN=ou=people,dc=yourdomain,dc=com
+      - traefik.http.middlewares.ldap_auth.plugin.ldapAuth.attribute=uid
+    networks:
+      - proxy
+```

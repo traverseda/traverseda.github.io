@@ -1,6 +1,5 @@
 ---
 date: '2020-10-21T20:15:00-04:00'
-draft: true
 ShowToc: true
 title: 'Designing off-grid power systems'
 ---
