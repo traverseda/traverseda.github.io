@@ -1,0 +1,53 @@
+baseURL: https://example.org/
+languageCode: en-us
+title: Outside Context Solutions
+theme:
+  - paper-mod
+  - hugo-shortcode-gallery
+markup:
+  highlight:
+    # anchorLineNos: true
+    codeFences: true
+    guessSyntax: true
+    lineNos: true
+    # noClasses: false
+    style: monokai
+menu:
+  main:
+    - identifier: search
+      name: search
+      url: /search/
+      weight: 10
+    - identifier: archive
+      name: archive
+      url: /archive/
+      weight: 20
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+params:
+  mainSections:
+   - programming
+   - art
+   - misc
+  TocOpen: true
+  archive: true
+  ShowCodeCopyButtons: true
+  ShowToc: false
+  assets:
+    js:
+      - "https://unpkg.com/@justinribeiro/stl-part-viewer@2.1.1/dist/stl-part-viewer.min.js"
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
+    keys: ["title", "permalink", "summary", "content"]
+

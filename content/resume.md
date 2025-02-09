@@ -1,0 +1,109 @@
+---
+date: '2025-02-07T15:52:14-04:00'
+title: 'Resume'
+---
+
+# Alex Davies
+
+## Senior Software Architect
+
+---
+
+## Summary
+
+Passionate technology professional with over a decade of experience in software engineering and systems administration roles. Adept at leading development projects, integrating complex systems, and optimizing performance across various platforms. Expertise in ROS and embedded Linux.
+
+## Open Source Projects
+
+
+- [PySdfScad](https://github.com/traverseda/PySdfScad)
+
+A sophisticated project that compiles the OpenSCAD programming language into Python, providing seamless integration with proper tracebacks. This project also includes a QT-based graphical user interface (GUI) for enhanced usability. Although still in development, PySdfScad showcases advanced programming techniques and cross-language compilation capabilities.
+
+ - [My nixos config](https://codeberg.org/traverseda/nixos-config)
+
+A comprehensive NixOS configuration repository that highlights a deep understanding of Linux system administration and reliable deployments. This project includes custom configurations and packages, demonstrating proficiency in creating stable and reproducible Linux environments using the Nix package manager.
+
+## Employment
+
+### Senior Software Architect - Spiri Robotics
+*August 2020 – Present*
+
+- Led the design and implementation of robotics software using ROS (Robot Operating System).
+- Developed and maintained software for embedded Linux devices to ensure optimal performance under varying network conditions.
+- Created data warehousing policies for intermittently connected embedded Linux devices.
+- Directed the integration of multiple third-party applications into various projects.
+- Utilized containerization frameworks like Docker and systemd-nspawn to create lightweight virtual servers, significantly reducing web hosting costs.
+- Developed and implemented guidelines for integrating applications into our in-house SSO portal.
+- Designed and developed an in-house SSO portal.
+- Developed a system to build root filesystem base images using a Docker-build pipeline.
+- Created project templates for deploying ROS code.
+- Developed a system for deploying ROS nodes securely using Docker.
+- Created onboarding and systems documentation for new team members.
+- Collaborated with cross-functional teams to ensure seamless integration and deployment of new features.
+
+### Director of Information Systems - Spiri Robotics
+*January 2023 – Present*
+
+- Overseeing all aspects of the company's information systems and infrastructure.
+- Responsible for strategic planning and execution of IT initiatives.
+- Leading a team to ensure the delivery of high-quality technology solutions.
+
+### Freelance Software Engineer
+*2016 – 2018*
+
+- Prototyped IoT devices using Micropython on the ESP32 platform.
+- Developed embedded Linux deployments with Buildroot.
+- Managed subcontractors to meet client user-experience expectations.
+- Delivered interactive data visualizations using Bokeh in client web apps.
+- Automated deployment processes with Ansible for production, testing, and development environments.
+- Built minimum viable products based on client requirements.
+- Updated legacy applications to modern software standards.
+- Analyzed sensor data to generate proprietary metrics.
+- Implemented REST APIs using Django REST framework.
+- Delivered real-time data to client apps via WebSocket communication.
+
+### Software Developer - Brave New World Halifax
+*May 2015 – December 2015*
+
+- Implemented REST APIs using Django REST framework.
+- Expanded knowledge in ReactJS development.
+- Worked with and debugged a complex stack of CSS and JavaScript preprocessors, including SCSS and Babel.
+- Assessed technical feasibility of client requests and developed strategies and deadlines.
+- Followed Agile methodologies for project management.
+- Utilized Travis CI, Docker, and other development and build tools.
+
+### Software Developer - Resource Intelligence
+*July 2013 – May 2015*
+
+- Developed software solutions using Python, web technologies, and front-end design.
+- Created a rollover policy that significantly reduced system downtime.
+- Directed the implementation of a Haystack/Solr search engine integration, improving NLP task performance.
+- Led a project to develop a complex data entry and validation platform.
+- Introduced a distributed task queue design pattern, cutting hours off common data-preparation tasks.
+- Integrated Django with legacy databases.
+- Developed tools to interface with third-party SOAP APIs, reducing implementation time for new functionalities.
+- Maintained database schema and optimized database migrations with Django South.
+- Implemented interactive mapping with GeoDjango.
+
+### Systems Administrator - Healthpark.ca
+*April 2011 – April 2013*
+
+- Managed AWS deployments and clinic LAN infrastructure.
+- Created development virtual machines for a consistent remote development environment.
+- Debugged and maintained Django-based FastCGI services, reducing downtime and latency.
+- Managed Nginx servers.
+
+### Systems Administrator - Brightcrow Media
+*January 2008 – February 2010*
+
+- Managed a shared hosting environment.
+- Deployed PHP applications and managed domain names.
+- Scripted backup routines and managed user accounts.
+
+---
+
+## References
+
+Available on request.
+
