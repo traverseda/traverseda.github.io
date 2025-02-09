@@ -16,9 +16,9 @@ menu:
   main:
     # - weight: 25
     #   pre: "|"
-    - identifier: art
-      name: art
-      url: /art/
+    - identifier: design
+      name: art & design
+      url: /design/
       weight: 10
     - identifier: programming
       name: programming
@@ -42,7 +42,7 @@ outputs:
 params:
   mainSections:
    - programming
-   - art
+   - design
    - misc
   TocOpen: true
   archive: true
