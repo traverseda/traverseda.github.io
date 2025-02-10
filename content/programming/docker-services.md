@@ -4,16 +4,40 @@ draft: false
 title: 'Docker Services for homelabs'
 ShowToc: true
 ShowReadingTime: true
+tags:
+  - sysadmin
 ---
 
-or "how to sysadmin for small business in 2025" if you're not of this homelab generation.
+or "how to sysadmin for small business in 2025 using containers" if you're not of this homelab generation.
 
 Docker is a very powerful tool, and there are a near infinite number of ways you can
 manage your docker configurations. There are also a lot of tools that will
 claim to make this easier, or provide more of an all-in-one solutions.
 
 As of my writing this in early 2025, none of those tools seem to really work
-well and I still find myself having to go in and do a lot of stuff manually.
+well and I still find myself having to go in and do a lot of stuff manually. Maybe
+someday one of these projects will hit the magic formula, but for now it's just 
+too clunky the instant you go off the happy path. But you could try
+
+ * CasaOS
+ * yunohost
+ * yacht
+ * portainer
+ * umbrel
+ * HexOs
+ * TrueNAS
+ * cosmos-cloud
+
+And I'm sure many more. I consider these to be, so far, largely dead ends.
+The main reason for this is the ecosystem, they're all using the same open 
+source web apps as everyone else, and all of these web apps have warts and 
+rough edges that are going to need to be customized by you. They make this 
+kind of cusotmization hard.
+
+If you just want a basic deployment I think cosmos-cloud was my favorite
+so far. It integrates some single-sign-on and doesn't seem to break in too
+many weird ways. A bit tricky to convert some weird unsupported service into
+something that works with it.
 
 If you're using kubernetes... good for you, that seems like a lot of work.
 You can probably ignore all of this.
@@ -23,6 +47,7 @@ general principles and as long as it supports docker-compose you should be fine.
 
 If you need special security measures like 2 factor auth, or high-availability, deploying
 and maintaining this kind of stack becomes a lot harder.
+
 
 # Principles and lessons learned
 

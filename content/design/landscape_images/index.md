@@ -4,7 +4,7 @@ draft: false
 title: "Landscape Photography"
 weight: 10
 cover:
-    image: images/halifax_waterfront_night_rain.jpg
+    image: images/prospect-bay-tree.jpg
 ---
 
 Late 2024 I decided to start taking landscape photos. Here are some of what I thought were the better pictures.
