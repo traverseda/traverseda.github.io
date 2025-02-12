@@ -1,0 +1,14 @@
+{{- $wildcard := .Get "wildcard" | default "*" -}}
+{{- $resources := .Page.Resources.Match $wildcard -}}
+
+{{- if gt (len $resources) 0 }}
+  <ul>
+    {{- range $resources }}
+      <li>
+        <a href="{{ .RelPermalink }}" download>{{ .Name }}</a>
+      </li>
+    {{- end }}
+  </ul>
+{{- else }}
+  <p>No matching files found.</p>
+{{- end }}
