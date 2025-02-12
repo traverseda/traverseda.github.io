@@ -4,6 +4,7 @@ draft: false
 title: 'Self Watering Planter'
 tags:
   - plants
+  - 3Dprint
 ---
 
 
@@ -25,10 +26,10 @@ it dried out too frequintly.
 
 ### STL files
 
-{{< download wildcard="*.stl">}}
+{{< download path="*.stl">}}
 
 ### OpenScad files
 
-{{< download wildcard="*.scad">}}
+{{< download path="*.scad">}}
 
 

@@ -1,5 +1,5 @@
-{{- $wildcard := .Get "wildcard" | default "*" -}}
-{{- $resources := .Page.Resources.Match $wildcard -}}
+{{- $path := .Get "path" | default "*" -}}
+{{- $resources := .Page.Resources.Match $path -}}
 
 {{- if gt (len $resources) 0 }}
   <ul>
