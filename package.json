@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "rollup": "^2.79.2",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "dependencies": {
+    "lit": "^3.2.1",
+    "three": "^0.173.0"
+  }
+}

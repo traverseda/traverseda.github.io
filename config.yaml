@@ -47,11 +47,10 @@ params:
   TocOpen: true
   archive: true
   ShowCodeCopyButtons: true
+  defaultTheme: auto
   ShowToc: false
   ShowReadingTime: true
-  assets:
-    js:
-      - "https://unpkg.com/@justinribeiro/stl-part-viewer@2.1.1/dist/stl-part-viewer.min.js"
+  # assets:
   fuseOpts:
     isCaseSensitive: false
     shouldSort: true
