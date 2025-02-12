@@ -106,6 +106,9 @@ means they either need to break from the docker compose standard or fork your
 docker image. This is why there's no good 1-click solution to deploy
 your app, just a couple dozen mediocre ones.
 
+Well that and OpenID requiring a relatively complicated flow to set up, requiring you
+to generate secrets and all kinds of data on both sides of the connection.
+
 # Directory structure
 
 I create a new top-level `/services/` folder. This is not official unix specs, but I don't feel
