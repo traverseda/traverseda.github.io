@@ -48,7 +48,6 @@ general principles and as long as it supports docker-compose you should be fine.
 If you need special security measures like 2 factor auth, or high-availability, deploying
 and maintaining this kind of stack becomes a lot harder.
 
-
 # Principles and lessons learned
 
 >“The primary feature for easy maintenance is locality: Locality is that characteristic of source code that enables a programmer to understand that source by looking at only a small portion of it.”
@@ -63,11 +62,17 @@ It's some cool stuff, but it's a huge amount of effort. There's no reason to spe
 time on this unless/until you have a good reliable distributed filesystem, or a fast
 centralized file store and you're happy with that single point of failure.
 
+That doesn't mean you can't scale, it's probably just a more manual process. You're
+going to have a hard time auto-scaling, but for internal services you're not going
+to add a half million new employees suddeny either. If you do make sure a bunch of them
+know kubernetes or AWS or whatever the trendy deployment tool is I guess.
+
  * Volumes are a trap
 
 Why would you want to use volumes? Because you're connecting to a cluster or other
 type of remote filesystem. Other than that they just make stuff harder and violate
-locality-of-behavior.
+locality-of-behavior. Filesystems are predictable, they're the base of all the linux
+stuff. Don't be ashamed of filesystems because it's not how the big boys do it.
 
  * Services should be self-contained
 
@@ -75,16 +80,30 @@ All your bind mounts should be relative to the docker file. You should be able t
 that folder to another server and have it just work. This will help you with backups,
 migrations, and it also just generally makes it easier to deal with.
 
+Server goes down? Just copy all its services from backup onto a new server and run
+`docker compose up`
+
 Likewise don't have hard dependencies on things like external postgres databases.
 I know having all your services talk to one postgres instance would be more efficient,
 but unfortunately it just doesn't play well with how docker is designed.
 
+Sometimes it's unavoidable, like with centralized auth, but unless you're really resource
+constrained just start another instance of your database please. It will save a lot 
+of time debugging and messing around with your one golden database.
+
  * Where possible configure through environment variables
 
 This is part of the [12 factor app](https://12factor.net/) design Principles.
-Many popular apps do not support configuration through env variables, later on 
-we'll discuss how I manage those situations.
+Many popular apps do not support configuration through env variables, later on
+we'll discuss how I manage those situations through the magic of just writing
+a config file and mounting it.
 
+To app developers: The reason all those tools above suck? it's this. Instead
+of just having one way to pass config around all those tools need to implement
+some code to shove their auth portal config into your config files. Which 
+means they either need to break from the docker compose standard or fork your
+docker image. This is why there's no good 1-click solution to deploy
+your app, just a couple dozen mediocre ones.
 
 # Directory structure
 
