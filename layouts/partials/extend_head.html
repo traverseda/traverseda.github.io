@@ -1,0 +1,2 @@
+{{ $stlViewer := resources.Get "js/min.bundle.js" | resources.Fingerprint }}
+<script type="module" src="{{ $stlViewer.RelPermalink }}"></script>
