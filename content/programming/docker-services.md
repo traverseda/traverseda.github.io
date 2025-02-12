@@ -32,12 +32,13 @@ And I'm sure many more. I consider these to be, so far, largely dead ends.
 The main reason for this is the ecosystem, they're all using the same open 
 source web apps as everyone else, and all of these web apps have warts and 
 rough edges that are going to need to be customized by you. They make this 
-kind of cusotmization hard.
+kind of customization hard.
 
 If you just want a basic deployment I think cosmos-cloud was my favorite
 so far. It integrates some single-sign-on and doesn't seem to break in too
 many weird ways. A bit tricky to convert some weird unsupported service into
-something that works with it.
+something that works with it. The single-sign-on will not work with jellyfin
+or allow you to set the SSH password on services like Gitea.
 
 If you're using kubernetes... good for you, that seems like a lot of work.
 You can probably ignore all of this.
