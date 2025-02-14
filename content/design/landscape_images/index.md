@@ -12,4 +12,5 @@ it will stop being winter and I'll get some more greenery in, until then prepare
 
 All of these were taken by me, and are licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
-{{< gallery match="images/*" sortOrder="desc" loadJQuery=true >}}
+{{< gallery match="images/*" sortOrder="desc" loadJQuery=true showExif=true >}}
+

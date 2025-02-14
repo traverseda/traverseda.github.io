@@ -1,5 +1,5 @@
 ---
-date: '2025-02-08T11:15:09-04:00'
+date: '2025-02-12T11:15:09-04:00'
 draft: false
 title: 'Docker Services for homelabs'
 ShowToc: true
@@ -65,7 +65,7 @@ centralized file store and you're happy with that single point of failure.
 
 That doesn't mean you can't scale, it's probably just a more manual process. You're
 going to have a hard time auto-scaling, but for internal services you're not going
-to add a half million new employees suddeny either. If you do make sure a bunch of them
+to add a half million new employees suddenly either. If you do make sure a bunch of them
 know kubernetes or AWS or whatever the trendy deployment tool is I guess.
 
  * Volumes are a trap
@@ -73,7 +73,10 @@ know kubernetes or AWS or whatever the trendy deployment tool is I guess.
 Why would you want to use volumes? Because you're connecting to a cluster or other
 type of remote filesystem. Other than that they just make stuff harder and violate
 locality-of-behavior. Filesystems are predictable, they're the base of all the linux
-stuff. Don't be ashamed of filesystems because it's not how the big boys do it.
+stuff. Don't be ashamed of filesystems because it's not how the big boys do it. Adding
+some abstraction between you and the filesystem is just going to make things harder
+for now. If you want to mount a remote network drive you can just mount that drive,
+and then do a normal bind mount to it.
 
  * Services should be self-contained
 
@@ -89,7 +92,7 @@ I know having all your services talk to one postgres instance would be more effi
 but unfortunately it just doesn't play well with how docker is designed.
 
 Sometimes it's unavoidable, like with centralized auth, but unless you're really resource
-constrained just start another instance of your database please. It will save a lot 
+constrained just start another instance of your database please. It will save a lot
 of time debugging and messing around with your one golden database.
 
  * Where possible configure through environment variables
@@ -196,7 +199,7 @@ inspecting the labels on your containers to see how the connection should be con
 There are some pretty basic features, like LDAP auth, that are behind a paywall.
 You may find yourself reaching for community plugins early.
 
-There are some alternetives. `nginx-proxy-manager` is a frontend around nginx,
+There are some alternatives. `nginx-proxy-manager` is a frontend around nginx,
 it doesn't do any sort of auto-configuration for you, and I've found the code quality to be
 less than perfect. I'd probably go with just nginx and config files.
 
