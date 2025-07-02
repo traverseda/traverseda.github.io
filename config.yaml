@@ -12,6 +12,13 @@ markup:
     lineNos: true
     # noClasses: false
     style: monokai
+  goldmark:
+    parser:
+      attribute:
+        block: true
+        title: true
+    renderer:
+      unsafe: true
 menu:
   main:
     # - weight: 25
